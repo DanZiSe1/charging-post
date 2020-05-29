@@ -12,7 +12,7 @@
   "tabBar": {
     "list": [{
       "pagePath": "pages/index/index",
-      "text": "充电站3233"
+      "text": "充电站"
     }, {
       "pagePath": "pages/logs/logs",
       "text": "扫码"
