@@ -7,28 +7,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    detailsList:[1,1,1,1]
+    detailsList:[1,1,1,1],
+    order_id: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
-    wx.request({
-      url: 'http://test-evcs.91sdc.cn/xcx/charge/stop', 
-      data: {
-        "start_charge_seq": "123"
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      method:'POST',
-      success (res) {
-        console.log(url);
-        console.log(res)
-      }
-    })
+    let data = {
+      "order_id": 0,
+      "page_size": 10
+    }
+    https.request(api.getOrdersList,data).then(function(res){
+      console.log(res);
+    });
 
   },
   detailsTap:function(){

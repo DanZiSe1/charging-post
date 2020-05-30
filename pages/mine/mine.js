@@ -21,7 +21,8 @@ Page({
       "unique_id": "0123456"    
     }
     https.request(api.wxBind,data,'POST').then(function(res){
-      console.log(res);
+      console.log('绑定成功',res);
+      wx.setStorageSync('unique_id', res.data.result.unique_id);
     })
   },
   getPhoneNumber:function(e){

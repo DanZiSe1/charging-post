@@ -10,12 +10,12 @@ function request(url, data = {}, method = "GET") {
       method: method,
       header: {
         'Content-Type': 'application/json',
-        'X-Nideshop-Token': wx.getStorageSync('token')
+        'Authorization': wx.getStorageSync('unique_id')
       },
       success: function (res) {
         //console.log("success");
         wx.hideLoading();
-        if (res.code == 0) {
+        if (res.data.code == 0) {
           resolve(res)
         } else {
           reject(res);
@@ -29,21 +29,6 @@ function request(url, data = {}, method = "GET") {
   });
 }
 
-// // 使用get方式
-// util.request(api,{ 参数名: 参数值 }).then(function(res) {
-//   //console.log(res)
-//   if (res.data.success) {
-// 	// do something
-//   }
-// });
-
-// // 使用post方式
-// util.request(api,{ 参数名: 参数值 },'POST').then(function(res) {
-//   //console.log(res)
-//   if (res.data.success) {
-// 	// do something
-//   }
-// });
 module.exports={
   request
 }
