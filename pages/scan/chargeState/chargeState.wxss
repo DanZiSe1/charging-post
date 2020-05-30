@@ -1,0 +1,45 @@
+.rechargePage{
+  padding:0 30rpx 0;
+  box-sizing: border-box;
+  color: #333;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.name{font-size: 30rpx;font-weight: bold;padding-bottom: 20rpx;}
+.amount{font-size: 60rpx;padding:12rpx 0;}
+.degree{font-size: 24rpx;}
+.butterfly{
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 40rpx;
+  margin-top: 20rpx;
+}
+.butterflyInfo{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 30rpx;
+}
+.butterflyInfo .item{
+  width: 33.3333%;
+  text-align: center;
+  font-size: 24rpx;
+}
+.butterflyInfo .item:nth-of-type(2){
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+.chargeInfo{
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.recharge{
+  width: 100%!important;
+  margin-top: 100rpx;
+  font-weight: normal;
+}

@@ -1,0 +1,16 @@
+/* pages/scan/scan.wxss */
+.coverBg{
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.coverBg image{
+  width: 200rpx;
+  height: 200rpx;
+}

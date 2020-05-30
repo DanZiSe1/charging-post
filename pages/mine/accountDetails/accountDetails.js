@@ -1,11 +1,11 @@
-// pages/indexdetail/logs.js
+// pages/mine/accountDetails/accountDetails.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    detailsList:[1,1,1,1]
   },
 
   /**

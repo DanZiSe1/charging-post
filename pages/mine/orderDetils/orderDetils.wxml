@@ -1,0 +1,37 @@
+<view class="rechargePage">
+
+	<view class="status">
+		<radio checked></radio>
+		<text>充电已完成</text>
+	</view>
+	<view class="detilsInfo">
+		<view class="expense">
+			<view class="expenseInfo">费用信息</view>
+			<view class="expenseDetails">
+				<text>费用明细</text>
+				<image src="/imgs/right.png"></image>
+			</view>
+		</view>
+		<view class="project">总电费：10.89元</view>
+		<view class="project">总服务费：10.89元</view>
+		<view class="project">本次充电总费用：10.89元</view>
+	</view>
+	<view class="detilsInfo">
+		<view class="expense">
+			<view class="expenseInfo">充电信息</view>
+		</view>
+		<view class="project">充电开始时间：10.89元</view>
+		<view class="project">充电结束时间：10.89元</view>
+		<view class="project">累计充电量（度）：10.89元</view>
+		<view class="project">充电结束原因：用户主动结束充电</view>
+	</view>
+
+	<view class="detilsInfo">
+		<view class="expense">
+			<view class="expenseInfo">电桩信息</view>
+		</view>
+		<view class="project">充电站：新世界充电站</view>
+		<view class="project">地址：东城区崇文门</view>
+		<view class="project">电桩编号：1234567890</view>
+	</view>
+</view>

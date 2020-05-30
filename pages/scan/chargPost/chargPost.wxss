@@ -1,0 +1,51 @@
+/* pages/scan/chargPost/chargPost.wxss */
+.rechargePage{
+  padding:0 30rpx 0;
+  box-sizing: border-box;
+  color: #333;
+}
+.box{border-bottom: 1px solid #ddd;padding-bottom: 12rpx;margin-bottom: 12rpx;}
+.chargeName{
+  font-size: 30rpx;
+  font-weight: bold;
+  padding-bottom: 10rpx;
+  padding-top: 20rpx;
+}
+.name{ 
+  font-size: 30rpx;
+  font-weight: bold;
+  padding-top: 20rpx;
+}
+.address{
+  font-size: 26rpx;
+  padding-bottom: 10rpx;
+}
+.number{
+  font-size: 26rpx;
+  padding-bottom: 10rpx;
+}
+.listTop{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10rpx;
+}
+.amount{color: #707070;display: flex;align-items: center;font-size: 24rpx;}
+.amount image{width: 42rpx;height: 42rpx;}
+.goRecharge{
+  border: 1px solid #ddd;
+  font-size: 24rpx;
+  text-align: center;
+  width: 110rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  border-radius: 4rpx;
+}
+.goRecharge .listTop{padding-top: 0;}
+
+.recharge{
+  width: 100%!important;
+  margin-top: 150rpx;
+  font-weight: normal;
+  background-color: #dedede!important;
+}

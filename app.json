@@ -3,7 +3,14 @@
     "pages/index/index",
     "pages/indexdetail/indexdetail",
     "pages/priceinfo/priceinfo",
-    "pages/logs/logs"
+    "pages/mine/mine",
+    "pages/mine/chargingOrder/chargingOrder",
+    "pages/scan/chargeState/chargeState",
+    "pages/scan/chargPost/chargPost",
+    "pages/scan/scan",
+    "pages/mine/orderDetils/orderDetils",
+    "pages/mine/accountDetails/accountDetails",
+    "pages/mine/recharge/recharge"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -12,14 +19,22 @@
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
+    "color":"#707070",
+    "selectedColor":"#f4ea2a",
     "list": [{
       "pagePath": "pages/index/index",
+      "iconPath": "imgs/charge.png",
+      "selectedIconPath": "imgs/charge_light.png",
       "text": "充电站"
     }, {
-      "pagePath": "pages/logs/logs",
-      "text": "扫码"
+      "pagePath": "pages/scan/scan",
+      "iconPath": "imgs/scan.png",
+      "selectedIconPath": "imgs/scan_light.png",
+      "text": "扫码充电"
     }, {
-      "pagePath": "pages/logs/logs",
+      "pagePath": "pages/mine/mine",
+      "iconPath": "imgs/mine.png",
+      "selectedIconPath": "imgs/mine_light.png",
       "text": "我的"
     }]
   },

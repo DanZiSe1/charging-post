@@ -1,0 +1,47 @@
+/* pages/mine/mine.wxss */
+.minePage{
+  padding: 30rpx;
+  box-sizing: border-box;
+  color: #333;
+}
+.header{display: flex;align-items: center;}
+.header image{
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.header button {
+  width: 180rpx!important;
+  margin-left: 20rpx!important;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+  font-size: 30rpx;
+  padding: 12rpx 0;
+  font-weight: normal;
+}
+.header button::after {
+  border: 0; 
+}
+.balance{
+  padding: 40rpx 0;
+}
+.recharge{
+  width: 80%!important;
+  margin-top: 30rpx;
+  margin-bottom: 40rpx;
+}
+.rechargeList{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ddd;
+}
+
+.rechargeList image{
+  width: 42rpx;
+  height: 42rpx;
+}
+

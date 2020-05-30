@@ -1,0 +1,4 @@
+<!--pages/scan/scan.wxml-->
+<view class="coverBg">
+ <image class="" src="/imgs/scan_white.png"></image>
+</view>

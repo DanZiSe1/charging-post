@@ -1,0 +1,19 @@
+<!--pages/mine/mine.wxml-->
+<view class="minePage">
+  <view class="header">
+    <image src="/imgs/header.png"></image>
+    <button  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录 / 注册</button>
+  </view>
+  <view class="balance">
+    账户余额 <text>10.00</text> 元
+  </view>
+  <button class="recharge" type="primary" hover-class="none" bindtap="recharge">充值</button>
+  <view class="rechargeList" bindtap="chargingOrder">
+    <text>充电订单</text>
+    <image src="/imgs/right.png"></image>
+  </view>
+  <view class="rechargeList" bindtap="accountDetails">
+    <text>账户明细</text>
+    <image src="/imgs/right.png"></image>
+  </view>
+</view>
