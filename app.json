@@ -1,10 +1,16 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/mine/recharge/recharge",
     "pages/mine/mine",
+    "pages/mine/chargingOrder/chargingOrder",
+    "pages/index/index", 
     
+    "pages/scan/chargeState/chargeState",
+    "pages/scan/chargPost/chargPost",
+    "pages/scan/scan",
+    "pages/mine/orderDetils/orderDetils",
     
+    "pages/mine/accountDetails/accountDetails",
+    "pages/mine/recharge/recharge",
     "pages/logs/logs"
   ],
   "window":{
@@ -18,11 +24,11 @@
     "selectedColor":"#f4ea2a",
     "list": [{
       "pagePath": "pages/index/index",
-      "iconPath": "imgs/mine.png",
-      "selectedIconPath": "imgs/mine_light.png",
+      "iconPath": "imgs/charge.png",
+      "selectedIconPath": "imgs/charge_light.png",
       "text": "充电站"
     }, {
-      "pagePath": "pages/logs/logs",
+      "pagePath": "pages/scan/scan",
       "iconPath": "imgs/scan.png",
       "selectedIconPath": "imgs/scan_light.png",
       "text": "扫码充电"

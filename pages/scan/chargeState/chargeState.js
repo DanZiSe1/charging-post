@@ -1,18 +1,11 @@
-// pages/mine/recharge/recharge.js
+// pages/scan/chargeState/chargeState.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    rechargeAmount:[
-      {amount: 10 },
-      {amount: 20 },
-      {amount: 50 },
-      {amount: 100 },
-      {amount: 300 },
-      {amount: 500 },
-    ]
+
   },
 
   /**
@@ -21,7 +14,20 @@ Page({
   onLoad: function (options) {
 
   },
-
+  // 结束充电
+  overCharging:function(){
+    wx.showModal({
+      content:'确认结束充电吗？',
+      success:function(res){
+        if(res.confirm){
+          wx.navigateTo({
+            url: '/pages/mine/orderDetils/orderDetils',
+          })
+        }
+      }
+     
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

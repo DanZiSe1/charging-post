@@ -1,5 +1,5 @@
-const api = require('../../utils/api.js');
-const https = require('../../utils/request.js');
+const api = require('../../../utils/api.js');
+const https = require('../../../utils/request');
 
 Page({
 
@@ -7,49 +7,40 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    detailsList:[1,1,1,1]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let data = {
-      "avatar": "http://img.mp.itc.cn/upload/20170724/cf678e09eb384401aa616ba134126357_th.jpg",
-      "identity_card": "1234567890987654321",
-      "nickname": "小茗同学",
-      "unique_id": "0123456"    
-    }
-    https.request(api.wxBind,data,'POST').then(function(res){
-      console.log(res);
+    console.log(options);
+    wx.request({
+      url: 'http://test-evcs.91sdc.cn/xcx/charge/stop', 
+      data: {
+        "start_charge_seq": "123"
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      method:'POST',
+      success (res) {
+        console.log(url);
+        console.log(res)
+      }
     })
+
   },
-  getPhoneNumber:function(e){
-    console.log(e)
-  },
-  // 充电订单
-  chargingOrder:function(){
+  detailsTap:function(){
     wx.navigateTo({
-      url: '/pages/mine/chargingOrder/chargingOrder'
-    })
-  },
-  // 账户明细
-  accountDetails:function(){
-    wx.navigateTo({
-      url: '/pages/mine/accountDetails/accountDetails'
-    })
-  },
-  // 充值
-  recharge:function(){
-    wx.navigateTo({
-      url: '/pages/mine/recharge/recharge'
+      url: '/pages/mine/orderDetils/orderDetils'
     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**

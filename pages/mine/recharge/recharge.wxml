@@ -1,2 +1,23 @@
-<!--pages/mine/recharge/recharge.wxml-->
-<text>pages/mine/recharge/recharge.wxml</text>
+<view class="rechargePage">
+  <view class="title">充值金额</view>
+    <view class="list">
+      <block  wx:for="{{rechargeAmount}}"  wx:key="rechargeAmount">
+        <view class="amount">{{item.amount}} 元</view>
+      </block>
+    </view>
+    <view class="inpAmount">
+      <input placeholder="输入自定义充值金额" />
+    </view>
+    <view class="title2">支付方式</view>
+    <view class="paymentMethod">
+      <view>
+        <image src="/imgs/wechat.png"></image>
+        <text>微信支付</text>
+      </view>
+      <radio checked></radio>
+    </view>
+    <view class="bottomBtn">
+      <button class="recharge" type="primary" hover-class="none">立即充值</button>
+    </view>
+    
+</view>

@@ -1,0 +1,27 @@
+<!--pages/scan/chargPost/chargPost.wxml-->
+<view class="rechargePage">
+  <view class="box">
+    <view class="chargeName">新世界充电桩</view>
+    <view class="address">东城区崇文门外大街</view>
+    <view class="chargeName">5号充电桩</view>
+    <view class="number">电桩编号：123456</view>
+    <view class="number">状态：空闲</view>
+    <view class="number">类型：快充</view>
+    <view class="number">功率：60.0KW</view>
+  </view>
+
+  <view class="box">
+    <view class="listTop">
+        <view class="name">价格信息</view>
+        <view class="amount" bindtap="seeAll">查看全部 <image src="/imgs/right.png"></image></view>
+      </view>
+    <view class="address">当前计费时段：15:00 - 18:00</view>
+    <view class="address">电费：0.64/度 | 服务费：0.80/度</view>
+    <view class="address">￥1.44/度</view>
+  </view>
+  <view class="listTop">
+    <view class="name">账户余额：10元</view>
+    <view class="goRecharge" bindtap="goRecharge">去充值</view>
+  </view>
+  <button class="recharge" type="primary" hover-class="none" bindtap="startCharging">启动充电</button>
+</view>

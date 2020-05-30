@@ -1,0 +1,16 @@
+.detailsPage{
+  padding: 30rpx;
+  box-sizing: border-box;
+  color: #333;
+}
+.detailsList{
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ddd;
+  font-size: 30rpx;
+}
+.listTop{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

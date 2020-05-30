@@ -1,1 +1,79 @@
 /* pages/mine/recharge/recharge.wxss */
+.rechargePage{
+  padding: 30rpx;
+  box-sizing: border-box;
+  color: #333;
+}
+.title,.title2{font-size: 26rpx;}
+.amount{
+  border: 1px solid #ddd;
+  border-radius: 10rpx;
+  display: inline-block;
+  font-size: 28rpx;
+  width: 25%;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  margin-top: 30rpx;
+}
+.list{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.inpAmount input{
+  font-size: 28rpx;
+  border: 1px solid #ddd;
+  padding: 20rpx;
+  outline: none;
+  border-radius: 12rpx;
+  margin-top: 40rpx;
+}
+.paymentMethod {
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 100rpx;
+  height: 100rpx;
+}
+.paymentMethod image{
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 20rpx;
+  vertical-align: middle;
+}
+radio .wx-radio-input{
+  width: 30rpx;
+  height: 30rpx;
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked::before{
+  width: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+  height: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
+  line-height: 40rpx;
+  text-align: center;
+  font-size:22rpx; /* 对勾大小 30rpx */
+  color:#fff; /* 对勾颜色 白色 */
+  background: transparent;
+  transform:translate(-50%, -50%) scale(1);
+  -webkit-transform:translate(-50%, -50%) scale(1);
+}
+.title2{
+  padding-top: 40rpx;
+}
+.recharge{
+  width: 100%!important;
+}
+.bottomBtn{
+  width: 100%;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  margin-top: 0;
+  margin-bottom: 0;
+  position: fixed;
+  bottom: 150rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+}

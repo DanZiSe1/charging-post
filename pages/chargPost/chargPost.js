@@ -1,18 +1,11 @@
-// pages/mine/recharge/recharge.js
+// pages/chargPost/chargPost.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    rechargeAmount:[
-      {amount: 10 },
-      {amount: 20 },
-      {amount: 50 },
-      {amount: 100 },
-      {amount: 300 },
-      {amount: 500 },
-    ]
+
   },
 
   /**

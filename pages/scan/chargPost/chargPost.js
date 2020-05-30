@@ -1,6 +1,4 @@
-const api = require('../../utils/api.js');
-const https = require('../../utils/request.js');
-
+// pages/scan/chargPost/chargPost.js
 Page({
 
   /**
@@ -14,35 +12,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let data = {
-      "avatar": "http://img.mp.itc.cn/upload/20170724/cf678e09eb384401aa616ba134126357_th.jpg",
-      "identity_card": "1234567890987654321",
-      "nickname": "小茗同学",
-      "unique_id": "0123456"    
-    }
-    https.request(api.wxBind,data,'POST').then(function(res){
-      console.log(res);
-    })
+
   },
-  getPhoneNumber:function(e){
-    console.log(e)
-  },
-  // 充电订单
-  chargingOrder:function(){
-    wx.navigateTo({
-      url: '/pages/mine/chargingOrder/chargingOrder'
-    })
-  },
-  // 账户明细
-  accountDetails:function(){
-    wx.navigateTo({
-      url: '/pages/mine/accountDetails/accountDetails'
-    })
-  },
-  // 充值
-  recharge:function(){
+  goRecharge:function(){
     wx.navigateTo({
       url: '/pages/mine/recharge/recharge'
+    })
+  },
+  // 启动充电
+  startCharging:function(){
+    wx.showModal({
+      content: '您当前已有充电中订单'
     })
   },
   /**

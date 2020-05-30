@@ -1,4 +1,4 @@
-// pages/mine/recharge/recharge.js
+// pages/mine/orderDetils/orderDetils.js
 Page({
 
   /**

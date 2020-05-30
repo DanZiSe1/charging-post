@@ -1,0 +1,19 @@
+/* pages/mine/chargingOrder/chargingOrder.wxss */
+.detailsPage{
+  padding: 30rpx;
+  box-sizing: border-box;
+  color: #333;
+}
+.detailsList{
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid #ddd;
+  font-size: 30rpx;
+}
+.amount{color: #707070;display: flex;align-items: center;}
+.amount image{width: 42rpx;height: 42rpx;}
+.listTop{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
