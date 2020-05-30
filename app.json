@@ -1,6 +1,10 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/mine/recharge/recharge",
+    "pages/mine/mine",
+    
+    
     "pages/logs/logs"
   ],
   "window":{
@@ -10,14 +14,22 @@
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
+    "color":"#707070",
+    "selectedColor":"#f4ea2a",
     "list": [{
       "pagePath": "pages/index/index",
+      "iconPath": "imgs/mine.png",
+      "selectedIconPath": "imgs/mine_light.png",
       "text": "充电站"
     }, {
       "pagePath": "pages/logs/logs",
-      "text": "扫码"
+      "iconPath": "imgs/scan.png",
+      "selectedIconPath": "imgs/scan_light.png",
+      "text": "扫码充电"
     }, {
-      "pagePath": "pages/logs/logs",
+      "pagePath": "pages/mine/mine",
+      "iconPath": "imgs/mine.png",
+      "selectedIconPath": "imgs/mine_light.png",
       "text": "我的"
     }]
   },
