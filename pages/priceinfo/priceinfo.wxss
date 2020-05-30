@@ -1,0 +1,36 @@
+/**priceinfo.wxss**/
+.flex-center{
+  display: flex;
+  align-items: center;
+}
+.flex-center-between{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.flex-end-between{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.pricePage{
+  width:100%;
+  padding:0 30px;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+.priceItem{
+  padding: 15px 0 20px 0;
+  border-bottom:1px solid #ddd;
+}
+.priceItem .priceItem_top{
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.priceItem_bottom p span{
+  font-size: 14px;
+}
+.priceItem_bottom_right{
+  color: #666;
+}

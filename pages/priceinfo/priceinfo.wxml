@@ -1,0 +1,22 @@
+<!--priceinfo.wxml-->
+<view class="container">
+  <view class="pricePage">
+    <scroll-view class="scroll-priceinfo" scroll-y="true" bindscroll="scroll" style="width: 100%;height:100vh;">
+      <block wx:for="{{pricesList}}" wx:key="item">
+        <view class="priceItem">
+          <view class="priceItem_top">
+            时段:{{item.time}}
+          </view>
+          <view class="priceItem_bottom flex-center-between">
+            <p>
+              ￥<span>{{item.degree}}</span>/度
+            </p>
+            <view class="priceItem_bottom_right">
+              电费：{{item.dprice}}元/度|服务费：{{item.fprice}}元/度
+            </view>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>
