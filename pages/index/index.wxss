@@ -1,21 +1,26 @@
 /**index.wxss**/
-.userinfo {
+.flex-center{
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.flex-center-between{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.container,.chargingPage{
+  width:100%;
 }
-
-.usermotto {
-  margin-top: 200px;
+.chargingItem{
+  width:100%;
+  padding:10px 30px;
+  border-bottom:1px solid #ddd;
+  box-sizing: border-box;
+}
+.item_top_left h4{
+  display: block;
+  font-size: 16px;
+}
+.item_top_left p{
+  font-size: 14px;
 }
