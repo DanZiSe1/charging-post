@@ -1,7 +1,7 @@
 <!--pages/mine/chargingOrder/chargingOrder.wxml-->
 <view class="detailsPage">
   <view>
-    <view class="detailsList" wx:for="{{detailsList}}" wx:key="detailsList">
+    <view class="detailsList" wx:for="{{detailsList}}" wx:key="detailsList" bindtap="detailsList">
       <view class="listTop">
         <view class="date">2020-02</view>
         <view class="amount" bindtap="detailsTap">充电中 <image src="/imgs/right.png"></image></view>

@@ -7,22 +7,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-    detailsList:[1,1,1,1],
-    order_id: 0
+    detailsList:[1,1,1,1,1,1,1,1,1,1,1,1,1],
+    order_id: 0,
+    page_size: 10
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+     this.getOrderList();
+  },
+  // 获取订单列表
+  getOrderList:function(){
     let data = {
-      "order_id": 0,
-      "page_size": 10
+      "order_id": this.data.order_id,
+      "page_size": this.data.page_size
     }
     https.request(api.getOrdersList,data).then(function(res){
       console.log(res);
     });
-
   },
   detailsTap:function(){
     wx.navigateTo({
@@ -68,7 +72,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.setData({
+      order_id: this.data.order_id + 9,
+      page_size: this.data.page_size
+    });
+    this.getOrderList();
   },
 
   /**
