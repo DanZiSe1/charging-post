@@ -1,22 +1,29 @@
 // 封装微信的request
-function request(url, data = {}, method = "GET") {
+function request(requestState,url, data = {}, method = "GET") {
   return new Promise(function (resolve, reject) {
     wx.showLoading({
       title: "正在加载中...",
     })
+    var headerValue = {
+      'Content-Type': 'application/json',
+      'accept': 'application/json'
+    }
+    var AuthorHeaderValue = {
+      'Content-Type': 'application/json',
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('unique_id') || ''
+    }
+    // console.log(requestState, 'requestState......')
     wx.request({
       url: url,
       data: data,
       method: method,
-      header: {
-        'Content-Type': 'application/json',
-        'Authorization': wx.getStorageSync('unique_id')
-      },
+      header: requestState ? AuthorHeaderValue : headerValue,
       success: function (res) {
-        //console.log("success");
+        // console.log(res, "success......");
         wx.hideLoading();
-        if (res.data.code == 0) {
-          resolve(res)
+        if (res.statusCode == 200) {
+          resolve(res.data)
         } else {
           wx.showToast({
             icon:'none',

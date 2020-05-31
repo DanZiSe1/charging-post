@@ -9,7 +9,9 @@
           <p>快:闲8/8|慢:闲8/8</p>
         </view>
         <view class="detail_top_right">
-          <view class="detail_icon1">图标</view>
+          <view class="detail_icon1">
+            <image mode="aspectFit" src="/imgs/navigation.png"></image>
+          </view>
           <p>0.5km</p>
         </view>
       </view>
@@ -37,6 +39,6 @@
     </view> 
   </view>
   <view class="stationChargeBtn">
-    <button type="primary">扫码充电</button>
+    <button type="primary" bindtap="goScanCharge">扫码充电</button>
   </view>
 </view>

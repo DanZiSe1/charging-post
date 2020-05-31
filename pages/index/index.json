@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "附近充电站",
-  "usingComponents": {}
+  "usingComponents": {
+    "noInfo": "/components/noInfo/noInfo"
+  }
 }

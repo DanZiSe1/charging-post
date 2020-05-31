@@ -1,20 +1,22 @@
 {
   "pages":[
-    
+    "pages/index/index",
     "pages/scan/chargPost/chargPost",
     "pages/scan/chargeState/chargeState",
     "pages/scan/scan",
-    "pages/index/index",
     "pages/indexdetail/indexdetail",
     "pages/priceinfo/priceinfo",
     "pages/mine/mine",
     "pages/mine/chargingOrder/chargingOrder",
     "pages/mine/recharge/recharge",
- 
     "pages/mine/orderDetils/orderDetils",
     "pages/mine/accountDetails/accountDetails"
-    
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc":"你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
