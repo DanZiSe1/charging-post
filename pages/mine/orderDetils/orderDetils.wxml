@@ -1,5 +1,4 @@
 <view class="rechargePage">
-
 	<view class="status">
 		<radio checked></radio>
 		<text>充电已完成</text>

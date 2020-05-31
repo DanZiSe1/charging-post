@@ -18,15 +18,23 @@ Page({
   },
   // 扫码
   scanCode:function(e){
-    // wx.scanCode({
-    //   success(res){
-    //     console.log(res);
-    //   },
-    // })
     let unique_id = wx.getStorageSync('unique_id');
     if(unique_id){
-      wx.navigateTo({
-        url: '/pages/scan/chargPost/chargPost',
+      wx.scanCode({
+        success(res){
+          console.log('-----------',res);
+          https.request('false',api.getEquipmentInfo,{"qrcode":res.rawData}).then(function(res){
+            console.log(res);
+            // if(res.code == 0){
+              wx.navigateTo({
+                url: '/pages/scan/chargPost/chargPost',
+              })
+            // }
+            
+          });
+          
+          
+        },
       })
     }else{
       wx.showModal({

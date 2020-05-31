@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "noInfo": "/components/noInfo/noInfo"
+  },
   "navigationBarTitleText": "账户明细",
   "enablePullDownRefresh": true,
   "backgroundTextStyle":"dark"

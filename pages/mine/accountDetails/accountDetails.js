@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    detailsList:[1,1,1,1],
+    rechargeList:[1,1,1,1],
     order_id: 0,//翻页时所需id
     page_size: 10
   },
@@ -25,9 +25,9 @@ Page({
       "id": this.data.order_id,
       "page_size": this.data.page_size
     }
-    https.request(api.rechargeList,data).then(function(res){
+    https.request('true',api.rechargeList,data).then(function(res){
       that.setData({
-        rechargeList: res.data.result
+        rechargeList: res.result
       });
     });
   },

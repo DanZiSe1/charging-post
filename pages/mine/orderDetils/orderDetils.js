@@ -26,9 +26,9 @@ Page({
     // let data = {
     //   'id': options.id
     // }
-    https.request(url).then(function(res){
+    https.request('true',url).then(function(res){
       that.setData({
-        ordersDetails:res.data.result
+        ordersDetails:res.result
       })
     })
   },

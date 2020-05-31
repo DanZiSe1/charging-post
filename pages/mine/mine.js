@@ -20,8 +20,8 @@ Page({
       "nickname": "小茗同学",
       "unique_id": "0123456"    
     }
-    https.request(api.wxBind,data,'POST').then(function(res){
-      wx.setStorageSync('unique_id', res.data.result.unique_id);
+    https.request('true',api.wxBind,data,'POST').then(function(res){
+      wx.setStorageSync('unique_id', res.result.unique_id);
     });
   },
   getPhoneNumber:function(e){

@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "noInfo": "/components/noInfo/noInfo"
+  },
   "navigationBarTitleText": "充电订单",
   "enablePullDownRefresh": true,
   "backgroundTextStyle":"dark"

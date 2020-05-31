@@ -47,5 +47,5 @@
   width: 100%!important;
   margin-top: 150rpx;
   font-weight: normal;
-  background-color: #dedede!important;
 }
+.noRecharge{background-color: #dedede!important;}

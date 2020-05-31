@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    detailsList:[1,1,1,1,1,1,1,1,1,1,1,1,1],
+    detailsList:[1,1,1,1,1,1],
     order_id: 0,
     page_size: 10
   },
@@ -25,9 +25,9 @@ Page({
       "order_id": this.data.order_id,
       "page_size": this.data.page_size
     }
-    https.request(api.getOrdersList,data).then(function(res){
+    https.request('true',api.getOrdersList,data).then(function(res){
       that.setData({
-        ordersList: res.data.result
+        detailsList: res.result
       });
     });
   },

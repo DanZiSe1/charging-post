@@ -2,7 +2,7 @@
 function request(requestState,url, data = {}, method = "GET") {
   return new Promise(function (resolve, reject) {
     wx.showLoading({
-      title: "正在加载中...",
+      title: "加载中...",
     })
     var headerValue = {
       'Content-Type': 'application/json',
@@ -27,14 +27,13 @@ function request(requestState,url, data = {}, method = "GET") {
         } else {
           wx.showToast({
             icon:'none',
-            title:  res.data.message,
+            title: res.errMsg,
           })
           reject(res);
         }
       },
       fail: function (err) {
         reject(err);
-
       }
     })
   });

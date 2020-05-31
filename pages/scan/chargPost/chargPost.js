@@ -32,7 +32,7 @@ Page({
       "phone_num": "15134567890", //手机号
       "qrcode": "二维码信息" //二维码其他信息
     }
-    https.request(api.startCharging,data,'POST').then(function(res){
+    https.request('true',api.startCharging,data,'POST').then(function(res){
       console.log(res);
     });
   },

@@ -35,7 +35,7 @@ Page({
     longitude: ''
   },
   onLoad: function () {
-    this.getUserLocation()
+    // this.getUserLocation()
     this.selectComponent("#noInfo")
   },
   // 获取附近充电站列表
