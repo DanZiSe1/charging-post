@@ -6,8 +6,8 @@
         <navigator class="chargingItem" url="/pages/indexdetail/indexdetail?chargeid=1" wx:for="{{chargingList}}" wx:key="item">
           <view class="item_top flex-end-between">
             <view class="item_top_left">
-              <h4>{{item.name}}</h4>
-              <p>开放时间:{{item.time}}</p>
+              <h4>{{item.StationName}}</h4>
+              <p>开放时间:{{item.BusineHours}}</p>
             </view>
             <view class="item_top_right">
                 <view class="right_icon">
@@ -18,10 +18,10 @@
           </view>
           <view class="item_bottom flex-center-between">
             <p>
-              ￥<span>{{item.degree}}</span>/度
+              ￥<span>{{item.ElectricityFee}}</span>/度
             </p>
             <view class="item_bottom_desc">
-              {{item.descname}}
+              {{item.Remark}}
             </view>
           </view>
         </navigator>

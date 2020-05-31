@@ -5,21 +5,21 @@
     <view class="station_detail">
       <view class="station_detail_top flex-center-between">
         <view class="detail_top_left">
-          <h4>新世界商场公共充电</h4>
-          <p>快:闲8/8|慢:闲8/8</p>
+          <h4>{{ chargStationData.StationName }}</h4>
+          <p>{{ chargStationData.Remark }}</p>
         </view>
         <view class="detail_top_right">
           <view class="detail_icon1">
             <image mode="aspectFit" src="/imgs/navigation.png"></image>
           </view>
-          <p>0.5km</p>
+          <p>{{chargStationData.distance}}km</p>
         </view>
       </view>
       <view class="station_detail_timestyle">
-        开放时间：00:00-24:00
+        开放时间：{{chargStationData.BusineHours}}
       </view>
       <view class="station_detail_timestyle">
-        地址：东城区崇文门外大街9号正仁大厦停车场
+        地址：{{chargStationData.Address}}
       </view>
     </view>
     <view class="station_price">
@@ -28,13 +28,13 @@
         <p bindtap="getLookAll">查看全部></p>
       </view>
       <view class="station_detail_timestyle">
-        当前计费时段：15:00-18:00
+        当前计费时段：{{chargStationData.calentime}}
       </view>
       <view class="station_detail_timestyle">
-        电费：0.64元/度|服务费：0.80元/度
+        电费：{{chargStationData.ParkFee}}元/度|服务费：{{chargStationData.ServiceFee}}元/度
       </view>
       <view class="station_detail_timestyle">
-        ￥1.44/度
+        ￥{{ chargStationData.ElectricityFee }}/度
       </view>
     </view> 
   </view>

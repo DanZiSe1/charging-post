@@ -1,11 +1,13 @@
 // pages/scan/chargeState/chargeState.js
+var util = require('../../../utils/request.js');
+const api = require('../../../utils/api.js');
+const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-
+    startChargeSeq: '111011110001110001'
   },
 
   /**
@@ -16,13 +18,30 @@ Page({
   },
   // 结束充电
   overCharging:function(){
+    var that = this
     wx.showModal({
       content:'确认结束充电吗？',
       success:function(res){
         if(res.confirm){
-          wx.navigateTo({
-            url: '/pages/mine/orderDetils/orderDetils',
-          })
+          util.request('true', api.stopCharging, {
+            start_charge_seq: that.data.startChargeSeq 
+          },'POST').then(function (res) {
+            // console.log(res, '结束充电结果.......')
+            wx.redirectTo({
+              url: '/pages/mine/orderDetils/orderDetils',
+            })
+            /* if (res.code == 0) {
+              wx.redirectTo({
+                url: '/pages/mine/orderDetils/orderDetils',
+              })
+            } else {
+              wx.showToast({
+                title: res.message,
+                icon: 'none',
+                duration: 2000
+              })
+            } */
+          });
         }
       }
      
