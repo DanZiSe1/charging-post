@@ -1,0 +1,21 @@
+.none{
+   width: 100%;
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   font-size: 32rpx;
+}
+.none .null-data{
+  width:100rpx;
+  height:100rpx;
+}
+.null-data image{
+  width:100%;
+  height:100%;
+}
+.none .null-text{
+  margin-top:10px;
+}
