@@ -20,18 +20,24 @@ Page({
   },
   // 获取订单列表
   getOrderList:function(){
+    let that = this;
     let data = {
       "order_id": this.data.order_id,
       "page_size": this.data.page_size
     }
     https.request(api.getOrdersList,data).then(function(res){
-      console.log(res);
+      that.setData({
+        ordersList: res.data.result
+      });
     });
   },
-  detailsTap:function(){
+
+  // 跳转列表详情
+  detailsTap:function(e){
+    let id = e.currentTarget.dataset.index;
     wx.navigateTo({
-      url: '/pages/mine/orderDetils/orderDetils'
-    })
+      url: '/pages/mine/orderDetils/orderDetils?id=' + id
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -65,7 +71,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getOrderList();
+    wx.stopPullDownRefresh();
   },
 
   /**

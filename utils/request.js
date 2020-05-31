@@ -18,12 +18,16 @@ function request(url, data = {}, method = "GET") {
         if (res.data.code == 0) {
           resolve(res)
         } else {
+          wx.showToast({
+            icon:'none',
+            title:  res.data.message,
+          })
           reject(res);
         }
       },
       fail: function (err) {
-        //console.log("fail")
-        reject(err)
+        reject(err);
+
       }
     })
   });

@@ -1,4 +1,6 @@
-// pages/scan/scan.js
+const api = require('../../utils/api.js');
+const https = require('../../utils/request.js');
+
 Page({
 
   /**
@@ -14,7 +16,33 @@ Page({
   onLoad: function (options) {
 
   },
-
+  // 扫码
+  scanCode:function(e){
+    // wx.scanCode({
+    //   success(res){
+    //     console.log(res);
+    //   },
+    // })
+    let unique_id = wx.getStorageSync('unique_id');
+    if(unique_id){
+      wx.navigateTo({
+        url: '/pages/scan/chargPost/chargPost',
+      })
+    }else{
+      wx.showModal({
+        content:'您还未登录，是否登录',
+        cancelText:'否',
+        confirmText:'是',
+        success(res){
+          if(res.confirm){
+            wx.switchTab({
+              url: '/pages/mine/mine',
+            })
+          }
+        }
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

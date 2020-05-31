@@ -1,10 +1,10 @@
 <!--pages/mine/chargingOrder/chargingOrder.wxml-->
 <view class="detailsPage">
   <view>
-    <view class="detailsList" wx:for="{{detailsList}}" wx:key="detailsList" bindtap="detailsList">
+    <view class="detailsList" wx:for="{{detailsList}}" wx:key="*this" bindtap="detailsTap" data-index='{{index}}'>
       <view class="listTop">
         <view class="date">2020-02</view>
-        <view class="amount" bindtap="detailsTap">充电中 <image src="/imgs/right.png"></image></view>
+        <view class="amount">充电中 <image src="/imgs/right.png"></image></view>
       </view>
       <view class="way">新世界商场公共充电站</view>
     </view>

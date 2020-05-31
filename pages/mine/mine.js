@@ -22,7 +22,7 @@ Page({
     }
     https.request(api.wxBind,data,'POST').then(function(res){
       wx.setStorageSync('unique_id', res.data.result.unique_id);
-    })
+    });
   },
   getPhoneNumber:function(e){
     console.log(e)

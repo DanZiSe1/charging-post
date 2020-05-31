@@ -1,16 +1,19 @@
 {
   "pages":[
+    
+    "pages/scan/chargPost/chargPost",
+    "pages/scan/chargeState/chargeState",
+    "pages/scan/scan",
     "pages/index/index",
     "pages/indexdetail/indexdetail",
     "pages/priceinfo/priceinfo",
     "pages/mine/mine",
     "pages/mine/chargingOrder/chargingOrder",
-    "pages/scan/chargeState/chargeState",
-    "pages/scan/chargPost/chargPost",
-    "pages/scan/scan",
+    "pages/mine/recharge/recharge",
+ 
     "pages/mine/orderDetils/orderDetils",
-    "pages/mine/accountDetails/accountDetails",
-    "pages/mine/recharge/recharge"
+    "pages/mine/accountDetails/accountDetails"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",

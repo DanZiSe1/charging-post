@@ -1,4 +1,6 @@
-// pages/mine/orderDetils/orderDetils.js
+const api = require('../../../utils/api.js');
+const https = require('../../../utils/request');
+
 Page({
 
   /**
@@ -19,7 +21,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this;
+    let url = api.getOrdersDetails + "?" + options.id;
+    // let data = {
+    //   'id': options.id
+    // }
+    https.request(url).then(function(res){
+      that.setData({
+        ordersDetails:res.data.result
+      })
+    })
   },
 
   /**

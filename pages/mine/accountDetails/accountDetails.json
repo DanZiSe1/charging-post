@@ -1,4 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "账户明细"
+  "navigationBarTitleText": "账户明细",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle":"dark"
 }
