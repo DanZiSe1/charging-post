@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "价格信息",
-  "usingComponents": {}
+  "usingComponents": {
+    "noInfo": "/components/noInfo/noInfo"
+  }
 }
