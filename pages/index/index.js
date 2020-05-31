@@ -8,27 +8,27 @@ Page({
   data: {
     chargingList: [{
         id: 1,
-        name: '新世界商场公共充电站',
-        time: '00:00-24:00',
-        degree: '1.44',
+        StationName: '新世界商场公共充电站',
+        BusineHours: '00:00-24:00',
+        ElectricityFee: '1.44',
         distance: '0.5',
-        descname: '快:闲8/8|慢:闲8/8'
+        Remark: '快:闲8/8|慢:闲8/8'
       },
       {
         id: 2,
-        name: '新世界商场公共充电站',
-        time: '00:00-24:00',
-        degree: '1.44',
+        StationName: '新世界商场公共充电站',
+        BusineHours: '00:00-24:00',
+        ElectricityFee: '1.44',
         distance: '0.5',
-        descname: '快:闲8/8|慢:闲8/8'
+        Remark: '快:闲8/8|慢:闲8/8'
       },
       {
         id: 3,
-        name: '新世界商场公共充电站',
-        time: '00:00-24:00',
-        degree: '1.44',
+        StationName: '新世界商场公共充电站',
+        BusineHours: '00:00-24:00',
+        ElectricityFee: '1.44',
         distance: '0.5',
-        descname: '快:闲8/8|慢:闲8/8'
+        Remark: '快:闲8/8|慢:闲8/8'
       }
     ],
     latitude: '',

@@ -6,7 +6,19 @@ const app = getApp();
 Page({
   data: {
     chargStationid: '',
-    chargStationData: ''
+    chargStationData: {
+      id: '1',
+      StationName: '新世界商场公共充电站',
+      BusineHours: '00:00-24:00',
+      ElectricityFee: '1.44',
+      distance: '0.5',
+      Remark: '快:闲8/8|慢:闲8/8',
+      Address: '东城区崇文门外大街9号正仁大厦停车场',
+      calentime: '15:00-18:00',
+      ServiceFee: '0.80',
+      ParkFee: '0.64'
+
+    }
   },
   onLoad: function (options) {
     // console.log(options, parseInt(options.chargeid), 'options.......')
