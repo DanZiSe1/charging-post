@@ -1,5 +1,5 @@
 // pages/scan/chargeState/chargeState.js
-var util = require('../../../utils/request.js');
+var https = require('../../../utils/request.js');
 const api = require('../../../utils/api.js');
 const app = getApp()
 Page({
@@ -7,14 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    startChargeSeq: '111011110001110001'
+    startChargeSeq: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.data.startChargeSeq = options.start_charge_seq
   },
   // 结束充电
   overCharging:function(){
@@ -23,7 +23,7 @@ Page({
       content:'确认结束充电吗？',
       success:function(res){
         if(res.confirm){
-          util.request('true', api.stopCharging, {
+          https.request('true', api.stopCharging, {
             start_charge_seq: that.data.startChargeSeq 
           },'POST').then(function (res) {
             // console.log(res, '结束充电结果.......')

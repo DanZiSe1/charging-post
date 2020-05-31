@@ -13,7 +13,7 @@ function request(requestState,url, data = {}, method = "GET") {
       'accept': 'application/json',
       'Authorization': wx.getStorageSync('unique_id') || ''
     }
-    // console.log(requestState, 'requestState......')
+    console.log(requestState, 'requestState......')
     wx.request({
       url: url,
       data: data,

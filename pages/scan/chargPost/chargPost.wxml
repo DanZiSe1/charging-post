@@ -23,5 +23,5 @@
     <view class="name">账户余额：10元</view>
     <view class="goRecharge" bindtap="goRecharge">去充值</view>
   </view>
-  <button class="recharge noRecharge" type="primary" hover-class="none" bindtap="startCharging">启动充电</button>
+  <button class="recharge" type="primary" hover-class="none" bindtap="startCharging">启动充电</button>
 </view>

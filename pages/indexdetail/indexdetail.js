@@ -1,5 +1,5 @@
 //indexdetail.js
-var util = require('../../utils/request.js');
+var https = require('../../utils/request.js');
 const api = require('../../utils/api.js');
 const app = getApp();
 
@@ -30,9 +30,8 @@ Page({
   // 获取充电站详情
   getStationDetail: function(){
     var that = this
-    util.request('false', api.getStationDetail, {
-      id: that.data.chargStationid
-    }).then(function (res) {
+    var stationDetailUrl = api.getStationDetail + that.data.chargStationid
+    https.request('false', stationDetailUrl).then(function (res) {
       // console.log(res, '获取充电站详情结果.......')
       if (res.code == 0) {
         if (res.result) {
@@ -57,8 +56,40 @@ Page({
   },
   // 扫码充电 
   goScanCharge:function () {
-    wx.switchTab({
-      url: '/pages/scan/scan'
-    })
+    let unique_id = wx.getStorageSync('unique_id');
+    if(unique_id){
+      wx.scanCode({
+        success(res){
+          console.log('-----------',res);
+          https.request('false',api.getEquipmentInfo,{"qrcode":res.rawData}).then(function(res){
+            console.log(res);
+            var equipmentInfoParam = {
+              "carnum": "京A-88888", //车牌号
+              "connector_id": "0123456789", //充电设备接口编码
+              "phone_num": "15134567890", //手机号
+              "qrcode": res.rawData //二维码其他信息
+            }
+            // if(res.code == 0){
+              wx.navigateTo({
+                url: '/pages/scan/chargPost/chargPost?equipParams=' + JSON.stringify(equipmentInfoParam),
+              })
+            // }
+          });  
+        },
+      })
+    }else{
+      wx.showModal({
+        content:'您还未登录，是否登录',
+        cancelText:'否',
+        confirmText:'是',
+        success(res){
+          if(res.confirm){
+            wx.switchTab({
+              url: '/pages/mine/mine',
+            })
+          }
+        }
+      })
+    }
   }
 })

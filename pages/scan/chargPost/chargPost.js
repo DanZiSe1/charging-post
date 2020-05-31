@@ -1,5 +1,6 @@
 const api = require('../../../utils/api.js');
 const https = require('../../../utils/request.js');
+const app = getApp()
 
 Page({
 
@@ -7,14 +8,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    start_charge_seq: '1983493434',
+    equipParams: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.data.equipParams = JSON.parse(options.equipParams)
   },
   goRecharge:function(){
     wx.navigateTo({
@@ -26,14 +28,44 @@ Page({
     // wx.showModal({
     //   content: '您当前已有充电中订单'
     // })
-    let data = {
-      "carnum": "京A-88888", //车牌号
-      "connector_id": "0123456789", //充电设备接口编码
-      "phone_num": "15134567890", //手机号
-      "qrcode": "二维码信息" //二维码其他信息
-    }
-    https.request('true',api.startCharging,data,'POST').then(function(res){
+    var that = this;
+    https.request('true',api.startCharging,that.data.equipParams,'POST').then(function(res){
       console.log(res);
+      wx.navigateTo({
+        url: '/pages/scan/chargeState/chargeState?start_charge_seq=' + that.data.start_charge_seq,
+      })
+    });
+  },
+  // 绑定车牌号
+  bindCarNum:function (){
+    var that = this;
+    https.request('true',api.bindCarNum,{
+      carnum: '京A-88888'
+    },'POST').then(function(res){
+      console.log(res, '绑定车牌号结果......');
+      wx.showToast({
+        title: '成功绑定车牌号'
+      })
+    });
+  },
+  // 解绑车牌号
+  unBindCarNum:function (){
+    var that = this;
+    https.request('true',api.unBindCarNum,'POST').then(function(res){
+      console.log(res, '解绑车牌号结果......');
+      wx.showModal({
+        title: '提示',
+        content: '您确定要解绑车牌号吗？',
+        success (res) {
+          if (res.confirm) {
+            wx.showToast({
+              title: '成功解绑车牌号'
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
     });
   },
   /**

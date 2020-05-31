@@ -1,7 +1,7 @@
 <!--无数据页-->
 <view class='none'>
   <view class="null-data">
-    <image mode="aspectFit" src="/imgs/zanwushuju.png"></image>
+    <image class="null_img" mode="aspectFit" src="/imgs/zanwushuju.png"></image>
   </view>
   <view class="null-text">暂无数据</view>
 </view>

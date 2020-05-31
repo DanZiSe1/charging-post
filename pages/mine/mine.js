@@ -14,6 +14,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+  },
+  // 微信绑定
+  wxBind:function(){
     let data = {
       "avatar": "http://img.mp.itc.cn/upload/20170724/cf678e09eb384401aa616ba134126357_th.jpg",
       "identity_card": "1234567890987654321",
@@ -22,11 +26,15 @@ Page({
     }
     https.request('true',api.wxBind,data,'POST').then(function(res){
       wx.setStorageSync('unique_id', res.result.unique_id);
+      wx.showToast({
+        title: '绑定成功',
+      })
     });
   },
-  getPhoneNumber:function(e){
-    console.log(e)
-  },
+  // 获取用户手机号
+  // getPhoneNumber:function(e){
+  //   console.log(e)
+  // },
   // 充电订单
   chargingOrder:function(){
     wx.navigateTo({

@@ -22,14 +22,18 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    let url = api.getOrdersDetails + "?" + options.id;
+    // let url = api.getOrdersDetails + "?" + options.id;
     // let data = {
     //   'id': options.id
     // }
-    https.request('true',url).then(function(res){
-      that.setData({
-        ordersDetails:res.result
-      })
+    https.request('true',api.getOrdersDetails +'/'+ options.id).then(function(res){
+      
+      if(res.code == 0){
+        console.log(res);
+      }
+      // that.setData({
+      //   ordersDetails:res.result
+      // })
     })
   },
 
@@ -58,7 +62,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    //  wx.switchTab({
+    //    url: '/pages/mine/mine',
+    //  })
   },
 
   /**

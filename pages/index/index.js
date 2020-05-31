@@ -1,12 +1,12 @@
 //index.js
 //获取应用实例
-var util = require('../../utils/request.js');
+var https = require('../../utils/request.js');
 const api = require('../../utils/api.js');
 const app = getApp()
 
 Page({
   data: {
-    chargingList: [{
+    /* chargingList: [{
         id: 1,
         StationName: '新世界商场公共充电站',
         BusineHours: '00:00-24:00',
@@ -30,18 +30,21 @@ Page({
         distance: '0.5',
         Remark: '快:闲8/8|慢:闲8/8'
       }
-    ],
+    ], */
+    chargingList:[],
     latitude: '',
     longitude: ''
   },
   onLoad: function () {
-    // this.getUserLocation()
     this.selectComponent("#noInfo")
+  },
+  onShow: function () {
+    this.getUserLocation()
   },
   // 获取附近充电站列表
   getChargingList: function(){
     var that = this
-    util.request('false',api.getOrdersList,{
+    https.request('false',api.getChargesList,{
       coordinate: 'gcj-02',
       distance: 3,
       lat: that.data.latitude,
@@ -63,47 +66,47 @@ Page({
       }
     });
   },
-  // 微信获得经纬度
-  getLatlong: function () {
+  // 获取用户当前位置
+  getUserLocation: function () {
     let that = this;
     wx.getLocation({
       type: 'gcj02',
       success: function (res) {
-        console.log(JSON.stringify(res))
-        that.setData({
-          latitude: res.latitude,
-          longitude: res.longitude
-        })
-        that.getChargingList()
+        console.log(JSON.stringify(res), '获取用户当前位置结果.......')
+        if (res.errMsg = "getLocation:ok") {
+          that.setData({
+            latitude: res.latitude,
+            longitude: res.longitude
+          }) 
+          that.getChargingList()
+        } else {
+          that.getLocationAuth()
+        }
       },
       fail: function (res) {
-        console.log('fail' + JSON.stringify(res))
+        console.log('fail' + JSON.stringify(res), '...1111111111')
+        that.getLocationAuth()
       }
     })
   },
-  // 获取用户当前位置
-  getUserLocation: function () { //获取用户的当前设置
-    const _this = this;
+  // 获取用户位置权限
+  getLocationAuth: function () {
+    const that = this;
     wx.getSetting({
       success: (res) => {
-        // res.authSetting['scope.userLocation'] == undefined    表示 初始化进入该页面
-        // res.authSetting['scope.userLocation'] == false    表示 非初始化进入该页面,且未授权
-        // res.authSetting['scope.userLocation'] == true    表示 地理位置授权
-        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
-          //未授权
+        // console.log(res.authSetting['scope.userLocation'], 'res.authSetting.....')
+        if (res.authSetting['scope.userLocation'] == undefined || res.authSetting['scope.userLocation'] != true) {
+          // 未授权
           wx.showModal({
             title: '请求授权当前位置',
             content: '需要获取您的地理位置，请确认授权',
             success: function (res) {
-              if (res.cancel) {
-                //取消授权
+              if (res.cancel) { // 取消授权
                 wx.showToast({
                   title: '拒绝授权',
                   icon: 'none',
                   duration: 1000
                 })
-              } else if (res.confirm) {
-                //确定授权，通过wx.openSetting发起授权请求
                 wx.openSetting({
                   success: function (res) {
                     if (res.authSetting["scope.userLocation"] == true) {
@@ -112,8 +115,7 @@ Page({
                         icon: 'success',
                         duration: 1000
                       })
-                      //再次授权，调用wx.getLocation的API
-                      _this.getLatlong();
+                      that.getChargingList();
                     } else {
                       wx.showToast({
                         title: '授权失败',
@@ -123,19 +125,19 @@ Page({
                     }
                   }
                 })
+              } else if (res.confirm) { // 确定授权 
+                that.getChargingList();
               }
             }
           })
-        } else if (res.authSetting['scope.userLocation'] == undefined) {
-          //用户首次进入页面,调用wx.getLocation的API
-          _this.getLatlong();
-        }
-        else {
-          // console.log('授权成功')
-          //调用wx.getLocation的API
-          _this.getLatlong();
         }
       }
-    })
+    }) 
   },
+   /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
 })

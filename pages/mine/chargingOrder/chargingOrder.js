@@ -27,7 +27,7 @@ Page({
     }
     https.request('true',api.getOrdersList,data).then(function(res){
       that.setData({
-        detailsList: res.result
+        // detailsList: res.result
       });
     });
   },

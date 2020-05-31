@@ -25,9 +25,15 @@ Page({
           console.log('-----------',res);
           https.request('false',api.getEquipmentInfo,{"qrcode":res.rawData}).then(function(res){
             console.log(res);
+            var equipmentInfoParam = {
+              "carnum": "京A-88888", //车牌号
+              "connector_id": "0123456789", //充电设备接口编码
+              "phone_num": "15134567890", //手机号
+              "qrcode": res.rawData //二维码其他信息
+            }
             // if(res.code == 0){
               wx.navigateTo({
-                url: '/pages/scan/chargPost/chargPost',
+                url: '/pages/scan/chargPost/chargPost?equipParams=' + JSON.stringify(equipmentInfoParam),
               })
             // }
             

@@ -2,7 +2,10 @@
 <view class="minePage">
   <view class="header">
     <image src="/imgs/header.png"></image>
-    <button  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录 / 注册</button>
+    
+    <!-- <button  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录 / 注册</button> -->
+    <button bindtap="wxBind">登录 / 注册</button>
+    <open-data type='userAvatarUrl'></open-data>
   </view>
   <view class="balance">
     账户余额 <text>10.00</text> 元
