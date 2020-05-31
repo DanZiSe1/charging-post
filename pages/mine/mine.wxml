@@ -1,11 +1,13 @@
 <!--pages/mine/mine.wxml-->
 <view class="minePage">
   <view class="header">
-    <image src="/imgs/header.png"></image>
-    
+    <image src="/imgs/header.png" wx:if="{{wxbindHeader == 0}}"></image>
+    <view class="avatar" wx:if="{{wxbindHeader == 1}}">
+      <open-data type='userAvatarUrl'></open-data>
+    </view>
     <!-- <button  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录 / 注册</button> -->
-    <button bindtap="wxBind">登录 / 注册</button>
-    <open-data type='userAvatarUrl'></open-data>
+    <button bindtap="wxBind" wx:if="{{wxbindHeader == 0}}">登录 / 注册</button>
+    <open-data type='userNickName' wx:if="{{wxbindHeader == 1}}"></open-data>
   </view>
   <view class="balance">
     账户余额 <text>10.00</text> 元

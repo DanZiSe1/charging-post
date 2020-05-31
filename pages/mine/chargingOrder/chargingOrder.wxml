@@ -1,16 +1,15 @@
 <!--pages/mine/chargingOrder/chargingOrder.wxml-->
 <view class="detailsPage">
-  <!-- <view wx:if="{{detailsList.length != 0}}"> -->
-  <view>
-    <view class="detailsList" wx:for="{{detailsList}}" wx:key="detailsList" bindtap="detailsTap" data-index='{{index}}'>
+  <view wx:if="{{detailsList.length != 0}}">
+    <view class="detailsList" wx:for="{{detailsList}}" wx:key="detailsList" bindtap="detailsTap" data-id="{{item.id}}">
       <view class="listTop">
-        <view class="date">2020-02</view>
+        <view class="date">{{item.created_at}}</view>
         <view class="amount">充电中 <image src="/imgs/right.png"></image></view>
       </view>
       <view class="way">新世界商场公共充电站</view>
     </view>
   </view>
-  <!-- <block wx:else>
+  <block wx:else>
     <noInfo id="noInfo"></noInfo>
-  </block> -->
+  </block>
 </view>

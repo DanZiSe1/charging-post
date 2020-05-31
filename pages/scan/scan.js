@@ -1,6 +1,7 @@
 const api = require('../../utils/api.js');
 const https = require('../../utils/request.js');
 const app = getApp();
+
 Page({
 
   /**
@@ -17,38 +18,38 @@ Page({
 
   },
   // 扫码
-  scanCode: function(e) {
-    let  unique_id  =  wx.getStorageSync('unique_id');
+  scanCode: function (e) {
+    let unique_id = wx.getStorageSync('unique_id');
     if (unique_id) {
       wx.scanCode({
-        success(res) {          
+        success(res) {
           console.log('-----------', res); // 获取设备信息
-          https.request('false', api.getEquipmentInfo, {
-            "qrcode": res.result
-          }, 'POST').then(function(res) {
+          app.globalData.qrcode = res.result;
+          // 获取设备信息
+          https.request('false', api.getEquipmentInfo, { "qrcode": res.result }, 'POST').then(function (res) {
             console.log(res);
-            if (res.code  ==  0) {
+            var equipmentInfoParam = res.result;
+            if (res.code == 0) {
               wx.navigateTo({
-                url: '/pages/scan/chargPost/chargPost',
-                // url: '/pages/scan/chargPost/chargPost?equipParams=' + JSON.stringify(equipmentInfoParam),
+                url:  '/pages/scan/chargPost/chargPost?equipParams='  +  JSON.stringify(equipmentInfoParam),
               })
-            }          
-          });        
-        }      
-      })    
-    } else {      
-      wx.showModal({        
+            }
+          });
+        }
+      })
+    } else {
+      wx.showModal({
         content: '您还未登录，是否登录',
         cancelText: '否',
         confirmText: '是',
-        success(res) {          
-          if (res.confirm) {            
-            wx.switchTab({              
-              url: '/pages/mine/mine',            
-            })          
-          }        
-        }      
-      })    
+        success(res) {
+          if (res.confirm) {
+            wx.switchTab({
+              url: '/pages/mine/mine',
+            })
+          }
+        }
+      })
     }
   },
   /**

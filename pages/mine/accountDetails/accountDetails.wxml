@@ -4,7 +4,7 @@
     <view class="detailsList" wx:for="{{detailsList}}" wx:key="detailsList">
       <view class="listTop">
         <view class="date">2020-02</view>
-        <view class="amount">+300</view>
+        <view class="amount">+{{item.balance}}</view>
       </view>
       <view class="way">充值</view>
     </view>

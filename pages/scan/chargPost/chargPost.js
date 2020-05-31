@@ -1,6 +1,6 @@
 const api = require('../../../utils/api.js');
 const https = require('../../../utils/request.js');
-const app = getApp()
+const app = getApp();
 
 Page({
 
@@ -16,7 +16,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.equipParams = JSON.parse(options.equipParams)
+    console.log(JSON.parse(options.equipParams));
+    // this.data.equipParams = JSON.parse(options.equipParams);
+    this.setData({
+      equipParams: JSON.parse(options.equipParams)
+    })
   },
   goRecharge:function(){
     wx.navigateTo({
@@ -29,12 +33,19 @@ Page({
     //   content: '您当前已有充电中订单'
     // })
     var that = this;
-    https.request('true',api.startCharging,that.data.equipParams,'POST').then(function(res){
+    var data = {
+
+    }
+    https.request('true',api.startCharging,{'qrcode':app.globalData.qrcode},'POST').then(function(res){
       console.log(res);
       wx.navigateTo({
         url: '/pages/scan/chargeState/chargeState?start_charge_seq=' + that.data.start_charge_seq,
       })
     });
+  },
+  // 查看全部
+  seeAll:function(){
+
   },
   // 绑定车牌号
   bindCarNum:function (){

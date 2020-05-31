@@ -22,7 +22,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -71,6 +71,12 @@
 					"name": "充电状态",
 					"pathName": "pages/scan/chargeState/chargeState",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "扫码充电",
+					"pathName": "pages/scan/scan",
 					"scene": null
 				}
 			]

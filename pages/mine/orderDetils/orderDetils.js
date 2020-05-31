@@ -30,10 +30,11 @@ Page({
       
       if(res.code == 0){
         console.log(res);
+        that.setData({
+          ordersDetails:res.result
+        })
       }
-      // that.setData({
-      //   ordersDetails:res.result
-      // })
+      
     })
   },
 

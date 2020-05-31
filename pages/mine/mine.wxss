@@ -5,11 +5,15 @@
   color: #333;
 }
 .header{display: flex;align-items: center;}
-.header image{
+.header image,.avatar{
   width: 120rpx;
   height: 120rpx;
+  border-radius: 100%;
+  overflow: hidden;
 }
-
+.avatar{
+  margin-right: 20rpx;
+}
 .header button {
   width: 180rpx!important;
   margin-left: 20rpx!important;
