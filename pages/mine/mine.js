@@ -7,28 +7,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    wxbindHeader: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(wx.getStorageSync('unique_id')){
+      this.setData({
+        wxbindHeader: 1
+      })
+    }
   },
   // 微信绑定
   wxBind:function(){
+    var that = this;
     let data = {
       "avatar": "http://img.mp.itc.cn/upload/20170724/cf678e09eb384401aa616ba134126357_th.jpg",
       "identity_card": "1234567890987654321",
       "nickname": "小茗同学",
-      "unique_id": "0123456"    
+      "unique_id": "123123123"    
     }
     https.request('true',api.wxBind,data,'POST').then(function(res){
       wx.setStorageSync('unique_id', res.result.unique_id);
       wx.showToast({
         title: '绑定成功',
-      })
+      });
+      that.setData({
+        wxbindHeader: 1
+      });
     });
   },
   // 获取用户手机号

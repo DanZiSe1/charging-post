@@ -1,7 +1,7 @@
 <view class="rechargePage">
 	<view class="status">
 		<radio checked></radio>
-		<text>充电已完成</text>
+		<text>{{ordersDetails.status == 0 ? "正在充电" : "充电已完成"}}</text>
 	</view>
 	<view class="detilsInfo">
 		<view class="expense">
@@ -11,26 +11,26 @@
 				<image src="/imgs/right.png"></image>
 			</view>
 		</view>
-		<view class="project">总电费：10.89元</view>
-		<view class="project">总服务费：10.89元</view>
-		<view class="project">本次充电总费用：10.89元</view>
+		<view class="project">总电费：{{ordersDetails.total_elec_money}}元</view>
+		<view class="project">总服务费：{{ordersDetails.total_sevice_money}}元</view>
+		<view class="project">本次充电总费用：{{ordersDetails.total_money}}元</view>
 	</view>
 	<view class="detilsInfo">
 		<view class="expense">
 			<view class="expenseInfo">充电信息</view>
 		</view>
-		<view class="project">充电开始时间：10.89元</view>
-		<view class="project">充电结束时间：10.89元</view>
-		<view class="project">累计充电量（度）：10.89元</view>
-		<view class="project">充电结束原因：用户主动结束充电</view>
+		<view class="project">充电开始时间：{{ordersDetails.start_time}}</view>
+		<view class="project">充电结束时间：{{ordersDetails.end_time}}}元</view>
+		<view class="project">累计充电量（度）：{{ordersDetails.total_power}}元</view>
+		<view class="project">充电结束原因：{{ordersDetails.stop_reason}}</view>
 	</view>
 
 	<view class="detilsInfo">
 		<view class="expense">
 			<view class="expenseInfo">电桩信息</view>
 		</view>
-		<view class="project">充电站：新世界充电站</view>
-		<view class="project">地址：东城区崇文门</view>
-		<view class="project">电桩编号：1234567890</view>
+		<view class="project">充电站：{{ordersDetails.station_name}}</view>
+		<view class="project">地址：{{ordersDetails.address}}</view>
+		<view class="project">电桩编号：{{ordersDetails.connector_id}}</view>
 	</view>
 </view>

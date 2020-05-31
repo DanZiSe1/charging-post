@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    rechargeList:[1,1,1,1],
+    rechargeList:[],
     order_id: 0,//翻页时所需id
     page_size: 10
   },
@@ -25,10 +25,16 @@ Page({
       "id": this.data.order_id,
       "page_size": this.data.page_size
     }
-    https.request('true',api.rechargeList,data).then(function(res){
-      that.setData({
-        rechargeList: res.result
-      });
+    https.request('true',api.rechargeList,data,'POST').then(function(res){
+      var list = that.data.rechargeList.concat(res.result);
+      if(res.code == 0){
+        if(res.result.length != 0){
+          that.setData({
+            rechargeList: list,
+            order_id: res.result[res.result.length - 1].id
+          });
+        }
+      }
     });
   },
   /**
@@ -71,10 +77,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.setData({
-      order_id: this.data.order_id + 9,
-      page_size: this.data.page_size
-    });
     this.getRechargeList();
   },
 

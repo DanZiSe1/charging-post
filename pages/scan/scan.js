@@ -1,5 +1,6 @@
 const api = require('../../utils/api.js');
 const https = require('../../utils/request.js');
+const app = getApp();
 
 Page({
 
@@ -23,19 +24,16 @@ Page({
       wx.scanCode({
         success(res){
           console.log('-----------',res);
-          https.request('false',api.getEquipmentInfo,{"qrcode":res.rawData}).then(function(res){
+          app.globalData.qrcode = res.result;
+          // 获取设备信息
+          https.request('false',api.getEquipmentInfo,{"qrcode":res.result},'POST').then(function(res){
             console.log(res);
-            var equipmentInfoParam = {
-              "carnum": "京A-88888", //车牌号
-              "connector_id": "0123456789", //充电设备接口编码
-              "phone_num": "15134567890", //手机号
-              "qrcode": res.rawData //二维码其他信息
-            }
-            // if(res.code == 0){
+            var equipmentInfoParam = res.result;
+            if(res.code == 0){
               wx.navigateTo({
                 url: '/pages/scan/chargPost/chargPost?equipParams=' + JSON.stringify(equipmentInfoParam),
               })
-            // }
+            }    
             
           });
           
