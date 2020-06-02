@@ -1,6 +1,7 @@
 //indexdetail.js
 var https = require('../../utils/request.js');
 const api = require('../../utils/api.js');
+const util = require('../../utils/util.js');
 const app = getApp();
 
 Page({
@@ -18,7 +19,8 @@ Page({
       calentime: '15:00-18:00',
       ServiceFee: '0.80',
       ParkFee: '0.64'
-    }
+    },
+    resultFee: []
   },
   onLoad: function (options) {
     console.log(options, 'options.......')
@@ -36,6 +38,15 @@ Page({
       console.log(res, '获取充电站详情结果.......')
       if (res.code == 0) {
         if (res.result) {
+          that.resultFee = util.electricServeMoney(res.result.ElectricityFee, res.result.ServiceFee);
+          res.result['billingPeriod'] = that.resultFee[0].time;
+          res.result['eleServiceFee'] = that.resultFee[0].elemoney + '元/度|' + that.resultFee[0].servemoney + '元/度'
+          var eleindex = that.resultFee[0].elemoney.lastIndexOf("电费:");
+          var newElemoney = that.resultFee[0].elemoney.substring(eleindex + 1, that.resultFee[0].elemoney.length);
+          var serindex = that.resultFee[0].servemoney.lastIndexOf("服务费:");
+          var newServemoney = that.resultFee[0].servemoney.substring(serindex + 1, that.resultFee[0].servemoney.length);
+          res.result['eleServiceFee'] = that.resultFee[0].elemoney + '元/度|' + that.resultFee[0].servemoney + '元/度'
+          res.result['pricedegee'] = parseInt(newElemoney) + parseInt(newServemoney);
           that.setData({
             chargStationData: res.result
           })

@@ -40,9 +40,9 @@ Page({
     });
   },
   // 获取用户手机号
-  // getPhoneNumber:function(e){
-  //   console.log(e)
-  // },
+  getPhoneNumber:function(e){
+    console.log(e)
+  },
   // 充电订单
   chargingOrder:function(){
     wx.navigateTo({
