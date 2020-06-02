@@ -14,6 +14,7 @@ var getStationDetail = host + '/api/equip/station/';//返回充电站详情
 var getEquipmentInfo = host + '/api/equip/connector';//获取设备信息
 var bindCarNum = host + '/xcx/user/carnum/bind';//绑定车牌号
 var unBindCarNum = host + '/xcx/user/carnum/unbind';//解绑车牌号
+var getPricePolicy = host + '/api/equip/business_policy';//获取设备充电策略
 
 
 module.exports={
@@ -29,5 +30,6 @@ module.exports={
   getStationDetail,
   getEquipmentInfo,
   bindCarNum,
-  unBindCarNum
+  unBindCarNum,
+  getPricePolicy
 }

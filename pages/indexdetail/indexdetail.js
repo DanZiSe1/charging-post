@@ -6,6 +6,7 @@ const app = getApp();
 Page({
   data: {
     chargStationid: '',
+    chargOperatorid: '',
     chargStationData: {
       id: '1',
       StationName: '新世界商场公共充电站',
@@ -17,13 +18,13 @@ Page({
       calentime: '15:00-18:00',
       ServiceFee: '0.80',
       ParkFee: '0.64'
-
     }
   },
   onLoad: function (options) {
-    // console.log(options, parseInt(options.chargeid), 'options.......')
+    console.log(options, 'options.......')
     this.setData({
-      chargStationid: parseInt(options.chargeid)
+      chargStationid: parseInt(options.chargeid),
+      chargOperatorid: options.operatorid
     })
     this.getStationDetail()
   },
@@ -31,8 +32,8 @@ Page({
   getStationDetail: function(){
     var that = this
     var stationDetailUrl = api.getStationDetail + that.data.chargStationid
-    https.request('false', stationDetailUrl).then(function (res) {
-      // console.log(res, '获取充电站详情结果.......')
+    https.request('false',stationDetailUrl,'POST').then(function (res) {
+      console.log(res, '获取充电站详情结果.......')
       if (res.code == 0) {
         if (res.result) {
           that.setData({
@@ -51,39 +52,37 @@ Page({
   // 查看全部
   getLookAll: function(){
     wx.navigateTo({
-      url: '/pages/priceinfo/priceinfo',
+      url: '/pages/priceinfo/priceinfo?connectorid=881021888881&operatorid=' + this.data.chargOperatorid,
     })
   },
   // 扫码充电 
-  goScanCharge:function () {
+  goScanCharge: function (e) {
     let unique_id = wx.getStorageSync('unique_id');
-    if(unique_id){
+    if (unique_id) {
       wx.scanCode({
-        success(res){
-          console.log('-----------',res);
-          https.request('false',api.getEquipmentInfo,{"qrcode":res.rawData}).then(function(res){
-            console.log(res);
-            var equipmentInfoParam = {
-              "carnum": "京A-88888", //车牌号
-              "connector_id": "0123456789", //充电设备接口编码
-              "phone_num": "15134567890", //手机号
-              "qrcode": res.rawData //二维码其他信息
+        success(res) {
+          console.log('-----------', res); // 获取设备信息
+          https.request('false', api.getEquipmentInfo, {
+            "qrcode": res.result
+          }, 'POST').then(function (res) {
+            console.log(res, '扫码充电后的结果........');
+            if (res.code == 0) {
+              if (res.result) {
+                wx.navigateTo({
+                  url:  '/pages/scan/chargPost/chargPost?equipParams=' + JSON.stringify(res.result),
+                })
+              }
             }
-            // if(res.code == 0){
-              wx.navigateTo({
-                url: '/pages/scan/chargPost/chargPost?equipParams=' + JSON.stringify(equipmentInfoParam),
-              })
-            // }
-          });  
-        },
+          });
+        }
       })
-    }else{
+    } else {
       wx.showModal({
-        content:'您还未登录，是否登录',
-        cancelText:'否',
-        confirmText:'是',
-        success(res){
-          if(res.confirm){
+        content: '您还未登录，是否登录',
+        cancelText: '否',
+        confirmText: '是',
+        success(res) {
+          if (res.confirm) {
             wx.switchTab({
               url: '/pages/mine/mine',
             })

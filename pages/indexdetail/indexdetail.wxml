@@ -28,13 +28,13 @@
         <p bindtap="getLookAll">查看全部></p>
       </view>
       <view class="station_detail_timestyle">
-        当前计费时段：{{chargStationData.calentime}}
+        当前计费时段：15:00-18:00
       </view>
       <view class="station_detail_timestyle">
         电费：{{chargStationData.ParkFee}}元/度|服务费：{{chargStationData.ServiceFee}}元/度
       </view>
       <view class="station_detail_timestyle">
-        ￥{{ chargStationData.ElectricityFee }}/度
+        ￥1.44/度
       </view>
     </view> 
   </view>

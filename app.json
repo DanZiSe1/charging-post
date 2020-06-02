@@ -1,15 +1,12 @@
 {
   "pages":[
-    "pages/scan/scan",
     "pages/index/index",
     "pages/mine/mine",
-    
+    "pages/scan/scan",
     "pages/scan/chargPost/chargPost",
     "pages/scan/chargeState/chargeState",
-    
     "pages/indexdetail/indexdetail",
     "pages/priceinfo/priceinfo",
-    
     "pages/mine/chargingOrder/chargingOrder",
     "pages/mine/recharge/recharge",
     "pages/mine/orderDetils/orderDetils",

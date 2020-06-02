@@ -1,10 +1,12 @@
 //priceinfo.js
 //获取应用实例
-const app = getApp()
+var https = require('../../utils/request.js');
+const api = require('../../utils/api.js');
+const app = getApp();
 
 Page({
   data: {
-    pricesList: [{
+    /* pricesList: [{
         id: 1,
         time: '15:00-18:00',
         degree: '1.44',
@@ -25,8 +27,41 @@ Page({
         dprice: '0.64',
         fprice: '0.80',
       }
-    ]
+    ], */
+    pricesList: [],
+    connectorId: '',
+    operatorId: ''
   },
-  onLoad: function () {
-  }
+  onLoad: function (options) {
+    console.log(options, 'options.......')
+    this.setData({
+      connectorId: options.connectorid,
+      operatorId: options.operatorid
+    })
+    this.selectComponent("#noInfo")
+    this.getPriceInfos()
+  },
+  // 获取设备充电策略
+  getPriceInfos:function () {
+    var that = this
+    https.request('false', api.getPricePolicy,{
+      connector_id: "881021888881",
+      operator_id: that.data.operatorId
+    }, 'POST').then(function (res) {
+      console.log(res, '获取设备充电策略结果.......')
+      if (res.code == 0) {
+        if (res.result) {
+          that.setData({
+            pricesList: res.result
+          })
+        }
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    });
+  } 
 })

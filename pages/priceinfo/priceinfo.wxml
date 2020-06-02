@@ -1,9 +1,9 @@
 <!--priceinfo.wxml-->
 <view class="container">
   <view class="pricePage">
-    <scroll-view class="scroll-priceinfo" scroll-y="true" bindscroll="scroll" style="width: 100%;height:100vh;">
-      <block wx:for="{{pricesList}}" wx:key="item">
-        <view class="priceItem">
+    <view class="priceinfo">
+      <block wx:if="{{pricesList.length != 0}}">
+        <view class="priceItem" wx:for="{{pricesList}}" wx:key="item">
           <view class="priceItem_top">
             时段:{{item.time}}
           </view>
@@ -17,6 +17,9 @@
           </view>
         </view>
       </block>
-    </scroll-view>
+      <block wx:else>
+        <noInfo id="noInfo"></noInfo>
+      </block>
+    </view>
   </view>
 </view>

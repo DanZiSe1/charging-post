@@ -72,6 +72,12 @@
 					"pathName": "pages/scan/chargeState/chargeState",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "扫码充电",
+					"pathName": "pages/scan/scan",
+					"scene": null
 				}
 			]
 		}

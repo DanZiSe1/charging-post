@@ -41,36 +41,11 @@ Page({
   onShow: function () {
     this.getUserLocation()
   },
-  // 获取附近充电站列表
-  getChargingList: function(){
-    var that = this
-    https.request('false',api.getChargesList,{
-      coordinate: 'gcj-02',
-      distance: 3,
-      lat: that.data.latitude,
-      lng: that.data.longitude
-    }).then(function(res) {
-      console.log(res, '获取附近充电站列表结果.......')
-      if (res.code == 0) {
-        if (res.result) {
-          that.setData({
-            chargingList: res.result
-          })
-        }
-      } else {
-        wx.showToast({
-          title: res.message,
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    });
-  },
   // 获取用户当前位置
   getUserLocation: function () {
     let that = this;
     wx.getLocation({
-      type: 'gcj02',
+      type: 'wgs84',
       success: function (res) {
         console.log(JSON.stringify(res), '获取用户当前位置结果.......')
         if (res.errMsg = "getLocation:ok") {
@@ -88,6 +63,32 @@ Page({
         that.getLocationAuth()
       }
     })
+  },
+  // 获取附近充电站列表
+  getChargingList: function () {
+    var that = this
+    var indexParam = {
+      "coordinate": 'gcj-02',
+      "distance": 3,
+      "lat": that.data.latitude,
+      "lng": that.data.longitude
+    }
+    https.request('false', api.getChargesList, indexParam, 'POST').then(function (res) {
+      console.log(res, '获取附近充电站列表结果.......')
+      if (res.code == 0) {
+        if (res.result) {
+          that.setData({
+            chargingList: res.result
+          })
+        }
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    });
   },
   // 获取用户位置权限
   getLocationAuth: function () {
