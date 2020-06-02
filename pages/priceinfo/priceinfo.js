@@ -33,13 +33,30 @@ Page({
     operatorId: ''
   },
   onLoad: function (options) {
-    console.log(options, 'options.......')
+    console.log(JSON.parse(options.lookmoredata), 'options.......')
+    // this.setData({
+    //   connectorId: options.connectorid,
+    //   operatorId: options.operatorid
+    // })
+    this.pricesList = JSON.parse(options.lookmoredata)
+    this.pricesList.map((ele, index)=>{
+      if (!ele.servemoney) {
+        var priceElemoney = ele.elemoney.split("电费:");
+        ele['eleServicePrice'] = ele.elemoney + '元/度';
+        ele['priceInfoDegee'] = Number(priceElemoney[1]);
+      } else {
+        var priceElemoney = ele.elemoney.split("电费:");
+        var priceServemoney = ele.servemoney.split("服务费:");
+        ele['eleServicePrice'] = ele.elemoney + '元/度|' + ele.servemoney + '元/度'
+        ele['priceInfoDegee'] = Number(priceElemoney[1]) + Number(priceServemoney[1]);
+      }
+    })
+    console.log(this.pricesList, 'this.pricesList........')
     this.setData({
-      connectorId: options.connectorid,
-      operatorId: options.operatorid
+      pricesList: this.pricesList
     })
     this.selectComponent("#noInfo")
-    this.getPriceInfos()
+    // this.getPriceInfos()
   },
   // 获取设备充电策略
   getPriceInfos:function () {

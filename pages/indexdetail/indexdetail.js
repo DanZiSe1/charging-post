@@ -8,7 +8,8 @@ Page({
   data: {
     chargStationid: '',
     chargOperatorid: '',
-    chargStationData: {
+    chargStationData: {},
+    /* chargStationData: {
       id: '1',
       StationName: '新世界商场公共充电站',
       BusineHours: '00:00-24:00',
@@ -19,7 +20,7 @@ Page({
       calentime: '15:00-18:00',
       ServiceFee: '0.80',
       ParkFee: '0.64'
-    },
+    }, */
     resultFee: []
   },
   onLoad: function (options) {
@@ -41,12 +42,11 @@ Page({
           that.resultFee = util.electricServeMoney(res.result.ElectricityFee, res.result.ServiceFee);
           res.result['billingPeriod'] = that.resultFee[0].time;
           res.result['eleServiceFee'] = that.resultFee[0].elemoney + '元/度|' + that.resultFee[0].servemoney + '元/度'
-          var eleindex = that.resultFee[0].elemoney.lastIndexOf("电费:");
-          var newElemoney = that.resultFee[0].elemoney.substring(eleindex + 1, that.resultFee[0].elemoney.length);
-          var serindex = that.resultFee[0].servemoney.lastIndexOf("服务费:");
-          var newServemoney = that.resultFee[0].servemoney.substring(serindex + 1, that.resultFee[0].servemoney.length);
+
+          var newElemoney = that.resultFee[0].elemoney.split("电费:");
+          var newServemoney = that.resultFee[0].servemoney.split("服务费:");
           res.result['eleServiceFee'] = that.resultFee[0].elemoney + '元/度|' + that.resultFee[0].servemoney + '元/度'
-          res.result['pricedegee'] = parseInt(newElemoney) + parseInt(newServemoney);
+          res.result['pricedegee'] = Number(newElemoney[1]) + Number(newServemoney[1]);
           that.setData({
             chargStationData: res.result
           })
@@ -63,7 +63,8 @@ Page({
   // 查看全部
   getLookAll: function(){
     wx.navigateTo({
-      url: '/pages/priceinfo/priceinfo?connectorid=881021888881&operatorid=' + this.data.chargOperatorid,
+      // url: '/pages/priceinfo/priceinfo?connectorid=881021888881&operatorid=' + this.data.chargOperatorid,
+      url: '/pages/priceinfo/priceinfo?lookmoredata=' + JSON.stringify(this.resultFee),
     })
   },
   // 扫码充电 

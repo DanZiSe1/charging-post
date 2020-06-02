@@ -9,10 +9,10 @@
           </view>
           <view class="priceItem_bottom flex-center-between">
             <p>
-              ￥<span>{{item.degree}}</span>/度
+              ￥<span>{{item.priceInfoDegee}}</span>/度
             </p>
             <view class="priceItem_bottom_right">
-              电费：{{item.dprice}}元/度|服务费：{{item.fprice}}元/度
+              {{ item.eleServicePrice }}
             </view>
           </view>
         </view>
