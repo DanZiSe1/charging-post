@@ -43,12 +43,9 @@ Page({
       })
     });
   },
-  // 查看全部2
+  // 查看全部
   seeAll:function(){
-    wx.navigateTo({
-      // url: '/pages/priceinfo/priceinfo?connectorid=881021888881&operatorid=' + this.data.chargOperatorid,
-      url: '/pages/priceinfo/priceinfo',
-    })
+
   },
   // 绑定车牌号
   bindCarNum:function (){

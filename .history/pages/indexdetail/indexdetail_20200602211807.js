@@ -60,11 +60,11 @@ Page({
       }
     });
   },
-  // 查看全部1
+  // 查看全部
   getLookAll: function(){
     wx.navigateTo({
       // url: '/pages/priceinfo/priceinfo?connectorid=881021888881&operatorid=' + this.data.chargOperatorid,
-      url: '/pages/priceinfo/priceinfo?priceType=1&lookmoredata=' + JSON.stringify(this.resultFee),
+      url: '/pages/priceinfo/priceinfo?lookmoredata=' + JSON.stringify(this.resultFee),
     })
   },
   // 扫码充电 
