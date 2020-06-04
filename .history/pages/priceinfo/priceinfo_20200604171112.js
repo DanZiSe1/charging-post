@@ -33,13 +33,13 @@ Page({
     operatorId: ''
   },
   onLoad: function (options) {
+    console.log(JSON.parse(options.lookmoredata), 'options.......')
     // this.setData({
     //   connectorId: options.connectorid,
     //   operatorId: options.operatorid
     // })
     // 从充电桩详情type=1
     if (options.pricetype == 1) {
-      console.log(JSON.parse(options.lookmoredata), 'options.......')
       this.pricesList = JSON.parse(options.lookmoredata)
       this.pricesList.map((ele, index)=>{
         if (!ele.servemoney) {
@@ -58,12 +58,7 @@ Page({
         pricesList: this.pricesList
       })
     } else { // 从启动充电type=2
-      console.log(options, 'options.......')
-      this.setData({
-        connectorId: options.connectorid,
-        operatorId: options.operatorid
-      })
-      this.getPriceInfos()
+      // this.getPriceInfos()
     }
     this.selectComponent("#noInfo")
   },
@@ -71,9 +66,9 @@ Page({
   getPriceInfos:function () {
     var that = this
     https.request('false', api.getPricePolicy,{
-      connector_id: that.data.connectorId,
+      connector_id: "881021888881",
       operator_id: that.data.operatorId
-    }).then(function (res) {
+    }, 'POST').then(function (res) {
       console.log(res, '获取设备充电策略结果.......')
       if (res.code == 0) {
         if (res.result) {
