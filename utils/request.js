@@ -11,7 +11,7 @@ function request(requestState,url, data = {}, method = "GET") {
     var AuthorHeaderValue = {
       'Content-Type': 'application/json',
       'accept': 'application/json',
-      'Authorization': wx.getStorageSync('unique_id') || ''
+      'Authorization': wx.getStorageSync('openid') || ''
     }
     // console.log(requestState, 'requestState......')
     wx.request({

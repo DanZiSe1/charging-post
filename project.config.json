@@ -28,7 +28,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.11.1",
 	"appid": "wx0993356c144a613b",
-	"projectname": "ChargingPost",
+	"projectname": "charging-post",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
