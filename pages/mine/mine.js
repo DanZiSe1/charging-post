@@ -19,6 +19,18 @@ Page({
         wxbindHeader: 1
       })
     }
+
+
+    // wx.login({
+    //   success: (res) => {
+    //     console.log(res);
+    //     https.request('false',api.getOpenId,{
+    //       "js_code": res.code
+    //     },'POST').then(function(res){
+    //       console.log(res)
+    //     })
+    //   },
+    // })
   },
   // 微信绑定
   wxBind:function(){
@@ -41,7 +53,18 @@ Page({
   },
   // 获取用户手机号
   getPhoneNumber:function(e){
-    console.log(e)
+    console.log(e);
+    wx.login({
+      success: (res) => {
+        console.log(res);
+        https.request('false',api.getOpenId,{"js_code": res.code},'POST').then(function(res){
+          console.log(res);
+          if(res.code == 0){
+            openid == res.result.openid
+          }
+        })
+      },
+    })
   },
   // 充电订单
   chargingOrder:function(){

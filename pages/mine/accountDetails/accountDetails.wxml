@@ -1,12 +1,13 @@
 <!--pages/mine/accountDetails/accountDetails.wxml-->
 <view class="detailsPage">
   <view wx:if="{{rechargeList.length != 0}}">
-    <view class="detailsList" wx:for="{{detailsList}}" wx:key="detailsList">
+    <view class="detailsList" wx:for="{{rechargeList}}" wx:key="rechargeList">
       <view class="listTop">
-        <view class="date">2020-02</view>
-        <view class="amount">+{{item.balance}}</view>
+        <view class="date">{{item.updated_at}}</view>
+        <view class="amount">{{item.type == 1 ? '+':'-'}}{{item.balance}}</view>
       </view>
-      <view class="way">充值</view>
+      <view class="way" wx:if="{{item.type == 1}}">充值</view>
+      <view class="way" wx:if="{{item.type == 2}}">充电消费</view>
     </view>
   </view>
   <block wx:else>
