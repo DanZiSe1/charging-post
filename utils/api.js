@@ -15,7 +15,7 @@ var getEquipmentInfo = host + '/api/equip/connector';//获取设备信息
 var bindCarNum = host + '/xcx/user/carnum/bind';//绑定车牌号
 var unBindCarNum = host + '/xcx/user/carnum/unbind';//解绑车牌号
 var getPricePolicy = host + '/api/equip/business_policy';//获取设备充电策略
-
+var getOpenId = host + '/xcx/bind2';//获取openid
 
 module.exports={
   wxBind,
@@ -31,5 +31,6 @@ module.exports={
   getEquipmentInfo,
   bindCarNum,
   unBindCarNum,
-  getPricePolicy
+  getPricePolicy,
+  getOpenId
 }

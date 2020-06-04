@@ -7,7 +7,7 @@
     </view>
     <button  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录 / 注册</button>
     <!-- <button bindtap="wxBind" wx:if="{{wxbindHeader == 0}}">登录 / 注册</button> -->
-    <open-data type='userNickName' wx:if="{{wxbindHeader == 1}}"></open-data>
+    <!-- <open-data type='userNickName' wx:if="{{wxbindHeader == 1}}"></open-data> -->
   </view>
   <view class="balance">
     账户余额 <text>10.00</text> 元
