@@ -73,7 +73,7 @@ Page({
     https.request('false', api.getPricePolicy,{
       connector_id: that.data.connectorId,
       operator_id: that.data.operatorId
-    }).then(function (res) {
+    }, 'POST').then(function (res) {
       console.log(res, '获取设备充电策略结果.......')
       if (res.code == 0) {
         if (res.result) {

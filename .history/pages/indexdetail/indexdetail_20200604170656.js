@@ -35,7 +35,7 @@ Page({
   getStationDetail: function(){
     var that = this
     var stationDetailUrl = api.getStationDetail + that.data.chargStationid
-    https.request('false',stationDetailUrl).then(function (res) {
+    https.request('false',stationDetailUrl,'POST').then(function (res) {
       console.log(res, '获取充电站详情结果.......')
       if (res.code == 0) {
         if (res.result) {
@@ -64,7 +64,7 @@ Page({
   getLookAll: function(){
     wx.navigateTo({
       // url: '/pages/priceinfo/priceinfo?connectorid=881021888881&operatorid=' + this.data.chargOperatorid,
-      url: '/pages/priceinfo/priceinfo?pricetype=1&lookmoredata=' + JSON.stringify(this.resultFee),
+      url: '/pages/priceinfo/priceinfo?priceType=1&lookmoredata=' + JSON.stringify(this.resultFee),
     })
   },
   // 扫码充电 
@@ -76,7 +76,7 @@ Page({
           console.log('-----------', res); // 获取设备信息
           https.request('false', api.getEquipmentInfo, {
             "qrcode": res.result
-          }).then(function (res) {
+          }, 'POST').then(function (res) {
             console.log(res, '扫码充电后的结果........');
             if (res.code == 0) {
               if (res.result) {

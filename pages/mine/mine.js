@@ -1,61 +1,52 @@
 const api = require('../../utils/api.js');
 const https = require('../../utils/request.js');
-
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    wxbindHeader: 0
+    phoneNum: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(wx.getStorageSync('unique_id')){
+    let openid = wx.getStorageSync('openid');
+    let str = wx.getStorageSync('phoneNum');
+    let phoneNumber = str.substring(0, 3) + "****" + str.substring(7, str.length);
+    if (openid){
       this.setData({
-        wxbindHeader: 1
-      })
+        phoneNum: phoneNumber
+      });
     }
   },
-  // 微信绑定
-  // wxBind:function(){
-  //   var that = this;
-  //   let data = {
-  //     "avatar": "http://img.mp.itc.cn/upload/20170724/cf678e09eb384401aa616ba134126357_th.jpg",
-  //     "identity_card": "1234567890987654321",
-  //     "nickname": "小茗同学",
-  //     "unique_id": "123123123"    
-  //   }
-  //   https.request('true',api.wxBind,data,'POST').then(function(res){
-  //     wx.setStorageSync('unique_id', res.result.unique_id);
-  //     wx.showToast({
-  //       title: '绑定成功',
-  //     });
-  //     that.setData({
-  //       wxbindHeader: 1
-  //     });
-  //   });
-  // },
   // 获取用户手机号
   getPhoneNumber:function(e){
-    console.log(e);
-    let data = {
+    var that = this;
+    var data = {
       "encrypted_data": e.detail.encryptedData,
       "iv": e.detail.iv
     }
     wx.login({
       success: (res) => {
-        console.log(res);
         https.request('false',api.getOpenId,{"js_code": res.code},'POST').then(function(res){
-          console.log(res);
           if(res.code == 0){
             wx.setStorageSync('openid', res.result.openid);
-            https.request('true',api.getPhoneNumber,data,'POST').then(function(res){
-              console.log(res)
-            })
+            app.globalData.openid = res.result.openid;
+            https.request('true', api.getPhoneNum, data, 'POST').then(function(res){
+              if(res.code == 0){
+                let str = res.result.phoneNumber;
+                let phoneNumber = str.substring(0, 3) + "****" + str.substring(7, str.length);
+                wx.setStorageSync('phoneNum', str);
+                that.setData({
+                  phoneNum: phoneNumber
+                });
+                console.log(that.data.phoneNum);
+              }
+            });
           }
         })
       },
@@ -78,47 +69,6 @@ Page({
     wx.navigateTo({
       url: '/pages/mine/recharge/recharge'
     })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
   },
 
   /**
