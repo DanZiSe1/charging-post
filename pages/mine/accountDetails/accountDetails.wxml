@@ -3,7 +3,7 @@
   <view wx:if="{{rechargeList.length != 0}}">
     <view class="detailsList" wx:for="{{rechargeList}}" wx:key="rechargeList">
       <view class="listTop">
-        <view class="date">{{item.updated_at}}</view>
+        <view class="date">{{item.created_at}}</view>
         <view class="amount">{{item.type == 1 ? '+':'-'}}{{item.balance}}</view>
       </view>
       <view class="way" wx:if="{{item.type == 1}}">充值</view>
