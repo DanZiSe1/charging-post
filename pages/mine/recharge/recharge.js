@@ -42,13 +42,14 @@ Page({
   // 立即充值
   nowRecharge:function(){
     let data = {
-      "balance": this.data.balance,
-      "extends": "string"  
+      "total_fee": Number(this.data.balance)
     }
-    console.log(this.data.balance);
-    // https.request(api.useRecharge,data,'POST').then(function(res){
-    //   wx.setStorageSync('unique_id', res.data.result.unique_id);
-    // });
+    console.log(Number(this.data.balance));
+    https.request('false',api.useRecharge,data,'POST').then(function(res){
+      // wx.setStorageSync('unique_id', res.data.result.unique_id);
+      console.log(res, '充值接口结果........')
+
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
