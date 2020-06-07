@@ -1,4 +1,4 @@
 <!--pages/scan/scan.wxml-->
 <view class="coverBg">
- <image class="" bindtap="scanCode" src="/imgs/scan_white.png"></image>
+ <image src="/imgs/scan_white.png"></image>
 </view>

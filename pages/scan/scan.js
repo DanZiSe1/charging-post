@@ -15,12 +15,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    
   },
   // 扫码
   scanCode: function (e) {
-    let unique_id = wx.getStorageSync('unique_id');
-    if (unique_id) {
+    let openid = wx.getStorageSync('openid');
+    if (openid) {
       wx.scanCode({
         success(res) {
           console.log('-----------', res); // 获取设备信息
@@ -52,6 +52,9 @@ Page({
       })
     }
   },
+  onTabItemTap(item){
+    this.scanCode();
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -63,7 +66,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    
   },
 
   /**
