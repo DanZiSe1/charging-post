@@ -1,3 +1,5 @@
+const app = getApp();
+
 // 封装微信的request
 function request(requestState,url, data = {}, method = "GET") {
   return new Promise(function (resolve, reject) {
@@ -11,9 +13,9 @@ function request(requestState,url, data = {}, method = "GET") {
     var AuthorHeaderValue = {
       'Content-Type': 'application/json',
       'accept': 'application/json',
-      'Authorization': wx.getStorageSync('openid') || ''
+      'Authorization': wx.getStorageSync('openid') || app.globalData.openid
     }
-    // console.log(requestState, 'requestState......')
+    console.log(wx.getStorageSync('openid'), app.globalData.openid, 'openid......')
     wx.request({
       url: url,
       data: data,

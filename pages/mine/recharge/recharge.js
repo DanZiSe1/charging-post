@@ -1,5 +1,6 @@
 const api = require('../../../utils/api.js');
 const https = require('../../../utils/request.js');
+const app = getApp();
 
 Page({
 
@@ -37,19 +38,73 @@ Page({
       balance:e.detail.value.replace(/\s+/g, ''),
       active: 'none'
     });
-    console.log(this.data.balance)
+    // console.log(this.data.balance)
   },
   // 立即充值
   nowRecharge:function(){
-    let data = {
-      "total_fee": Number(this.data.balance)
-    }
-    console.log(Number(this.data.balance));
-    https.request('false',api.useRecharge,data,'POST').then(function(res){
-      // wx.setStorageSync('unique_id', res.data.result.unique_id);
-      console.log(res, '充值接口结果........')
+    var that = this
+    // console.log(Number(that.data.balance), 'that.data.balance............');
+    // else if(that.data.balance < 1) {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '您充值的金额不能低于1分'
+    //   })
+    // } 
+    if (that.data.balance == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '请您输入充值金额!'
+      })
+    } else {
+      let data = {
+        "total_fee": Number(that.data.balance*100)
+      }
 
-    });
+      https.request('true', api.useRecharge, data, 'POST').then(function (res) {
+        // wx.setStorageSync('unique_id', res.data.result.unique_id);
+        console.log(res, '充值接口结果........')
+        if (res.code == 0) {
+          wx.requestPayment({
+            timeStamp: res.result.timeStamp,
+            nonceStr: res.result.nonceStr,
+            package: res.result.package,
+            signType: res.result.signType,
+            paySign: res.result.paySign,
+            success: function (res) {
+              console.log("调起微信支付...........")
+              console.log(res, '微信支付结果........')
+              if (res.errMsg == "requestPayment:ok") {
+                wx.showToast({
+                  title: '充值成功',
+                  icon: 'success',
+                  duration: 1000,
+                  success: function () {
+                    app.globalData.walletBalance = Number(that.data.balance)
+                    wx.navigateBack({
+                      delta: 1
+                    })
+                  }
+                })
+              } else {
+                wx.showToast({
+                  title: '充值失败,请重新充值!',
+                  icon: 'none',
+                  duration: 1000
+                })
+              }
+            },
+            fail: function (res) {
+              console.log("没有调起微信支付...........")
+              wx.showToast({
+                title: '调起微信支付失败!',
+                icon: 'none',
+                duration: 1000
+              })
+            }
+          })
+        }
+      });
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
