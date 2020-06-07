@@ -20,18 +20,24 @@ Page({
   // 扫码
   scanCode: function (e) {
     let openid = wx.getStorageSync('openid');
+    let that = this;
     if (openid) {
       wx.scanCode({
         success(res) {
           console.log('-----------', res); // 获取设备信息
           app.globalData.qrcode = res.result;
           // 获取设备信息
-          https.request('false', api.getEquipmentInfo, { "qrcode": res.result }, 'POST').then(function (res) {
+          https.request('false', api.getEquipmentInfo, { "qrcode": res.result }).then(function (res) {
             console.log(res);
             var equipmentInfoParam = res.result;
             if (res.code == 0) {
               wx.navigateTo({
                 url:  '/pages/scan/chargPost/chargPost?equipParams='  +  JSON.stringify(equipmentInfoParam),
+              })
+            }else{
+              wx.showToast({
+                title: res.message,
+                icon:'none'
               })
             }
           });
@@ -39,14 +45,17 @@ Page({
       })
     } else {
       wx.showModal({
-        content: '您还未登录，是否登录',
-        cancelText: '否',
-        confirmText: '是',
+        content: '登录后才可扫码',
+        cancelText: '取消',
+        confirmText: '登录',
         success(res) {
+          console.log(res);
           if (res.confirm) {
             wx.switchTab({
               url: '/pages/mine/mine',
             })
+          }else{
+            that.scanCode();
           }
         }
       })

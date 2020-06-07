@@ -17,6 +17,7 @@ Page({
       {amount: 500 },
     ],
     balance: 0,//支付金额
+    inputValue: '',
   },
 
   /**
@@ -30,13 +31,16 @@ Page({
     this.setData({
       active: e.currentTarget.dataset.index,
       balance: e.currentTarget.dataset.amount,
+      inputValue: ''
     });
   },
   // 输入金额
   getInputValue:function(e){
     this.setData({
+      inputValue: e.detail.value.replace(/\s+/g, ''),
       balance:e.detail.value.replace(/\s+/g, ''),
-      active: 'none'
+      active: 'none',
+      flag: true
     });
     // console.log(this.data.balance)
   },
@@ -61,7 +65,6 @@ Page({
       }
 
       https.request('true', api.useRecharge, data, 'POST').then(function (res) {
-        // wx.setStorageSync('unique_id', res.data.result.unique_id);
         console.log(res, '充值接口结果........')
         if (res.code == 0) {
           wx.requestPayment({
@@ -79,7 +82,8 @@ Page({
                   icon: 'success',
                   duration: 1000,
                   success: function () {
-                    app.globalData.walletBalance = Number(that.data.balance)
+                    app.globalData.walletBalance = Number(that.data.balance);
+                    wx.setStorageSync('walletBalance', Number(that.data.balance));
                     wx.navigateBack({
                       delta: 1
                     })

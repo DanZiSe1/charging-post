@@ -23,6 +23,10 @@ Page({
         phoneNum: phoneNumber
       });
     }
+    this.setData({
+      accountBalance: app.globalData.walletBalance || wx.getStorageSync('walletBalance') || 0
+    });
+    console.log(wx.getStorageSync('walletBalance'),app.globalData.walletBalance, 'app.globalData.walletBalance');
   },
   // 获取用户手机号
   getPhoneNumber:function(e){

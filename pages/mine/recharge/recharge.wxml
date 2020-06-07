@@ -7,7 +7,7 @@
 	</view>
 	<!-- <form> -->
 		<view class="inpAmount">
-			<input placeholder="输入自定义充值金额" type="digit" name="balance" bindinput='getInputValue'/>
+			<input placeholder="输入自定义充值金额" type="digit" name="balance" value="{{inputValue}}" bindinput='getInputValue'/>
 		</view>
 		<view class="title2">支付方式</view>
 		<view class="paymentMethod">

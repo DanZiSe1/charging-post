@@ -25,7 +25,7 @@ Page({
       "id": this.data.order_id,
       "page_size": this.data.page_size
     }
-    https.request('true',api.getOrdersList,data,'POST').then(function(res){
+    https.request('true',api.getOrdersList,data).then(function(res){
       var list = that.data.detailsList.concat(res.result);
       if(res.code == 0){
         if(res.result.length != 0){
