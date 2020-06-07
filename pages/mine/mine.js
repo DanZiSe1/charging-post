@@ -8,6 +8,7 @@ Page({
    */
   data: {
     phoneNum: '',
+    accountBalance: app.globalData.walletBalance || 0
   },
 
   /**

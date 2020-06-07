@@ -34,6 +34,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    openid:''
+    openid:'',
+    walletBalance: 0
   }
 })
