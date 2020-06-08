@@ -8,7 +8,7 @@ Page({
    */
   data: {
     phoneNum: '',
-    accountBalance: app.globalData.walletBalance || 0
+    accountBalance: 0
   },
 
   /**
@@ -23,14 +23,10 @@ Page({
         phoneNum: phoneNumber
       });
     }
-    this.setData({
-      accountBalance: app.globalData.walletBalance || wx.getStorageSync('walletBalance') || 0
-    });
-    console.log(wx.getStorageSync('walletBalance'),app.globalData.walletBalance, 'app.globalData.walletBalance');
   },
+
   // 获取用户手机号
   getPhoneNumber:function(e){
-    console.log(e);
     var that = this;
     var data = {
       "encrypted_data": e.detail.encryptedData,
@@ -39,20 +35,21 @@ Page({
     if (e.detail.errMsg == "getPhoneNumber:ok"){
       wx.login({
         success: (res) => {
-          console.log(res);
           https.request('false',api.getOpenId,{"js_code": res.code},'POST').then(function(res){
             if(res.code == 0){
               wx.setStorageSync('openid', res.result.openid);
               app.globalData.openid = res.result.openid;
               https.request('true', api.getPhoneNum, data, 'POST').then(function(res){
                 if(res.code == 0){
+
+                  that.loadUserInfo();//获取用户基本信息
+
                   let str = res.result.phoneNumber;
                   let phoneNumber = str.substring(0, 3) + "****" + str.substring(7, str.length);
                   wx.setStorageSync('phoneNum', str);
                   that.setData({
-                    phoneNum: phoneNumber
+                    phoneNum: phoneNumber,
                   });
-                  console.log(that.data.phoneNum);
                 }
               });
             }
@@ -98,6 +95,28 @@ Page({
         title: '请登录',
         icon:'none'
       })
+    }
+  },
+
+  //获取用户基本信息
+  loadUserInfo:function(){
+    let that = this;
+    https.request('true',api.getUserInfo).then(function(res){
+      console.log(res);
+      if(res.code == 0){
+        that.setData({
+          accountBalance: res.result.balance
+        });
+      }
+    });
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function(){
+    let openid = wx.getStorageSync('openid');
+    if(openid){
+      this.loadUserInfo();//获取用户基本信息
     }
   },
 
