@@ -69,8 +69,8 @@ Page({
   },
   // 扫码充电 
   goScanCharge: function (e) {
-    let unique_id = wx.getStorageSync('unique_id');
-    if (unique_id) {
+    let openid = wx.getStorageSync('openid');
+    if (openid) {
       wx.scanCode({
         success(res) {
           console.log('-----------', res); // 获取设备信息

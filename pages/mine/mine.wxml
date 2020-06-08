@@ -10,7 +10,7 @@
     <view wx:else>{{phoneNum}}</view>
   </view>
   <view class="balance">
-    账户余额 <text>10.00</text> 元
+    账户余额 <text>{{ accountBalance }}</text> 元
   </view>
   <button class="recharge" type="primary" hover-class="none" bindtap="recharge">充值</button>
   <view class="rechargeList" bindtap="chargingOrder">

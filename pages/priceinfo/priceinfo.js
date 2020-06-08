@@ -49,7 +49,7 @@ Page({
         } else {
           var priceElemoney = ele.elemoney.split("电费:");
           var priceServemoney = ele.servemoney.split("服务费:");
-          ele['eleServicePrice'] = ele.elemoney + '元/度|' + ele.servemoney + '元/度'
+          ele['eleServicePrice'] = ele.elemoney + '元/度 | ' + ele.servemoney + '元/度'
           ele['priceInfoDegee'] = Number(priceElemoney[1]) + Number(priceServemoney[1]);
         }
       })

@@ -8,6 +8,7 @@ Page({
    */
   data: {
     phoneNum: '',
+    accountBalance: app.globalData.walletBalance || 0
   },
 
   /**
@@ -22,53 +23,82 @@ Page({
         phoneNum: phoneNumber
       });
     }
+    this.setData({
+      accountBalance: app.globalData.walletBalance || wx.getStorageSync('walletBalance') || 0
+    });
+    console.log(wx.getStorageSync('walletBalance'),app.globalData.walletBalance, 'app.globalData.walletBalance');
   },
   // 获取用户手机号
   getPhoneNumber:function(e){
+    console.log(e);
     var that = this;
     var data = {
       "encrypted_data": e.detail.encryptedData,
       "iv": e.detail.iv
     }
-    wx.login({
-      success: (res) => {
-        https.request('false',api.getOpenId,{"js_code": res.code},'POST').then(function(res){
-          if(res.code == 0){
-            wx.setStorageSync('openid', res.result.openid);
-            app.globalData.openid = res.result.openid;
-            https.request('true', api.getPhoneNum, data, 'POST').then(function(res){
-              if(res.code == 0){
-                let str = res.result.phoneNumber;
-                let phoneNumber = str.substring(0, 3) + "****" + str.substring(7, str.length);
-                wx.setStorageSync('phoneNum', str);
-                that.setData({
-                  phoneNum: phoneNumber
-                });
-                console.log(that.data.phoneNum);
-              }
-            });
-          }
-        })
-      },
-    })
+    if (e.detail.errMsg == "getPhoneNumber:ok"){
+      wx.login({
+        success: (res) => {
+          console.log(res);
+          https.request('false',api.getOpenId,{"js_code": res.code},'POST').then(function(res){
+            if(res.code == 0){
+              wx.setStorageSync('openid', res.result.openid);
+              app.globalData.openid = res.result.openid;
+              https.request('true', api.getPhoneNum, data, 'POST').then(function(res){
+                if(res.code == 0){
+                  let str = res.result.phoneNumber;
+                  let phoneNumber = str.substring(0, 3) + "****" + str.substring(7, str.length);
+                  wx.setStorageSync('phoneNum', str);
+                  that.setData({
+                    phoneNum: phoneNumber
+                  });
+                  console.log(that.data.phoneNum);
+                }
+              });
+            }
+          })
+        },
+      })
+    }
   },
   // 充电订单
   chargingOrder:function(){
-    wx.navigateTo({
-      url: '/pages/mine/chargingOrder/chargingOrder'
-    })
+    if (wx.getStorageSync('openid')){
+      wx.navigateTo({
+        url: '/pages/mine/chargingOrder/chargingOrder'
+      });
+    }else{
+      wx.showToast({
+        title: '请登录',
+        icon:'none'
+      });
+    }
   },
   // 账户明细
   accountDetails:function(){
-    wx.navigateTo({
-      url: '/pages/mine/accountDetails/accountDetails'
-    })
+    if (wx.getStorageSync('openid')) {
+      wx.navigateTo({
+        url: '/pages/mine/accountDetails/accountDetails'
+      })
+    } else {
+      wx.showToast({
+        title: '请登录',
+        icon:'none'
+      });
+    }
   },
   // 充值
   recharge:function(){
-    wx.navigateTo({
-      url: '/pages/mine/recharge/recharge'
-    })
+    if (wx.getStorageSync('openid')) {
+      wx.navigateTo({
+        url: '/pages/mine/recharge/recharge'
+      })
+    } else {
+      wx.showToast({
+        title: '请登录',
+        icon:'none'
+      })
+    }
   },
 
   /**
