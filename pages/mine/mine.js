@@ -8,7 +8,7 @@ Page({
    */
   data: {
     phoneNum: '',
-    accountBalance: 0
+    accountBalance: app.globalData.accountBalance || 0
   },
 
   /**
@@ -104,6 +104,7 @@ Page({
     https.request('true',api.getUserInfo).then(function(res){
       console.log(res);
       if(res.code == 0){
+        app.globalData.accountBalance = res.result.balance
         that.setData({
           accountBalance: res.result.balance
         });

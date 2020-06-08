@@ -24,15 +24,15 @@ Page({
     if (openid) {
       wx.scanCode({
         success(res) {
-          console.log('-----------', res); // 获取设备信息
+          // console.log('-----------', res); // 获取设备信息
           app.globalData.qrcode = res.result;
           // 获取设备信息
           https.request('false', api.getEquipmentInfo, { "qrcode": res.result }).then(function (res) {
-            console.log(res);
+            // console.log(res, '11111111111111111111');
             var equipmentInfoParam = res.result;
             if (res.code == 0) {
               wx.navigateTo({
-                url:  '/pages/scan/chargPost/chargPost?equipParams='  +  JSON.stringify(equipmentInfoParam),
+                url:  '/pages/scan/chargPost/chargPost?equipParams=' + JSON.stringify(equipmentInfoParam),
               })
             }else{
               wx.showToast({
@@ -49,7 +49,7 @@ Page({
         cancelText: '取消',
         confirmText: '登录',
         success(res) {
-          console.log(res);
+          // console.log(res);
           if (res.confirm) {
             wx.switchTab({
               url: '/pages/mine/mine',

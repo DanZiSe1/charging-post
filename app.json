@@ -1,9 +1,8 @@
 {
   "pages":[
-    
-    "pages/mine/mine",
     "pages/index/index",
     "pages/scan/scan",
+    "pages/mine/mine",
     "pages/scan/chargPost/chargPost",
     "pages/scan/chargeState/chargeState",
     "pages/indexdetail/indexdetail",

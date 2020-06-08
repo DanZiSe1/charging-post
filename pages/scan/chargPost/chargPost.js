@@ -8,16 +8,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    start_charge_seq: '1983493434',
-    equipParams: {}
+    start_charge_seq: '',
+    equipParams: '',
+    accountBalance: app.globalData.accountBalance || 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(JSON.parse(options.equipParams));
-    // this.data.equipParams = JSON.parse(options.equipParams);
     this.setData({
       equipParams: JSON.parse(options.equipParams)
     })
@@ -29,15 +28,10 @@ Page({
   },
   // 启动充电
   startCharging:function(){
-    // wx.showModal({
-    //   content: '您当前已有充电中订单'
-    // })
     var that = this;
-    var data = {
-
-    }
-    https.request('true',api.startCharging,{'qrcode':app.globalData.qrcode},'POST').then(function(res){
-      console.log(res);
+    // console.log(app.globalData.qrcode);
+    https.request('true', api.startCharging, { 'qrcode': app.globalData.qrcode},'POST').then(function(res){
+      // console.log(res,'--------------');
       wx.navigateTo({
         url: '/pages/scan/chargeState/chargeState?start_charge_seq=' + that.data.start_charge_seq,
       })
@@ -46,8 +40,7 @@ Page({
   // 查看全部2
   seeAll:function(){
     wx.navigateTo({
-      url: '/pages/priceinfo/priceinfo?connectorid='+ this.data.equipParams.connector_id + '&operatorid=' + this.data.equipParams.operator_id,
-      // url: '/pages/priceinfo/priceinfo',
+      url: '/pages/priceinfo/priceinfo?pricetype=2&connectorid='+ this.data.equipParams.connector_id + '&operatorid=' + this.data.equipParams.operator_id
     })
   },
   // 绑定车牌号
@@ -56,7 +49,7 @@ Page({
     https.request('true',api.bindCarNum,{
       carnum: '京A-88888'
     },'POST').then(function(res){
-      console.log(res, '绑定车牌号结果......');
+      // console.log(res, '绑定车牌号结果......');
       wx.showToast({
         title: '成功绑定车牌号'
       })
@@ -66,7 +59,7 @@ Page({
   unBindCarNum:function (){
     var that = this;
     https.request('true',api.unBindCarNum,'POST').then(function(res){
-      console.log(res, '解绑车牌号结果......');
+      // console.log(res, '解绑车牌号结果......');
       wx.showModal({
         title: '提示',
         content: '您确定要解绑车牌号吗？',
@@ -93,6 +86,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let that = this;
+    https.request('true', api.getUserInfo).then(function (res) {
+      // console.log(res);
+      if (res.code == 0) {
+        app.globalData.accountBalance = res.result.balance
+        that.setData({
+          accountBalance: res.result.balance
+        });
+      }
+    });
 
   },
 

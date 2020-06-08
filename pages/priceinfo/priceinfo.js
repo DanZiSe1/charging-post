@@ -30,16 +30,17 @@ Page({
     ], */
     pricesList: [],
     connectorId: '',
-    operatorId: ''
+    operatorId: '',
+    pricetype: ''
   },
   onLoad: function (options) {
-    // this.setData({
-    //   connectorId: options.connectorid,
-    //   operatorId: options.operatorid
-    // })
+    // console.log(options, '价格信息options.......')
+    this.setData({
+      pricetype: options.pricetype
+    })
     // 从充电桩详情type=1
     if (options.pricetype == 1) {
-      console.log(JSON.parse(options.lookmoredata), 'options.......')
+      // console.log(JSON.parse(options.lookmoredata), 'options.......')
       this.pricesList = JSON.parse(options.lookmoredata)
       this.pricesList.map((ele, index)=>{
         if (!ele.servemoney) {
@@ -53,12 +54,12 @@ Page({
           ele['priceInfoDegee'] = Number(priceElemoney[1]) + Number(priceServemoney[1]);
         }
       })
-      console.log(this.pricesList, 'this.pricesList........')
+      // console.log(this.pricesList, 'this.pricesList........')
       this.setData({
         pricesList: this.pricesList
       })
     } else { // 从启动充电type=2
-      console.log(options, 'options.......')
+      // console.log(options, '启动充电options.......')
       this.setData({
         connectorId: options.connectorid,
         operatorId: options.operatorid
@@ -74,11 +75,11 @@ Page({
       connector_id: that.data.connectorId,
       operator_id: that.data.operatorId
     }).then(function (res) {
-      console.log(res, '获取设备充电策略结果.......')
+      // console.log(res, '获取设备充电策略结果.......')
       if (res.code == 0) {
         if (res.result) {
           that.setData({
-            pricesList: res.result
+            pricesList: res.result.policy_infos
           })
         }
       } else {

@@ -20,7 +20,7 @@
     <view class="address">￥1.44/度</view>
   </view>
   <view class="listTop">
-    <view class="name">账户余额：10元</view>
+    <view class="name">账户余额：{{ accountBalance }}元</view>
     <view class="goRecharge" bindtap="goRecharge">去充值</view>
   </view>
   <button class="recharge" type="primary" hover-class="none" bindtap="startCharging">启动充电</button>
