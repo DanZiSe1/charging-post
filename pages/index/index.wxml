@@ -10,7 +10,7 @@
           <view class="item_top flex-end-between">
             <view class="item_top_left">
               <h4>{{item.StationName}}</h4>
-              <p>开放时间:00:00-24:00</p>
+              <p>开放时间:{{ item.BusineHours }}</p>
             </view>
             <view class="item_top_right">
                 <view class="right_icon">
@@ -21,7 +21,7 @@
           </view>
           <view class="item_bottom flex-center-between">
             <p>
-              ￥<span>1.44</span>/度
+              ￥<span>{{ item.chargedegee }}</span>/度
             </p>
             <view class="item_bottom_desc"> 
               快:闲8/8|慢:闲0/0
@@ -29,7 +29,7 @@
           </view>
         </navigator>
       </block>    
-      <block wx:else>
+      <block wx:if="{{chargingList.length == 0 && noinfostate}}">
         <noInfo id="noInfo"></noInfo>
       </block>
     </view>

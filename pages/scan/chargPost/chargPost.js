@@ -9,17 +9,48 @@ Page({
    */
   data: {
     start_charge_seq: '',
-    equipParams: '',
-    accountBalance: app.globalData.accountBalance || 0
+    equipParams: {},
+    accountBalance: app.globalData.accountBalance || 0,
+    chargePricesInfos: {},
+    allChargePricesInfos: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      equipParams: JSON.parse(options.equipParams)
-    })
+    console.log(JSON.parse(options.equipParams), 'JSON.parse(options.equipParams).........')
+    this.data.equipParams = JSON.parse(options.equipParams);
+    if (this.data.equipParams) {
+      var newstatus = '';
+      switch (this.data.equipParams.status) {
+        case 0:
+          newstatus = "离网";
+          break;
+        case 1:
+          newstatus = "空闲";
+          break;
+        case 2:
+          newstatus = "占用（未充电）";
+          break;
+        case 3:
+          newstatus = "占用（充电中）";
+          break;
+        case 4:
+          newstatus = "占用（预约锁定）";
+          break;
+        case 255:
+          newstatus = "故障";
+          break;
+      };
+      // console.log(newstatus, 'newstatus.........')
+      this.data.equipParams['status'] = newstatus
+      // console.log(this.data.equipParams, 'this.data.equipParams.........')
+      this.setData({
+        equipParams: this.data.equipParams
+      })
+      this.getPriceInfos()
+    }
   },
   goRecharge:function(){
     wx.navigateTo({
@@ -29,18 +60,42 @@ Page({
   // 启动充电
   startCharging:function(){
     var that = this;
-    // console.log(app.globalData.qrcode);
+    console.log(app.globalData.qrcode,'启动充电页面的全局qrcode...........');
     https.request('true', api.startCharging, { 'qrcode': app.globalData.qrcode},'POST').then(function(res){
-      // console.log(res,'--------------');
+      console.log(res,'启动充电结果...........');
       wx.navigateTo({
         url: '/pages/scan/chargeState/chargeState?start_charge_seq=' + that.data.start_charge_seq,
       })
     });
   },
+  // 获取设备充电策略
+  getPriceInfos:function () {
+    var that = this
+    https.request('false', api.getPricePolicy,{
+      connector_id: that.data.equipParams.connector_id,
+      operator_id: that.data.equipParams.operator_id
+    }).then(function (res) {
+      // console.log(res, '获取设备充电策略结果.......')
+      if (res.code == 0) {
+        if (res.result.policy_infos) {
+          that.setData({
+            allChargePricesInfos: res.result.policy_infos,
+            chargePricesInfos: res.result.policy_infos[0]
+          })
+        }
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    });
+  },
   // 查看全部2
   seeAll:function(){
     wx.navigateTo({
-      url: '/pages/priceinfo/priceinfo?pricetype=2&connectorid='+ this.data.equipParams.connector_id + '&operatorid=' + this.data.equipParams.operator_id
+      url: '/pages/priceinfo/priceinfo?pricetype=2&allChargePricesInfos='+ JSON.stringify(this.data.allChargePricesInfos)
     })
   },
   // 绑定车牌号

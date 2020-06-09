@@ -59,16 +59,19 @@ Page({
         pricesList: this.pricesList
       })
     } else { // 从启动充电type=2
-      // console.log(options, '启动充电options.......')
+      console.log(JSON.parse(options.allChargePricesInfos), '启动充电options.......')
+      // this.setData({
+      //   connectorId: options.connectorid,
+      //   operatorId: options.operatorid
+      // })
+      // this.getPriceInfos()
       this.setData({
-        connectorId: options.connectorid,
-        operatorId: options.operatorid
+        pricesList: JSON.parse(options.allChargePricesInfos)
       })
-      this.getPriceInfos()
     }
     this.selectComponent("#noInfo")
   },
-  // 获取设备充电策略
+  /* 获取设备充电策略
   getPriceInfos:function () {
     var that = this
     https.request('false', api.getPricePolicy,{
@@ -90,5 +93,5 @@ Page({
         })
       }
     });
-  } 
+  } */
 })

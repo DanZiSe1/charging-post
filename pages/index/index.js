@@ -2,16 +2,17 @@
 //获取应用实例
 var https = require('../../utils/request.js');
 const api = require('../../utils/api.js');
+const util = require('../../utils/util.js');
 const app = getApp()
 
 Page({
   data: {
-    chargingList:[],
+    chargingList: [],
     latitude: '',
-    longitude: ''
+    longitude: '',
+    noinfostate: false
   },
   onLoad: function () {
-    this.selectComponent("#noInfo")
   },
   onShow: function () {
     this.getLocationAuth()
@@ -113,7 +114,7 @@ Page({
     })
   },
   // 获取附近充电站列表
-  getChargingList: function () {
+  getChargingList: function (cb) {
     var that = this
     var indexParam = {
       "coordinate": 'gcj-02',
@@ -125,10 +126,26 @@ Page({
       // console.log(res, '获取附近充电站列表结果.......')
       if (res.code == 0) {
         if (res.result) {
+          res.result.map(charItem => {
+            var resultChargings = util.electricServeMoney(charItem.ElectricityFee, charItem.ServiceFee);
+            // console.log(resultChargings, 'resultCharging.........');
+            var newChargeElemoney = resultChargings[0].elemoney.split("电费:");
+            var newChargeServemoney = resultChargings[0].servemoney.split("服务费:");
+            charItem['chargedegee'] = Number(newChargeElemoney[1]) + Number(newChargeServemoney[1]);
+            // console.log(charItem['chargedegee'], 'charItem[chargedegee].........');
+            Object.assign(charItem);
+          })
+          // console.log(res.result, 'res.result1111.........');
           that.setData({
-            chargingList: res.result
+            chargingList: res.result,
+            noinfostate: false
+          })
+        } else {
+          that.setData({
+            noinfostate: true
           })
         }
+        typeof cb == "function" && cb();
       } else {
         wx.showToast({
           title: res.message,
@@ -143,5 +160,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  // 下拉刷新
+  onPullDownRefresh: function() {
+    this.getChargingList(function(){
+      wx.stopPullDownRefresh()
+    })
   }
 })

@@ -2,5 +2,6 @@
   "navigationBarTitleText": "附近充电站",
   "usingComponents": {
     "noInfo": "/components/noInfo/noInfo"
-  }
+  },
+  "enablePullDownRefresh": true
 }
