@@ -26,15 +26,38 @@ Page({
       url: '/pages/mine/recharge/recharge'
     })
   },
-  // 启动充电
+
+  
+  /**
+   * 启动充电
+   * `status`:'充电设备接口状态 0：离网 1：空闲 2：占用（未充电） 3：占用（充电中） 4：占用（预约锁定） 255：故障'
+   * */ 
   startCharging:function(){
     var that = this;
     // console.log(app.globalData.qrcode);
     https.request('true', api.startCharging, { 'qrcode': app.globalData.qrcode},'POST').then(function(res){
-      // console.log(res,'--------------');
-      wx.navigateTo({
-        url: '/pages/scan/chargeState/chargeState?start_charge_seq=' + that.data.start_charge_seq,
+      console.log(res,'--------------');
+      that.setData({
+        start_charge_seq: res.result.start_charge_seq
       })
+      if(res.code == 0){
+        wx.navigateTo({
+          url: '/pages/scan/chargeState/chargeState?start_charge_seq=' + res.result.start_charge_seq,
+        })
+      }else{
+        console.log(res);
+        console.log(res.message);
+        wx.showModal({
+          content: res.message,
+          success (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/scan/chargeState/chargeState?start_charge_seq=' +  that.data.start_charge_seq,
+              })
+            } 
+          }
+        })
+      }
     });
   },
   // 查看全部2

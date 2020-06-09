@@ -14,7 +14,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.startChargeSeq = options.start_charge_seq
+
+    this.data.startChargeSeq = options.start_charge_seq;
+    console.log(options);
   },
   // 结束充电
   overCharging:function(){
