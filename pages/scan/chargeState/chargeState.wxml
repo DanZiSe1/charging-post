@@ -3,31 +3,31 @@
   <view class="info">
     <view class="name">新世界商场公众充电</view>
     <view class="name">充电中</view>
-    <view class="amount">10.98</view>
+    <view class="amount">{{chargeInfo.TotalPower}}</view>
     <view class="degree">充电量（度）</view>
     <image class="butterfly" src="/imgs/butterfly.png"></image>
   </view>
   <view class="butterflyInfo">
     <view class="item">
-      <view>58.89</view>
+      <view>{{chargeInfo.CurrentA}}</view>
       <view>电流（安）</view>
     </view>
     <view class="item">
-      <view>58.89</view>
+      <view>{{chargeInfo.VoltageA}}</view>
       <view>电压（伏）</view>
     </view>
     <view class="item">
-      <view>58.89</view>
+      <view>{{chargeInfo.Soc}}</view>
       <view>SOC</view>
     </view>
   </view>
   <view class="chargeInfo">
     <view>充电时长：</view>
-    <view>00:30:00</view>
+    <view>{{newTime}}</view>
   </view>
   <view class="chargeInfo">
     <view>充电金额（元）：</view>
-    <view>28.90</view>
+    <view>{{chargeInfo.TotalMoney}}</view>
   </view>
   <button class="recharge" type="primary" hover-class="none" bindtap="overCharging">结束充电</button>
 </view>

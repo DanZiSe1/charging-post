@@ -44,9 +44,7 @@ Page({
         wx.navigateTo({
           url: '/pages/scan/chargeState/chargeState?start_charge_seq=' + res.result.start_charge_seq,
         })
-      }else{
-        console.log(res);
-        console.log(res.message);
+      }else if(res.code == 5021){
         wx.showModal({
           content: res.message,
           success (res) {
