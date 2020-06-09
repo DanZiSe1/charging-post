@@ -7,14 +7,40 @@ Page({
    * 页面的初始数据
    */
   data: {
-    startChargeSeq: ''
+    startChargeSeq: '',
+    newTime: '00:00:00',
+    chargeInfoInterval:{},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.startChargeSeq = options.start_charge_seq
+    let that = this;
+    this.data.startChargeSeq = options.start_charge_seq;
+    console.log(options);
+    this.data.chargeInfoInterval = setInterval(function () {
+        that.loadChargeInfo();
+        // clearInterval(intervalId);
+    }, 2000);
+    
+    
+  },
+  // 充电详情信息
+  loadChargeInfo:function(){
+    let that = this;
+    https.request('true', api.getChargeInfo +'/' + this.data.startChargeSeq).then(function(res){
+      console.log(res);
+      if(res.code == 0){
+         let timestamp = new Date(res.result.EndTime).getTime() - new Date(res.result.StartTime).getTime();
+         let newTime = Math.floor(timestamp/1000/60/60)+':'+(Math.floor(timestamp/1000/60)%60>=10?Math.floor(timestamp/1000/60):'0'+Math.floor(timestamp/1000/60))+':'+(timestamp/1000%60>=10?timestamp/1000%60:'0'+timestamp/1000%60);
+         console.log(newTime);
+        that.setData({
+          chargeInfo: res.result,
+          newTime: newTime
+        })
+      }
+    }) 
   },
   // 结束充电
   overCharging:function(){
@@ -26,7 +52,6 @@ Page({
           https.request('true', api.stopCharging, {
             start_charge_seq: that.data.startChargeSeq 
           },'POST').then(function (res) {
-            // console.log(res, '结束充电结果.......')
             wx.redirectTo({
               url: '/pages/mine/orderDetils/orderDetils',
             })
@@ -72,7 +97,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+      clearInterval(this.data.chargeInfoInterval);
   },
 
   /**

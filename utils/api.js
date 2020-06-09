@@ -16,7 +16,8 @@ var getPricePolicy = host + '/api/equip/business_policy';//获取设备充电策
 var getOpenId = host + '/xcx/bind2';//获取openid
 var getPhoneNum = host + '/xcx/decrypt/mobile';//获取openid
 var getUserInfo = host + '/xcx/user/info';//获取用户信息
-
+var getChargeInfo = host + '/xcx/orders/charge';//获取充电信息
+// var getChargeInfo = host + '/xcx/orders/charge/MA2HAAL01200525103600000004';
 module.exports={
   getOrdersList,
   getOrdersDetails,
@@ -32,5 +33,6 @@ module.exports={
   getPricePolicy,
   getOpenId,
   getPhoneNum,
-  getUserInfo
+  getUserInfo,
+  getChargeInfo
 }

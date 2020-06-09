@@ -15,7 +15,7 @@ function request(requestState,url, data = {}, method = "GET") {
       'accept': 'application/json',
       'Authorization': wx.getStorageSync('openid') || app.globalData.openid
     }
-    console.log(wx.getStorageSync('openid'), app.globalData.openid, 'openid......')
+    //console.log(wx.getStorageSync('openid'), app.globalData.openid, 'openid......')
     wx.request({
       url: url,
       data: data,

@@ -22,6 +22,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
+    console.log(options);
     // let url = api.getOrdersDetails + "?" + options.id;
     // let data = {
     //   'id': options.id
