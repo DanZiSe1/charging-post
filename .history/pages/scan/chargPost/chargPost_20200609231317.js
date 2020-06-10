@@ -68,34 +68,23 @@ Page({
     console.log(app.globalData.qrcode,'启动充电页面的全局qrcode...........');
     https.request('true', api.startCharging, { 'qrcode': app.globalData.qrcode},'POST').then(function(res){
       console.log(res,'启动充电结果...........');
-      if (res.code == 0){
-        that.setData({
-          start_charge_seq: res.result.start_charge_seq
-        })
+      // wx.navigateTo({
+      //   url: '/pages/scan/chargeState/chargeState?start_charge_seq=' + that.data.start_charge_seq,
+      console.log(res,'--------------');
+      that.setData({
+        start_charge_seq: res.result.start_charge_seq
+      })
+      if(res.code == 0){
         wx.navigateTo({
           url: '/pages/scan/chargeState/chargeState?start_charge_seq=' + res.result.start_charge_seq,
         })
-      } else if(res.code == 5021){
-        that.setData({
-          start_charge_seq: res.result.start_charge_seq
-        })
+      }else if(res.code == 5021){
         wx.showModal({
           content: res.message,
           success (res) {
             if (res.confirm) {
               wx.navigateTo({
                 url: '/pages/scan/chargeState/chargeState?start_charge_seq=' +  that.data.start_charge_seq,
-              })
-            } 
-          }
-        })
-      }  else if(res.code == 5020){
-        wx.showModal({
-          content: res.message,
-          success (res) {
-            if (res.confirm) {
-              wx.navigateTo({
-                url: '/pages/mine/recharge/recharge'
               })
             } 
           }

@@ -9,25 +9,23 @@ Page({
   data: {
     startChargeSeq: '',
     newTime: '00:00:00',
-    chargeInfoInterval: '',
+    chargeInfoInterval:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options, '结束充电页面的options.........');
-    this.data.startChargeSeq = options.start_charge_seq;
-    this.refreshChargeInfo();
-  },
-  // 充电详情自动刷新
-  refreshChargeInfo:function(){
     let that = this;
-    that.data.chargeInfoInterval = setInterval(function () {
-      console.log("1分钟刷新一次结束充电页面........");
-      that.loadChargeInfo();
-      // clearInterval(intervalId);
-    }, 3000);
+    this.data.startChargeSeq = options.start_charge_seq;
+    console.log(options);
+    this.data.chargeInfoInterval = setInterval(function () {
+        console.log("1分钟刷新一次结束充电页面........");
+        that.loadChargeInfo();
+        // clearInterval(intervalId);
+    }, 60000);
+    
+    
   },
   // 充电详情信息
   loadChargeInfo:function(){
@@ -101,7 +99,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log("监听页面卸载...........")
       clearInterval(this.data.chargeInfoInterval);
   },
 
