@@ -21,10 +21,10 @@
           </view>
           <view class="item_bottom flex-center-between">
             <p>
-              ￥<span>{{ item.chargedegee }}</span>/度
+              ￥约<span>{{ item.chargedegee }}</span>/度
             </p>
             <view class="item_bottom_desc"> 
-              快:闲8/8|慢:闲0/0
+              快:闲{{ item.quick_n }}/{{ item.idle_n }}|慢:闲{{ item.slow_n }}/{{ item.idle_n }}
             </view>
           </view>
         </navigator>
