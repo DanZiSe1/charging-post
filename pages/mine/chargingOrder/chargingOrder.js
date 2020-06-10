@@ -8,8 +8,9 @@ Page({
    */
   data: {
     detailsList:[],
-    order_id: 0,
-    page_size: 10
+    page_num: 0,
+    page_size: 10,
+    noMore: true
   },
 
   /**
@@ -22,17 +23,21 @@ Page({
   getOrderList:function(){
     let that = this;
     let data = {
-      "id": this.data.order_id,
+      "page": this.data.page_num,
       "page_size": this.data.page_size
     }
     https.request('true',api.getOrdersList,data).then(function(res){
-      var list = that.data.detailsList.concat(res.result);
       if(res.code == 0){
+        var detailsList = that.data.detailsList;
         if(res.result.length != 0){
+          if (that.data.page_num == 0) {
+            detailsList = [];
+          }
           that.setData({
-            detailsList: list,
-            order_id: res.result[res.result.length - 1].id
+            detailsList:  detailsList.concat(res.result)
           });
+        }else if(res.result.length == 0 && that.data.page_num != 0){
+          that.setData({noMore: false})
         }
       }
     });
@@ -40,43 +45,19 @@ Page({
 
   // 跳转列表详情
   detailsTap:function(e){
-    let id = e.currentTarget.dataset.id;
+    console.log(e);
+    let startChargeSeq = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/mine/orderDetils/orderDetils?id=' + id
+      url: '/pages/mine/orderDetils/orderDetils?startChargeSeq=' + startChargeSeq
     });
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    this.data.page_num = 0;
+    console.log(this.data.page_num);
     this.getOrderList();
     wx.stopPullDownRefresh();
   },
@@ -85,6 +66,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    this.data.page_num ++;
+    console.log(this.data.page_num);
     this.getOrderList();
   },
 

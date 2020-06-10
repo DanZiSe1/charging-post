@@ -14,7 +14,8 @@ Page({
       {amount: 100 },
       {amount: 300 },
       {amount: 500 },
-    ]
+    ],
+    startChargeSeq:'',//订单编号
   },
 
   /**
@@ -23,22 +24,21 @@ Page({
   onLoad: function (options) {
     let that = this;
     console.log(options);
-    // let url = api.getOrdersDetails + "?" + options.id;
-    // let data = {
-    //   'id': options.id
-    // }
-    https.request('true',api.getOrdersDetails +'/'+ options.id).then(function(res){
-      
+    https.request('true',api.getOrdersDetails +'/'+ options.startChargeSeq).then(function(res){
       if(res.code == 0){
         console.log(res);
         that.setData({
           ordersDetails:res.result
         })
       }
-      
-    })
+    });
   },
-
+  // 费用明细
+  // expenseDetails:function(){
+  //   wx.navigateTo({
+  //     url: '/pages/priceinfo/priceinfo',
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -64,9 +64,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    //  wx.switchTab({
-    //    url: '/pages/mine/mine',
-    //  })
+
   },
 
   /**

@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    startChargeSeq: '',
+    startChargeSeq: '',//订单号
     newTime: '00:00:00',
     chargeInfoInterval: '',
   },
@@ -18,16 +18,21 @@ Page({
   onLoad: function (options) {
     console.log(options, '结束充电页面的options.........');
     this.data.startChargeSeq = options.start_charge_seq;
+    this.loadChargeInfo();
     this.refreshChargeInfo();
   },
   // 充电详情自动刷新
   refreshChargeInfo:function(){
     let that = this;
+    // that.data.chargeInfoInterval = setInterval(function () {
+    //   console.log("1分钟刷新一次结束充电页面........");
+    //   that.loadChargeInfo();
+    //   // clearInterval(intervalId);
+    // }, 3000);
     that.data.chargeInfoInterval = setInterval(function () {
-      console.log("1分钟刷新一次结束充电页面........");
-      that.loadChargeInfo();
-      // clearInterval(intervalId);
-    }, 3000);
+        that.loadChargeInfo();
+        // clearInterval(intervalId);
+    }, 120000);
   },
   // 充电详情信息
   loadChargeInfo:function(){
@@ -47,18 +52,20 @@ Page({
   },
   // 结束充电
   overCharging:function(){
-    var that = this
+    var that = this;
+    console.log(this.data.startChargeSeq);
     wx.showModal({
       content:'确认结束充电吗？',
       success:function(res){
         if(res.confirm){
+          console.log(that.data.startChargeSeq);
           https.request('true', api.stopCharging, {
             start_charge_seq: that.data.startChargeSeq 
           },'POST').then(function (res) {
             console.log(res, '结束充电结果...........')
-            wx.redirectTo({
-              url: '/pages/mine/orderDetils/orderDetils',
-            })
+            // wx.redirectTo({
+            //   url: '/pages/mine/orderDetils/orderDetils?startChargeSeq='+that.data.startChargeSeq ,
+            // })
             /* if (res.code == 0) {
               wx.redirectTo({
                 url: '/pages/mine/orderDetils/orderDetils',
@@ -102,7 +109,7 @@ Page({
    */
   onUnload: function () {
     console.log("监听页面卸载...........")
-      clearInterval(this.data.chargeInfoInterval);
+    clearInterval(this.data.chargeInfoInterval);
   },
 
   /**

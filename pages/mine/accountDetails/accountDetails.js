@@ -8,8 +8,9 @@ Page({
    */
   data: {
     rechargeList:[],
-    order_id: 0,//翻页时所需id
-    page_size: 10
+    page_num: 0,//翻页时所需id
+    page_size: 10,
+    noMore: true
   },
 
   /**
@@ -22,53 +23,30 @@ Page({
   getRechargeList:function(){
     let that = this;
     let data = {
-      "id": this.data.order_id,
+      "page": this.data.page_num,
       "page_size": this.data.page_size
     }
     https.request('true',api.rechargeList,data).then(function(res){
-      var list = that.data.rechargeList.concat(res.result);
       if(res.code == 0){
+        var rechargeList = that.data.rechargeList;
         if(res.result.length != 0){
+          if (that.data.page_num == 0) {
+            rechargeList = [];
+          }
           that.setData({
-            rechargeList: list,
-            order_id: res.result[res.result.length - 1].id
+            rechargeList: rechargeList.concat(res.result)
           });
+        }else if(res.result.length == 0 && that.data.page_num != 0){
+          that.setData({noMore: false})
         }
       }
     });
   },
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    this.data.page_num = 0;
     this.getRechargeList();
     wx.stopPullDownRefresh();
   },
@@ -77,6 +55,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    this.getRechargeList();
+    this.data.page_num ++;
     this.getRechargeList();
   },
 
