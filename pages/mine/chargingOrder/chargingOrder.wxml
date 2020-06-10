@@ -1,7 +1,7 @@
 <!--pages/mine/chargingOrder/chargingOrder.wxml-->
 <view class="detailsPage">
   <view wx:if="{{detailsList.length != 0}}">
-    <view class="detailsList" wx:for="{{detailsList}}" wx:key="detailsList" bindtap="detailsTap" data-id="{{item.id}}">
+    <view class="detailsList" wx:for="{{detailsList}}" wx:key="detailsList" bindtap="detailsTap" data-id="{{item.start_charge_seq}}">
       <view class="listTop">
         <view class="date">{{item.created_at}}</view>
         <view class="amount" wx:if="{{item.status == 1}}">订单开始 <image src="/imgs/right.png"></image></view>
@@ -11,6 +11,7 @@
       </view>
       <view class="way">{{item.station_name}}</view>
     </view>
+    <view class="noMore" hidden="{{noMore}}">~ 已加载全部 ~</view>
   </view>
   <block wx:else>
     <noInfo id="noInfo"></noInfo>

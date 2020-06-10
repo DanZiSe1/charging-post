@@ -6,7 +6,7 @@
 	<view class="detilsInfo">
 		<view class="expense">
 			<view class="expenseInfo">费用信息</view>
-			<view class="expenseDetails">
+			<view class="expenseDetails" bindtap="expenseDetails">
 				<text>费用明细</text>
 				<image src="/imgs/right.png"></image>
 			</view>
@@ -20,7 +20,7 @@
 			<view class="expenseInfo">充电信息</view>
 		</view>
 		<view class="project">充电开始时间：{{ordersDetails.start_time}}</view>
-		<view class="project">充电结束时间：{{ordersDetails.end_time}}}元</view>
+		<view class="project">充电结束时间：{{ordersDetails.end_time}}元</view>
 		<view class="project">累计充电量（度）：{{ordersDetails.total_power}}元</view>
 		<view class="project">充电结束原因：{{ordersDetails.stop_reason}}</view>
 	</view>

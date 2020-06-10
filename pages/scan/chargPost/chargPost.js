@@ -8,7 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    start_charge_seq: '',
     equipParams: {},
     accountBalance: app.globalData.accountBalance || 0,
     chargePricesInfos: {},
@@ -23,6 +22,7 @@ Page({
     this.data.equipParams = JSON.parse(options.equipParams);
     if (this.data.equipParams) {
       var newstatus = '';
+      var newType = '';
       switch (this.data.equipParams.status) {
         case 0:
           newstatus = "离网";
@@ -43,8 +43,29 @@ Page({
           newstatus = "故障";
           break;
       };
+      switch (this.data.equipParams.connector_type) {
+        case 0:
+          newType = "家用插座（模式2）";
+          break;
+        case 1:
+          newType = "交流接口插座（模式3，连接方式B ）";
+          break;
+        case 2:
+          newType = "交流接口插头（带枪线，模式3，连接方式C）";
+          break;
+        case 3:
+          newType = "直流接口枪头（带枪线，模式4）";
+          break;
+        case 4:
+          newType = "无线充电座";
+          break;
+        case 6:
+          newType = "其他";
+          break;
+      };
       // console.log(newstatus, 'newstatus.........')
-      this.data.equipParams['status'] = newstatus
+      this.data.equipParams['status'] = newstatus;
+      this.data.equipParams['connector_type'] = newType;
       // console.log(this.data.equipParams, 'this.data.equipParams.........')
       this.setData({
         equipParams: this.data.equipParams
@@ -68,12 +89,6 @@ Page({
     console.log(app.globalData.qrcode,'启动充电页面的全局qrcode...........');
     https.request('true', api.startCharging, { 'qrcode': app.globalData.qrcode},'POST').then(function(res){
       console.log(res,'启动充电结果...........');
-      // wx.navigateTo({
-      //   url: '/pages/scan/chargeState/chargeState?start_charge_seq=' + that.data.start_charge_seq,
-      console.log(res,'--------------');
-      that.setData({
-        start_charge_seq: res.result.start_charge_seq
-      })
       if(res.code == 0){
         wx.navigateTo({
           url: '/pages/scan/chargeState/chargeState?start_charge_seq=' + res.result.start_charge_seq,
@@ -81,10 +96,21 @@ Page({
       }else if(res.code == 5021){
         wx.showModal({
           content: res.message,
+          success (data) {
+            if (data.confirm) {
+              wx.navigateTo({
+                url: '/pages/scan/chargeState/chargeState?start_charge_seq=' + res.result.start_charge_seq,
+              })
+            } 
+          }
+        })
+      }else if(res.code == 5020){
+        wx.showModal({
+          content: res.message,
           success (res) {
             if (res.confirm) {
               wx.navigateTo({
-                url: '/pages/scan/chargeState/chargeState?start_charge_seq=' +  that.data.start_charge_seq,
+                url: '/pages/mine/recharge/recharge',
               })
             } 
           }

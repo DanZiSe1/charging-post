@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    startChargeSeq: '',
+    startChargeSeq: '',//订单号
     newTime: '00:00:00',
     chargeInfoInterval:{},
   },
@@ -19,10 +19,12 @@ Page({
     let that = this;
     this.data.startChargeSeq = options.start_charge_seq;
     console.log(options);
+
+    this.loadChargeInfo();
     this.data.chargeInfoInterval = setInterval(function () {
         that.loadChargeInfo();
         // clearInterval(intervalId);
-    }, 2000);
+    }, 120000);
     
     
   },
@@ -44,16 +46,18 @@ Page({
   },
   // 结束充电
   overCharging:function(){
-    var that = this
+    var that = this;
+    console.log(this.data.startChargeSeq);
     wx.showModal({
       content:'确认结束充电吗？',
       success:function(res){
         if(res.confirm){
+          console.log(that.data.startChargeSeq);
           https.request('true', api.stopCharging, {
             start_charge_seq: that.data.startChargeSeq 
           },'POST').then(function (res) {
             wx.redirectTo({
-              url: '/pages/mine/orderDetils/orderDetils',
+              url: '/pages/mine/orderDetils/orderDetils?startChargeSeq='+that.data.startChargeSeq ,
             })
             /* if (res.code == 0) {
               wx.redirectTo({

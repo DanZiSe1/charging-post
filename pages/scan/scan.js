@@ -41,6 +41,12 @@ Page({
               })
             }
           });
+        },
+        fail:function(err){
+          console.log(err);
+          wx.switchTab({
+            url: '/pages/index/index',
+          })
         }
       })
     } else {
