@@ -1,7 +1,21 @@
 <!--indexdetail.wxml-->
 <view class="container">
   <view class="chargingStation">
-    <view class="station_titleimg"></view>
+    <view class="station_titleimg" wx:if="{{chargStationData.Pictures.length != 0}}">
+      <swiper class="swipers" indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{chargStationData.Pictures}}">
+          <swiper-item>
+            <image src="{{item}}" class="slide-image" mode="scaleToFill"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="station_titleimg flex-center-center" wx:if="{{chargStationData.Pictures.length == 0}}">
+      <view class="nodata-image">
+        <image src="../../imgs/zanwushuju.png"></image>
+      </view>
+    </view>   
     <view class="station_detail">
       <view class="station_detail_top flex-center-between">
         <view class="detail_top_left">
