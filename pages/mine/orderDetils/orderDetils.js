@@ -26,7 +26,7 @@ Page({
     console.log(options);
     https.request('true',api.getOrdersDetails +'/'+ options.startChargeSeq).then(function(res){
       if(res.code == 0){
-        console.log(res);
+        // console.log(res);
         that.setData({
           ordersDetails:res.result
         })
