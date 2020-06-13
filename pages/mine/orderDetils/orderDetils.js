@@ -22,14 +22,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.loadDetilesInfo();
+  },
+  // 详细信息
+  loadDetilesInfo:function(){
     let that = this;
     console.log(options);
-    https.request('true',api.getOrdersDetails +'/'+ options.startChargeSeq).then(function(res){
-      if(res.code == 0){
-        // console.log(res);
-        that.setData({
-          ordersDetails:res.result
-        })
+    https.request('true', api.getOrdersDetails + '/' + options.startChargeSeq).then(function (res) {
+      // status: 2：订单结算中，3：订单失败，4：返回设备订单信息，渲染页面
+      if (res.code == 0) {
+        if (res.result.status == 2) {
+          wx.showLoading({
+            title: '订单结算中',
+            success:function(){
+              setTimeout(function(){
+                that.loadDetilesInfo();
+              },30000)
+            },
+          })
+        } else if (res.result.status == 3) {
+          wx.showToast({
+            title: '订单失败',
+            icon: 'none'
+          })
+        } else if (res.result.status == 4) {
+          that.setData({
+            ordersDetails: res.result
+          })
+        }
       }
     });
   },
