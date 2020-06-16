@@ -1,6 +1,7 @@
 // pages/scan/chargeState/chargeState.js
 var https = require('../../../utils/request.js');
 const api = require('../../../utils/api.js');
+const util = require('../../../utils/util.js');
 const app = getApp()
 Page({
   /**
@@ -29,11 +30,42 @@ Page({
   loadChargeInfo:function(){
     let that = this;
     https.request('true', api.getChargeInfo +'/' + this.data.startChargeSeq).then(function(res){
-      // console.log(res);
+      console.log(res, '充电详情信息................');
       if(res.code == 0){
-         let timestamp = new Date(res.result.EndTime).getTime() - new Date(res.result.StartTime).getTime();
-         let newTime = Math.floor(timestamp/1000/60/60)+':'+(Math.floor(timestamp/1000/60)%60>=10?Math.floor(timestamp/1000/60):'0'+Math.floor(timestamp/1000/60))+':'+(timestamp/1000%60>=10?timestamp/1000%60:'0'+timestamp/1000%60);
+         // let timestamp = new Date().getTime() - new Date(res.result.StartTime).getTime();
+        let currentTime = new Date().getTime();
+        let startTime = Date.parse(new Date(res.result.StartTime));
+        // console.log(currentTime, startTime, 'cs.....') 
+        let timestamp = (currentTime - startTime) * 1000;
+        // console.log(timestamp, timestamp*1000, 'timestamp............')
+        // console.log(new Date(res.result.StartTime).getTime(), 'timestamp233............')
+        console.log(util.timestampToTime(timestamp), 'zzzzzzzzzzzzzzzzzzzzz')
+        //  let newTime = Math.floor(timestamp/1000/60/60)+':'+(Math.floor(timestamp/1000/60)%60>=10?Math.floor(timestamp/1000/60):'0'+Math.floor(timestamp/1000/60))+':'+(timestamp/1000%60>=10?timestamp/1000%60:'0'+timestamp/1000%60);
          // console.log(newTime);
+        var newchargestatus = '';
+        switch (res.result.ConnectorStatus) {
+          case 0:
+            newchargestatus = "离网";
+            break;
+          case 1:
+            newchargestatus = "空闲";
+            break;
+          case 2:
+            newchargestatus = "占用（未充电）";
+            break;
+          case 3:
+            newchargestatus = "占用（充电中）";
+            break;
+          case 4:
+            newchargestatus = "占用（预约锁定）";
+            break;
+          case 255:
+            newchargestatus = "故障";
+            break;
+        };
+        console.log(newchargestatus, 'newchargestatus...............')
+        res.result['ConnectorStatus'] = newchargestatus
+        console.log(res.result, '.........................344434')
         that.setData({
           chargeInfo: res.result,
           newTime: newTime
@@ -45,9 +77,9 @@ Page({
   refreshChargeInfo:function(){
     let that = this;
     that.data.chargeInfoInterval = setInterval(function () {
-      console.log("2分钟刷新一次结束充电页面........");
-      that.loadChargeInfo();
-    }, 120000);
+      console.log("30秒刷新一次结束充电页面........");
+      // that.loadChargeInfo();
+    }, 30000);
   },
   // 结束充电
   overCharging:function(){
