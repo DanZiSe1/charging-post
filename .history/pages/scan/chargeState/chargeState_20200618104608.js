@@ -78,7 +78,11 @@ Page({
     let that = this;
     that.data.chargeInfoInterval = setInterval(function () {
       console.log("30秒刷新一次结束充电页面........");
+<<<<<<< HEAD
       that.loadChargeInfo();
+=======
+      // that.loadChargeInfo();
+>>>>>>> effb626c29d0f56ae746c2fa3e4a7a9ca4931560
     }, 30000);
   },
   // 结束充电
