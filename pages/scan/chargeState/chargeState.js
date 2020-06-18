@@ -45,9 +45,9 @@ Page({
   refreshChargeInfo:function(){
     let that = this;
     that.data.chargeInfoInterval = setInterval(function () {
-      console.log("2分钟刷新一次结束充电页面........");
+      console.log("30秒刷新一次结束充电页面........");
       that.loadChargeInfo();
-    }, 120000);
+    }, 30000);
   },
   // 结束充电
   overCharging:function(){
