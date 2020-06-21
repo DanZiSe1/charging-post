@@ -25,6 +25,12 @@ Page({
       this.loadChargeInfo();
       this.refreshChargeInfo();
     }
+    
+    /* let currenttime = new Date().getTime();
+    let starttime = '1592442000000';
+    let timestamp = currenttime-starttime;
+    this.data.newTime = util.formatDuring(timestamp);
+    console.log(this.data.newTime, '充电时长结果..........'); */
   },
   // 充电详情信息
   loadChargeInfo:function(){
@@ -32,16 +38,6 @@ Page({
     https.request('true', api.getChargeInfo +'/' + this.data.startChargeSeq).then(function(res){
       console.log(res, '充电详情信息................');
       if(res.code == 0){
-         // let timestamp = new Date().getTime() - new Date(res.result.StartTime).getTime();
-        let currentTime = new Date().getTime();
-        let startTime = Date.parse(new Date(res.result.StartTime));
-        // console.log(currentTime, startTime, 'cs.....') 
-        let timestamp = (currentTime - startTime) * 1000;
-        // console.log(timestamp, timestamp*1000, 'timestamp............')
-        // console.log(new Date(res.result.StartTime).getTime(), 'timestamp233............')
-        console.log(util.timestampToTime(timestamp), 'zzzzzzzzzzzzzzzzzzzzz')
-        //  let newTime = Math.floor(timestamp/1000/60/60)+':'+(Math.floor(timestamp/1000/60)%60>=10?Math.floor(timestamp/1000/60):'0'+Math.floor(timestamp/1000/60))+':'+(timestamp/1000%60>=10?timestamp/1000%60:'0'+timestamp/1000%60);
-         // console.log(newTime);
         var newchargestatus = '';
         switch (res.result.ConnectorStatus) {
           case 0:
@@ -63,8 +59,11 @@ Page({
             newchargestatus = "故障";
             break;
         };
-        console.log(newchargestatus, 'newchargestatus...............')
         res.result['ConnectorStatus'] = newchargestatus
+        let timestamp = new Date().getTime() - new Date(res.result.StartTime).getTime();
+        var timeRange = util.formatDuring(timestamp);
+        console.log(timeRange, '充电时长结果..........');
+        res.result['timeRange'] = timeRange
         console.log(res.result, '.........................344434')
         that.setData({
           chargeInfo: res.result,
@@ -137,7 +136,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log("监听页面卸载...........")
+    // console.log("监听页面卸载...........")
     clearInterval(this.data.chargeInfoInterval);
   },
 

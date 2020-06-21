@@ -22,13 +22,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options, '订单详情页面的options............');
+    this.setData({
+      startChargeSeq: options.startChargeSeq
+    })
     this.loadDetilesInfo();
   },
   // 详细信息
   loadDetilesInfo:function(){
     let that = this;
-    console.log(options);
-    https.request('true', api.getOrdersDetails + '/' + options.startChargeSeq).then(function (res) {
+    https.request('true', api.getOrdersDetails + '/' + that.data.startChargeSeq).then(function (res) {
       // status: 2：订单结算中，3：订单失败，4：返回设备订单信息，渲染页面
       if (res.code == 0) {
         if (res.result.status == 2) {

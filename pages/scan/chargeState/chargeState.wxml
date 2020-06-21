@@ -23,7 +23,7 @@
   </view>
   <view class="chargeInfo">
     <view>充电时长：</view>
-    <view>{{newTime}}</view>
+    <view>{{chargeInfo.timeRange}}</view>
   </view>
   <view class="chargeInfo">
     <view>充电金额（元）：</view>

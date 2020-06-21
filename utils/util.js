@@ -13,17 +13,28 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+
 // 封装时分秒
-function timestampToTime(time) {
-  console.log(time, 'time.....')
-//   var hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//   var minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
-//   var seconds = (mss % (1000 * 60)) / 1000;
-  let day = Math.floor((time) / (86400000));
-  let hours = Math.floor((time % 86400000) / 3600000);
-  let minutes = Math.floor((time % 3600000) / 60000);
-  let seconds = Math.floor((time % 60000) / 1000);
-  console.log(day, hours, minutes, seconds, 'time123.....')
+function formatDuring(mss) {
+  var days = parseInt(mss / (1000 * 60 * 60 * 24));
+  var hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = ((mss % (1000 * 60)) / 1000).toFixed();
+  if (hours >= 1 && hours <= 9) {
+		hours = "0" + hours;
+  }
+  if (minutes >= 1 && minutes <= 9) {
+		minutes = "0" + minutes;
+  }
+  if (seconds >= 1 && seconds <= 9) {
+		seconds = "0" + seconds;
+  }
+  // console.log(hours + ":" + minutes + ":" + seconds);
+  if (days <= 0){
+    return hours + ":" + minutes + ":" + seconds;
+  } else {
+    return days + "天" + hours + ":" + minutes + ":" + seconds;
+  } 
 }
 
 // 服务费，电费封装
@@ -68,5 +79,5 @@ function electricServeMoney(electricityFee, serviceFee) {
 module.exports = {
   formatTime: formatTime,
   electricServeMoney,
-  timestampToTime,
+  formatDuring,
 }
