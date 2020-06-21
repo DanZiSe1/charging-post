@@ -32,11 +32,12 @@ Page({
   loadDetilesInfo:function(){
     let that = this;
     https.request('true', api.getOrdersDetails + '/' + that.data.startChargeSeq).then(function (res) {
-      // status: 2：订单结算中，3：订单失败，4：返回设备订单信息，渲染页面
+      // status: 1-订单开始 2-用户结束订单 3-订单启动失败 4-已接收订单信息，渲染页面
       if (res.code == 0) {
         if (res.result.status == 2) {
           wx.showLoading({
             title: '订单结算中',
+            mask: true,
             success:function(){
               setTimeout(function(){
                 that.loadDetilesInfo();

@@ -60,14 +60,14 @@ Page({
             break;
         };
         res.result['ConnectorStatus'] = newchargestatus
-        let timestamp = new Date().getTime() - new Date(res.result.StartTime).getTime();
+        let timestamp = new Date(res.result.EndTime).getTime() - new Date(res.result.StartTime).getTime();
         var timeRange = util.formatDuring(timestamp);
         console.log(timeRange, '充电时长结果..........');
         res.result['timeRange'] = timeRange
         console.log(res.result, '.........................344434')
         that.setData({
           chargeInfo: res.result,
-          newTime: newTime
+          // newTime: newTime
         })
       }
     }) 

@@ -1,7 +1,7 @@
 <!--pages/scan/chargPost/chargPost.wxml-->
 <view class="rechargePage">
   <view class="box">
-    <view class="chargeName">{{ equipParams.connector_name }}</view>
+    <view class="chargeName">{{ equipParams.station_name }}</view>
     <view class="address">{{ equipParams.address }}</view>
     <view class="chargeName">{{ equipParams.connector_name }} </view>
     <view class="number">电桩编号：{{equipParams.station_id}}</view>
