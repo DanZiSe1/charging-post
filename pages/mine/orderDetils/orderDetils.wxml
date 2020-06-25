@@ -1,7 +1,7 @@
 <view class="rechargePage">
 	<view class="status">
 		<radio checked></radio>
-		<text>{{ordersDetails.status}}</text>
+		<text>{{ordersDetails.status == 4 ? "已接收订单信息" : ""}}</text>
 	</view>
 	<view class="detilsInfo">
 		<view class="expense">

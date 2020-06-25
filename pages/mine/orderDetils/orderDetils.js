@@ -34,7 +34,13 @@ Page({
     https.request('true', api.getOrdersDetails + '/' + that.data.startChargeSeq).then(function (res) {
       // status: 1-订单开始 2-用户结束订单 3-订单启动失败 4-已接收订单信息，渲染页面
       if (res.code == 0) {
-        if (res.result.status == 2) {
+        if (res.result.status == 1) {
+          wx.showToast({
+            title: '订单开始',
+            icon: 'none'
+          });
+          wx.hideLoading();
+        }else if (res.result.status == 2) {
           wx.showLoading({
             title: '订单结算中',
             mask: true,
@@ -43,16 +49,18 @@ Page({
                 that.loadDetilesInfo();
               },30000)
             },
-          })
+          });
         } else if (res.result.status == 3) {
           wx.showToast({
             title: '订单失败',
             icon: 'none'
-          })
+          });
+          wx.hideLoading();
         } else if (res.result.status == 4) {
           that.setData({
             ordersDetails: res.result
-          })
+          });
+          wx.hideLoading();
         }
       }
     });
