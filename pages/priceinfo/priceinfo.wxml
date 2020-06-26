@@ -5,30 +5,30 @@
       <block wx:if="{{pricesList.length != 0 && pricetype == 1}}">
         <view class="priceItem" wx:for="{{pricesList}}" wx:key="item">
           <view class="priceItem_top">
-            时段:{{item.time}}
+            时段：{{item.time}}
           </view>
-          <view class="priceItem_bottom flex-center-between">
-            <p>
-              ￥<span>{{item.priceInfoDegee}}</span>/度
-            </p>
+          <view class="priceItem_bottom">
             <view class="priceItem_bottom_right">
               {{ item.eleServicePrice }}
             </view>
+            <p>
+              <span>{{item.priceInfoDegee}}</span>元/度
+            </p>
           </view>
         </view>
       </block>
       <block wx:elif="{{pricesList.length != 0 && pricetype == 2}}">
         <view class="priceItem" wx:for="{{pricesList}}" wx:key="item">
           <view class="priceItem_top">
-            时段:{{item.StartTime}}
+            时段：{{item.StartTime}}
           </view>
-          <view class="priceItem_bottom flex-center-between">
-            <p>
-              ￥<span>{{item.ElecPrice + item.SevicePrice}}</span>/度
-            </p>
+          <view class="priceItem_bottom">
             <view class="priceItem_bottom_right">
               电费：{{ item.ElecPrice }}元/度 | 服务费：{{ item.SevicePrice }}元/度 
             </view>
+            <p>
+              <span>{{item.ElecPrice + item.SevicePrice}}</span>元/度
+            </p>
           </view>
         </view>
       </block>

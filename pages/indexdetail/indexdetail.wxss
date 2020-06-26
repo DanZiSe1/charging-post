@@ -1,7 +1,25 @@
 /**indexdetail.wxss**/
+h3{
+  display: block;
+  font-size: 36rpx;
+  font-weight: 500;
+  color:#003049;
+}
 h4{
-  font-size: 16px;
-  font-weight: 600;
+  display: block;
+  font-size: 32rpx;
+  font-weight: 500;
+  color:#003049;
+  margin-bottom: 18rpx;
+}
+.m-b-24{
+  margin-bottom: 24rpx;
+}
+.m-t-38{
+  margin-top: 38rpx;
+}
+.m-l-16{
+  margin-left: 16rpx;
 }
 .flex-center-between{
   display: flex;
@@ -15,10 +33,12 @@ h4{
 }
 .chargingStation{
   width:100%;
-  padding:0 30px;
+  padding:0 42rpx;
+  font-size: 28rpx;
   box-sizing: border-box;
+  color:#999;
 }
-.station_titleimg{
+/* .station_titleimg{
   width:100%;
   height:128px;
   background:#ddd;
@@ -39,45 +59,63 @@ h4{
 .nodata-image image{
   width:100%;
   height:100%;
-}
+} */
 .station_detail{
-  font-size: 13px;
-  border-bottom: 1px solid #ddd;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid #D8D8D8;
 }
-.station_detail_top .detail_top_left p{
-  display: block;
-  font-size: 12px;
-  letter-spacing: 2px;
-  margin: 10px 0;
+.station_detail_top .detail_top_left{
+  width:80%;
+}
+.detail_top_right{
+  text-align: center;
 }
 .detail_top_right .detail_icon1{
-  width: 24px;
-  height: 24px;
+  width: 40rpx;
+  height: 40rpx;
 }
 .detail_icon1 > image{
   width:100%;
   height:100%;
 }
-.station_detail_timestyle{
-  margin-bottom: 10px;
+.station_detail_quickslow .quickslow_text{
+  color:#003049;
+}
+.station_detail_quickslow .quickslow_num{
+  color:#F77F00;
+  margin-left:10rpx;
 }
 .station_price{
-  margin:10px 0;
-  font-size: 13px;
+  margin: 24rpx 0;
 }
 .station_price .station_price_top{
-  margin-bottom: 10px;
+  margin-bottom: 16rpx;
+}
+.station_price_quickslow p{
+  color:#FCBF49;
+}
+.station_price_quickslow .quickslow_detail{
+  margin: 16rpx 0;
+}
+.station_price_quickslow h5{
+  color:#003049;
+}
+.station_price_quickslow .quickslow_price span{
+  font-size:42rpx;
+  color:#FCA311;
 }
 .stationChargeBtn{
-  width: 100%;
-  position: fixed;
-  bottom:20px;
-  left:0;
-  padding:0 30px;
+  width: 668rpx;
+  height:96rpx;
+  margin-top:80rpx;
   box-sizing: border-box;
 }
 .stationChargeBtn > button{
   width:100%!important;
+  background:#F77F00!important;
+  font-size:36rpx;
+  border-radius:16rpx;
+  font-weight: 500;
 }
 
 

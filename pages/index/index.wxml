@@ -5,32 +5,35 @@
       <block wx:if="{{chargingList.length != 0}}">
         <navigator
           class="chargingItem"
-          url="/pages/indexdetail/indexdetail?chargeid={{item.id}}&operatorid={{item.OperatorID}}"
+          url="/pages/indexdetail/indexdetail?chargeid={{item.id}}&operatorid={{item.OperatorID}}&quickn={{item.quick_n}}&idlen={{item.idle_n}}&slown={{item.slow_n}}"
           wx:for="{{chargingList}}" wx:key="item">
-          <view class="item_top flex-end-between">
+          <view class="item_top m-b-14 flex-end-between">
             <view class="item_top_left">
               <h4>{{item.StationName}}</h4>
-              <p>开放时间:{{ item.BusineHours }}</p>
+              <p>开放时间：{{ item.BusineHours }}</p>
             </view>
-            <view class="item_top_right">
+            <view class="item_top_right flex-column-center">
                 <view class="right_icon">
                   <image mode="aspectFit" src="/imgs/navigation.png"></image>
                 </view>
                 <p>{{item.distance}}km</p>
             </view>
           </view>
-          <view class="item_bottom flex-center-between">
+          <view class="item_bottom flex-end">
             <p>
-              ￥约<span>{{ item.chargedegee }}</span>/度
+              约<span>{{ item.chargedegee }}</span>元/度
             </p>
+            <view class="item_bottom_desc item_bottomdesc_fast"> 
+              快充<span>{{ item.quick_n }}</span>/{{ item.idle_n }}
+            </view>
             <view class="item_bottom_desc"> 
-              快:闲{{ item.quick_n }}/{{ item.idle_n }}|慢:闲{{ item.slow_n }}/{{ item.idle_n }}
+              慢充<span>{{ item.slow_n }}</span>/{{ item.idle_n }}
             </view>
           </view>
         </navigator>
       </block>    
       <block wx:if="{{chargingList.length == 0 && noinfostate}}">
-        <noInfo id="noInfo"></noInfo>
+        <noInfo id="noInfo" noInfoText="{{noinfotext}}"></noInfo>
       </block>
     </view>
   </view>

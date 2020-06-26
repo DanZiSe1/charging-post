@@ -15,22 +15,26 @@
 }
 .pricePage{
   width:100%;
-  padding:0 30px;
+  padding:0 42rpx;
   box-sizing: border-box;
-  font-size: 13px;
+  font-size: 28rpx;
+  color:#999;
 }
 .priceItem{
-  padding: 15px 0 20px 0;
-  border-bottom:1px solid #ddd;
+  padding: 23rpx 0 15rpx 0;
+  border-bottom:2rpx solid #D8D8D8;
+}
+.priceItem:last-child{
+  margin-bottom: 200rpx;
 }
 .priceItem .priceItem_top{
-  font-weight: 600;
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-.priceItem_bottom p span{
-  font-size: 14px;
+  color:#003049;
 }
 .priceItem_bottom_right{
-  color: #666;
+  margin:16rpx 0;
+  letter-spacing: 2rpx;
+}
+.priceItem_bottom p span{
+  color:#F77F00;
+  font-size:42rpx;
 }

@@ -1,7 +1,7 @@
 <!--indexdetail.wxml-->
 <view class="container">
   <view class="chargingStation">
-    <view class="station_titleimg" wx:if="{{chargStationData.Pictures.length != 0}}">
+    <!-- <view class="station_titleimg" wx:if="{{chargStationData.Pictures.length != 0}}">
       <swiper class="swipers" indicator-dots="{{indicatorDots}}"
         autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
         <block wx:for="{{chargStationData.Pictures}}">
@@ -15,12 +15,14 @@
       <view class="nodata-image">
         <image src="../../imgs/zanwushuju.png"></image>
       </view>
-    </view>   
+    </view> -->   
     <view class="station_detail">
       <view class="station_detail_top flex-center-between">
         <view class="detail_top_left">
-          <h4>{{ chargStationData.StationName }}</h4>
-          <p>{{ chargStationData.Remark }}</p>
+          <h3 class="m-b-24">{{ chargStationData.StationName }}</h3>
+          <view class="m-b-24">
+            开放时间：{{chargStationData.BusineHours}}
+          </view>
         </view>
         <view class="detail_top_right">
           <view class="detail_icon1">
@@ -29,27 +31,47 @@
           <p>{{chargStationData.distance}}km</p>
         </view>
       </view>
-      <view class="station_detail_timestyle">
-        开放时间：{{chargStationData.BusineHours}}
+      <view class="station_detail_quickslow m-b-24"> 
+        <span class="quickslow_text">快充</span>
+        <span class="quickslow_num">{{ quick_n }}</span>/{{ idle_n }}
+        <span class="quickslow_text m-l-16">慢充</span>
+        <span class="quickslow_num">{{ slow_n }}</span>/{{ idle_n }}
       </view>
-      <view class="station_detail_timestyle">
+      <view>
         地址：{{chargStationData.Address}}
       </view>
     </view>
     <view class="station_price">
-      <view class="station_price_top flex-center-between">
+      <view class="station_price_top">
         <h4>价格信息</h4>
-        <p bindtap="getLookAll">查看全部></p>
+        <p>
+          当前计费时段：{{ chargStationData.billingPeriod }}
+        </p>
       </view>
-      <view class="station_detail_timestyle">
-        当前计费时段：{{ chargStationData.billingPeriod }}
+      <view class="station_price_quickslow">
+        <view class="flex-center-between">
+          <h5>快充</h5>
+          <p bindtap="getLookAll">查看全部></p>
+        </view>
+        <view class="quickslow_detail">
+          {{ chargStationData.eleServiceFee }}
+        </view>
+        <view class="quickslow_price">
+          <span>{{ chargStationData.pricedegee }}</span>元/度
+        </view>
       </view>
-      <view class="station_detail_timestyle">
-        {{ chargStationData.eleServiceFee }}
-      </view>
-      <view class="station_detail_timestyle">
-        ￥{{ chargStationData.pricedegee }}/度
-      </view>
+      <view class="station_price_quickslow m-t-38">
+        <view class="flex-center-between">
+          <h5>慢充</h5>
+          <p bindtap="getLookAll">查看全部></p>
+        </view>
+        <view class="quickslow_detail">
+          {{ chargStationData.eleServiceFee }}
+        </view>
+        <view class="quickslow_price">
+          <span>{{ chargStationData.pricedegee }}</span>元/度
+        </view>
+      </view> 
     </view> 
   </view>
   <view class="stationChargeBtn">

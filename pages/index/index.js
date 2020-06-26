@@ -10,7 +10,8 @@ Page({
     chargingList: [],
     latitude: '',
     longitude: '',
-    noinfostate: false
+    noinfotext: '抱歉，附近暂无充电站',
+    noinfostate: false 
   },
   onLoad: function () {
   },

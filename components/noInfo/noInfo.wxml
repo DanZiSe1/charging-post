@@ -1,7 +1,15 @@
 <!--无数据页-->
-<view class='none'>
-  <view class="null-data">
-    <image class="null_img" mode="aspectFit" src="/imgs/zanwushuju.png"></image>
+<view class="none">
+  <!-- <view class="null_data">
+    <view class="loading-box">
+      <image class="loading_img" mode="aspectFit" src="/imgs/loading_data.png"></image>
+    </view>
+    <view class="null-text">加载中…</view>
+  </view> -->
+  <view class="null_data">
+    <view class="null-box">
+      <image class="null_img" mode="aspectFit" src="/imgs/no_data.png"></image>
+    </view>
+    <view class="null-text">{{ noInfoText }}</view>
   </view>
-  <view class="null-text">暂无数据</view>
 </view>

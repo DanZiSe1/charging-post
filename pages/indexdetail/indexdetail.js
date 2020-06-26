@@ -8,6 +8,9 @@ Page({
   data: {
     chargStationid: '',
     chargOperatorid: '',
+    quick_n: '',
+    idle_n: '',
+    slow_n: '',
     chargStationData: {},
     /* chargStationData: {
       id: '1',
@@ -33,10 +36,13 @@ Page({
     duration: 1000
   },
   onLoad: function (options) {
-    // console.log(options, 'options.......')
+    console.log(options, 'options.......')
     this.setData({
       chargStationid: parseInt(options.chargeid),
-      chargOperatorid: options.operatorid
+      chargOperatorid: options.operatorid,
+      quick_n: options.quickn,
+      idle_n: options.idlen,
+      slow_n: options.slown
     })
     this.getStationDetail()
   },
@@ -45,16 +51,16 @@ Page({
     var that = this
     var stationDetailUrl = api.getStationDetail + that.data.chargStationid
     https.request('false',stationDetailUrl).then(function (res) {
-      // console.log(res, '获取充电站详情结果.......')
+      console.log(res, '获取充电站详情结果.......')
       if (res.code == 0) {
         if (res.result) {
           that.resultFee = util.electricServeMoney(res.result.ElectricityFee, res.result.ServiceFee);
           res.result['billingPeriod'] = that.resultFee[0].time;
-          res.result['eleServiceFee'] = that.resultFee[0].elemoney + '元/度|' + that.resultFee[0].servemoney + '元/度'
+          res.result['eleServiceFee'] = that.resultFee[0].elemoney + '元/度 | ' + that.resultFee[0].servemoney + '元/度'
 
           var newElemoney = that.resultFee[0].elemoney.split("电费:");
           var newServemoney = that.resultFee[0].servemoney.split("服务费:");
-          res.result['eleServiceFee'] = that.resultFee[0].elemoney + '元/度|' + that.resultFee[0].servemoney + '元/度'
+          res.result['eleServiceFee'] = that.resultFee[0].elemoney + '元/度 | ' + that.resultFee[0].servemoney + '元/度'
           res.result['pricedegee'] = Number(newElemoney[1]) + Number(newServemoney[1]);
           that.setData({
             chargStationData: res.result

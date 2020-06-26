@@ -1,21 +1,32 @@
 .none{
-   width: 100%;
-   height: 100vh;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   text-align: center;
-   font-size: 32rpx;
+  width: 100%;
+  font-size: 28rpx;
+  color:#999;
 }
-.none .null-data{
-  width:100rpx;
-  height:100rpx;
+.none .null_data{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top:218rpx;
 }
-.null-data .null_img{
+.null_data .null-box{
+  width:86rpx;
+  height:88rpx;
+}
+.null-box .null_img{
+  width:100%;
+  height:100%;
+}
+.null_data .loading-box{
+  width:44rpx;
+  height:80rpx;
+}
+.loading-box .loading_img{
   width:100%;
   height:100%;
 }
 .none .null-text{
-  margin-top:10px;
+  margin-top:20rpx;
 }
