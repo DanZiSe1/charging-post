@@ -1,21 +1,26 @@
 .detailsPage{
-  padding: 30rpx;
+  padding: 0 40rpx 0 42rpx;
   box-sizing: border-box;
   color: #333;
 }
 .detailsList{
-  padding: 20rpx 0;
+  padding: 18rpx 0;
   box-sizing: border-box;
   border-bottom: 1px solid #ddd;
-  font-size: 30rpx;
+  font-size: 28rpx;
 }
+.date{color: #999;}
+.way{color: #003049;}
+.consumption{color: #D62828;}
+.amount{color: #F77F00;}
 .listTop{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16rpx;
+  margin-bottom: 12rpx;
 }
 .noMore{
   text-align: center;
   padding-top: 30rpx;
+  padding-bottom: 30rpx;
 }

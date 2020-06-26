@@ -10,7 +10,8 @@
     "pages/mine/chargingOrder/chargingOrder",
     "pages/mine/recharge/recharge",
     "pages/mine/orderDetils/orderDetils",
-    "pages/mine/accountDetails/accountDetails"
+    "pages/mine/accountDetails/accountDetails",
+    "pages/mine/feeDetails/feeDetails"
   ],
   "permission": {
     "scope.userLocation": {
@@ -24,8 +25,8 @@
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
-    "color":"#707070",
-    "selectedColor":"#f4ea2a",
+    "color":"#333333",
+    "selectedColor":"#333333",
     "list": [{
       "pagePath": "pages/index/index",
       "iconPath": "imgs/charge.png",
@@ -33,7 +34,7 @@
       "text": "充电站"
     }, {
       "pagePath": "pages/scan/scan",
-      "iconPath": "imgs/scan.png",
+      "iconPath": "imgs/scan_light.png",
       "selectedIconPath": "imgs/scan_light.png",
       "text": "扫码充电"
     }, {

@@ -1,6 +1,6 @@
 /* pages/mine/mine.wxss */
 .minePage{
-  padding: 30rpx;
+  padding: 30rpx 38rpx 0 44rpx;
   box-sizing: border-box;
   color: #333;
 }
@@ -18,34 +18,61 @@
   width: 180rpx!important;
   margin-left: 20rpx!important;
   background-color: #fff;
-  border: 1px solid #ddd;
-  color: #333;
-  font-size: 30rpx;
-  padding: 12rpx 0;
+  border: 2rpx solid #F77F00;
+  color: #F77F00;
+  font-size: 24rpx;
+  padding: 0;
+  height: 60rpx;
+  line-height: 58rpx;
   font-weight: normal;
+  border-radius:16rpx;
 }
 .header button::after {
   border: 0; 
 }
 .balance{
-  padding: 40rpx 0;
+  padding: 48rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
+.accountTxt{color: #003049;font-size: 28rpx;padding-bottom: 10rpx;}
+.account{color: #F77F00;font-size: 48rpx;font-weight: bold;}
 .recharge{
-  width: 80%!important;
-  margin-top: 30rpx;
-  margin-bottom: 40rpx;
+  width:120rpx;
+  height: 56rpx;
+  text-align: center;
+  line-height: 58rpx;
+  font-size: 24rpx;
+  border-radius:16rpx;
+  color: #D62828;
+  border:2rpx solid #D62828;
 }
 .rechargeList{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100rpx;
+  padding-top: 30rpx;
+  padding-bottom: 32rpx;
   box-sizing: border-box;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2rpx solid #D8D8D8;
+  font-size: 32rpx;
+  color: #003049;
+  font-weight: bold;
 }
 
-.rechargeList image{
-  width: 42rpx;
-  height: 42rpx;
+.rechargeList .right{
+  width: 18rpx;
+  height: 32rpx;
+  margin-right: 30rpx;
+}
+.rechargeList view{
+  display: flex;
+  align-items: center;
+}
+.rechargeList .listImg{
+  width: 32rpx;
+  height: 38rpx;
+  margin-right: 26rpx;
 }
 

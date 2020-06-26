@@ -8,7 +8,7 @@
   </view> -->
   <view class="null_data">
     <view class="null-box">
-      <image class="null_img" mode="aspectFit" src="/imgs/no_data.png"></image>
+      <image class="null_img" mode="aspectFit" src="{{ noInfoImg }}"></image>
     </view>
     <view class="null-text">{{ noInfoText }}</view>
   </view>

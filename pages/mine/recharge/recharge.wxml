@@ -5,20 +5,18 @@
 			<view class="amount {{active == index ? 'actvieBorder': ''}}" bindtap="amountTap" data-amount="{{item.amount}}" data-index="{{index}}">{{item.amount}} 元</view>
 		</block>
 	</view>
-	<!-- <form> -->
-		<view class="inpAmount">
-			<input placeholder="输入自定义充值金额" type="digit" name="balance" value="{{inputValue}}" bindinput='getInputValue'/>
+	<view class="inpAmount">
+		<input placeholder="其他金额" type="digit" name="balance" value="{{inputValue}}" bindinput='getInputValue'/>
+	</view>
+	<view class="title2">支付方式</view>
+	<view class="paymentMethod">
+		<view class="wechat">
+			<image src="/imgs/wechat.png"></image>
+			<text>微信支付</text>
 		</view>
-		<view class="title2">支付方式</view>
-		<view class="paymentMethod">
-			<view>
-				<image src="/imgs/wechat.png"></image>
-				<text>微信支付</text>
-			</view>
-			<radio checked></radio>
-		</view>
-		<view class="bottomBtn">
-			<button class="recharge" type="primary" hover-class="none" bindtap="nowRecharge">立即充值</button>
-		</view>
-	<!-- </form> -->
+		<radio checked></radio>
+	</view>
+	<view class="bottomBtn">
+		<button class="recharge" type="primary" hover-class="none" bindtap="nowRecharge">立即充值</button>
+	</view>
 </view>

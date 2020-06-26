@@ -35,7 +35,7 @@ App({
   globalData: {
     userInfo: null,
     openid:'',
-    accountBalance: 0,
+    accountBalance: '0.00',
     qrcode:''
   }
 })

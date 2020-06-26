@@ -8,7 +8,7 @@ Page({
    */
   data: {
     phoneNum: '',
-    accountBalance: app.globalData.accountBalance || 0
+    accountBalance: app.globalData.accountBalance || '0.00'
   },
 
   /**
@@ -36,15 +36,15 @@ Page({
       wx.login({
         success: (res) => {
           https.request('false',api.getOpenId,{"js_code": res.code},'POST').then(function(res){
+            console.log(res);
             if(res.code == 0){
               wx.setStorageSync('openid', res.result.openid);
               app.globalData.openid = res.result.openid;
               https.request('true', api.getPhoneNum, data, 'POST').then(function(res){
                 if(res.code == 0){
-
                   that.loadUserInfo();//获取用户基本信息
-
                   let str = res.result.phoneNumber;
+                  console.log(str);
                   let phoneNumber = str.substring(0, 3) + "****" + str.substring(7, str.length);
                   wx.setStorageSync('phoneNum', str);
                   that.setData({

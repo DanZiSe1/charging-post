@@ -10,7 +10,10 @@ Page({
     detailsList:[],
     page_num: 0,
     page_size: 10,
-    noMore: true
+    noMore: true,
+    noinfostate: false,
+    noinfotext: '暂无充电记录',
+    noinfoimg: '/imgs/no_data.png'
   },
 
   /**
@@ -34,10 +37,14 @@ Page({
             detailsList = [];
           }
           that.setData({
-            detailsList:  detailsList.concat(res.result)
+            detailsList:  detailsList.concat(res.result),
+            noinfostate: false
           });
         }else if(res.result.length == 0 && that.data.page_num != 0){
-          that.setData({noMore: false})
+          that.setData({
+            noMore: false,
+            noinfostate: true
+          })
         }
       }
     });
@@ -57,7 +64,6 @@ Page({
    */
   onPullDownRefresh: function () {
     this.data.page_num = 0;
-    console.log(this.data.page_num);
     this.getOrderList();
     wx.stopPullDownRefresh();
   },
@@ -67,7 +73,6 @@ Page({
    */
   onReachBottom: function () {
     this.data.page_num ++;
-    console.log(this.data.page_num);
     this.getOrderList();
   },
 

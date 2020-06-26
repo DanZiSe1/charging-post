@@ -2,17 +2,18 @@
 <view class="detailsPage">
   <view wx:if="{{rechargeList.length != 0}}">
     <view class="detailsList" wx:if="{{item.type == 1 && item.status == 2 || item.type == 2}}" wx:for="{{rechargeList}}" wx:key="rechargeList">
+      <!--充值：type: 1,status: 2; 消费：type: 2,不关注status;-->
       <view class="listTop">
         <view class="date">{{item.created_at}}</view>
-        <view class="amount" wx:if="{{item.type == 1 && item.status == 2}}">+ {{item.balance}}</view>
-        <view class="amount" wx:if="{{item.type == 2 && item.status == 1}}">- {{item.balance}}</view>
+        <view class="amount" wx:if="{{item.type == 1 && item.status == 2}}">+ {{item.balance}}元</view>
+        <view class="consumption" wx:if="{{item.type == 2}}">- {{item.balance}}元</view>
       </view>
       <view class="way" wx:if="{{item.type == 1 && item.status == 2}}">充值</view>
       <view class="way" wx:if="{{item.type == 2}}">充电消费</view>
     </view>
     <view class="noMore" hidden="{{noMore}}">~ 已加载全部 ~</view>
   </view>
-  <block wx:else>
-    <noInfo id="noInfo"></noInfo>
+  <block wx:if="{{rechargeList.length == 0 && noinfostate}}">
+    <noInfo id="noInfo" noInfoText="{{noinfotext}}" noInfoImg="{{noinfoimg}}"></noInfo>
   </block>
 </view>

@@ -1,20 +1,24 @@
 /* pages/mine/recharge/recharge.wxss */
 .rechargePage{
-  padding: 30rpx;
+  padding: 44rpx 46rpx 0 48rpx;
   box-sizing: border-box;
   color: #333;
 }
-.title,.title2{font-size: 26rpx;}
+.title{
+  padding-bottom: 15rpx;
+}
+.title,.title2{font-size: 32rpx;color: #003049;}
 .amount{
-  border: 1px solid #ddd;
-  border-radius: 10rpx;
+  font-size: 32rpx;
+  margin-top: 32rpx;
+  border: 2rpx solid #999;
+  border-radius: 16rpx;
   display: inline-block;
-  font-size: 28rpx;
-  width: 25%;
-  height: 90rpx;
+  color: #003049;
+  width: 200rpx;
+  height: 96rpx;
   text-align: center;
-  line-height: 90rpx;
-  margin-top: 30rpx;
+  line-height: 100rpx;
 }
 .list{
   display: flex;
@@ -23,12 +27,15 @@
 }
 .inpAmount input{
   font-size: 28rpx;
-  border: 1px solid #ddd;
-  padding: 20rpx;
+  height: 96rpx;
+  width: 200rpx;
+  border: 1px solid #999;
   outline: none;
-  border-radius: 12rpx;
+  border-radius: 16rpx;
   margin-top: 40rpx;
+  text-align: center;
 }
+.input-placeholder{color: #003049;}
 .paymentMethod {
   font-size: 28rpx;
   display: flex;
@@ -38,14 +45,20 @@
   height: 100rpx;
 }
 .paymentMethod image{
-  width: 42rpx;
-  height: 42rpx;
-  margin-right: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 18rpx;
   vertical-align: middle;
 }
+.wechat{display: flex;align-items: center;}
 radio .wx-radio-input{
   width: 30rpx;
   height: 30rpx;
+}
+/*复选框外框选中样式*/
+radio .wx-radio-input.wx-radio-input-checked {
+  border: 2rpx solid #F77F00!important;
+  background-color: #F77F00!important;
 }
 /* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
 radio .wx-radio-input.wx-radio-input-checked::before{
@@ -64,10 +77,16 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 }
 .recharge{
   width: 100%!important;
+  height: 96rpx;
+  background-color: #F77F00 !important;
+  font-weight: normal;
+  border-radius: 16rpx;
+  line-height: 96rpx;
+  padding: 0;
 }
 .bottomBtn{
   width: 100%;
-  padding: 0 30rpx;
+  padding: 44rpx 46rpx 0 48rpx;
   box-sizing: border-box;
   margin-top: 0;
   margin-bottom: 0;
@@ -79,6 +98,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 }
 
 .actvieBorder{
-  border-color: #f4ea2a;
-  color: #f4ea2a;
+  background-color: #F77F00;
+  color: #fff;
+  border: 2rpx solid #F77F00;
 }

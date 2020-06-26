@@ -5,20 +5,29 @@
     <view class="avatar" wx:else>
       <open-data type='userAvatarUrl'></open-data>
     </view>
-    
-    <button wx:if="{{phoneNum == ''}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录 / 注册</button>
+    <button wx:if="{{phoneNum == ''}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">注册 / 登录</button>
     <view wx:else>{{phoneNum}}</view>
   </view>
   <view class="balance">
-    账户余额 <text>{{ accountBalance }}</text> 元
+    <view>
+      <view class="accountTxt">账户余额（元）</view>
+      <view class="account">{{accountBalance}}</view> 
+    </view>
+    <view class="recharge" bindtap="recharge">去充值</view>
   </view>
-  <button class="recharge" type="primary" hover-class="none" bindtap="recharge">充值</button>
+  
   <view class="rechargeList" bindtap="chargingOrder">
-    <text>充电订单</text>
-    <image src="/imgs/right.png"></image>
+    <view>
+      <image class="listImg" src="/imgs/charge_order.png"></image>
+      <text>充电订单</text>
+    </view>
+    <image class="right" src="/imgs/right.png"></image>
   </view>
-  <view class="rechargeList" bindtap="accountDetails">
-    <text>账户明细</text>
-    <image src="/imgs/right.png"></image>
+  <view class="rechargeList" bindtap="accountDetails" style="border-bottom: none;">
+    <view>
+      <image class="listImg" src="/imgs/acount.png"></image>
+      <text>账户明细</text>
+    </view>
+    <image class="right" src="/imgs/right.png"></image>
   </view>
 </view>

@@ -1,27 +1,30 @@
 <!--pages/scan/chargPost/chargPost.wxml-->
 <view class="rechargePage">
-  <view class="box">
-    <view class="chargeName">{{ equipParams.station_name }}</view>
-    <view class="address">{{ equipParams.address }}</view>
-    <view class="chargeName">{{ equipParams.connector_name }} </view>
-    <view class="number">电桩编号：{{equipParams.station_id}}</view>
-    <view class="number">状态：{{ equipParams.status }}</view>
-    <view class="number">类型：{{equipParams.connector_type}}</view>
-    <view class="number">功率：{{equipParams.power}}KW</view>
-  </view>
+	<view class="box">
+		<view class="chargeName">{{ equipParams.station_name }}</view>
+		<!-- <view class="address">{{ equipParams.address }}</view> -->
+		<!-- <view class="chargeName">{{ equipParams.connector_name }} </view> -->
+		<view class="number">电桩编号：{{equipParams.station_id}}</view>
+		<view class="params">
+			<view>状态：<text>{{ equipParams.status }}</text></view>
+			<view class="paramsType">| 类型：<text>{{equipParams.connector_type}}</text></view>
+			<view>| 功率：<text>{{equipParams.power}}KW</text></view>
+		</view>
+	</view>
 
-  <view class="box">
+	<view class="boxInfo">
+		<view class="name">价格信息</view>
+		<view class="address">当前计费时段：{{ chargePricesInfos.StartTime }}</view>
     <view class="listTop">
-        <view class="name">价格信息</view>
-        <view class="amount" bindtap="seeAll">查看全部 <image src="/imgs/right.png"></image></view>
-      </view>
-    <view class="address">当前计费时段：{{ chargePricesInfos.StartTime }}</view>
-    <view class="address">电费：{{ chargePricesInfos.ElecPrice }}/度 | 服务费：{{ chargePricesInfos.SevicePrice }}/度</view>
-    <view class="address">￥{{ chargePricesInfos.ElecPrice + chargePricesInfos.SevicePrice }}/度</view>
-  </view>
-  <view class="listTop">
-    <view class="name">账户余额：{{ accountBalance }}元</view>
-    <view class="goRecharge" bindtap="goRecharge">去充值</view>
-  </view>
-  <button class="recharge" type="primary" hover-class="none" bindtap="startCharging">启动充电</button>
+			<view class="type">{{equipParams.connector_type}}</view>
+			<view class="amount" bindtap="seeAll">查看详情 ></view>
+		</view>
+		<view class="address">电费：{{ chargePricesInfos.ElecPrice }}/度 | 服务费：{{ chargePricesInfos.SevicePrice }}/度</view>
+		<view class="address"><text class="degree">{{ chargePricesInfos.ElecPrice + chargePricesInfos.SevicePrice }}</text> 元/度</view>
+	</view>
+	<view class="listTop">
+		<view class="accountBalance">账户余额：{{ accountBalance }}元</view>
+		<view class="goRecharge" bindtap="goRecharge">去充值</view>
+	</view>
+	<view class="recharge" bindtap="startCharging">启动充电</view>
 </view>

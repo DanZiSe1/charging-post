@@ -1,0 +1,56 @@
+/* pages/mine/feeDetails/feeDetails.wxss */
+.pageBox{
+  padding: 32rpx 40rpx 0 42rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+.title{
+  color: #003049;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.title view{
+  width: 100%;
+  text-align: center;
+}
+.feeListBox{
+  padding-top: 22rpx;
+  padding-bottom: 16rpx;
+  margin-bottom: 32rpx;
+  margin-top: 24rpx;
+  border-top: 2rpx solid #D8D8D8;
+  border-bottom: 2rpx solid #D8D8D8;
+}
+.feeList{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  
+  color: #999;
+  
+}
+.feeList view{
+  width: 25%;
+  padding-bottom: 24rpx;
+}
+.itemTitle{
+  display: flex;
+  justify-content: space-between;
+  color: #003049;
+}
+.itemTitle text{
+  color: #999;
+}
+.itemCenter{
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.itemTitle text.allAcount{color: #F77F00;}
+.seeDetail{
+  color: #FCBF49;
+  font-size: 32rpx;
+  text-align: center;
+  padding-top: 120rpx;
+}

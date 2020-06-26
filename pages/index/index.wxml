@@ -33,7 +33,7 @@
         </navigator>
       </block>    
       <block wx:if="{{chargingList.length == 0 && noinfostate}}">
-        <noInfo id="noInfo" noInfoText="{{noinfotext}}"></noInfo>
+        <noInfo id="noInfo" noInfoText="{{noinfotext}}" noInfoImg="{{noinfoimg}}" ></noInfo>
       </block>
     </view>
   </view>

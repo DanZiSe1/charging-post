@@ -1,14 +1,17 @@
 /* pages/mine/chargingOrder/chargingOrder.wxss */
 .detailsPage{
-  padding: 30rpx;
+  padding: 0 40rpx 0 42rpx;
   box-sizing: border-box;
   color: #333;
 }
+.date{color: #999;}
+.way{color: #003049;}
+.amount.overSuccess{color: #F77F00;}
 .detailsList{
-  padding: 20rpx 0;
+  padding: 18rpx 0;
   box-sizing: border-box;
-  border-bottom: 1px solid #ddd;
-  font-size: 30rpx;
+  border-bottom: 2rpx solid #D8D8D8;
+  font-size: 28rpx;
 }
 .amount{color: #707070;display: flex;align-items: center;}
 .amount image{width: 42rpx;height: 42rpx;}
@@ -16,9 +19,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16rpx;
+  margin-bottom: 12rpx;
 }
 .noMore{
   text-align: center;
   padding-top: 30rpx;
+  padding-bottom: 30rpx;
 }

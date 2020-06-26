@@ -11,6 +11,7 @@ Page({
     latitude: '',
     longitude: '',
     noinfotext: '抱歉，附近暂无充电站',
+    noinfoimg: '/imgs/no_data.png',
     noinfostate: false 
   },
   onLoad: function () {

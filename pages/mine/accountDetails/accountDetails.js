@@ -8,9 +8,12 @@ Page({
    */
   data: {
     rechargeList:[],
-    page_num: 0,//翻页时所需id
+    page_num: 0,
     page_size: 10,
-    noMore: true
+    noMore: true,
+    noinfotext: '暂无记录',
+    noinfoimg: '/imgs/acount.png',
+    noinfostate: false 
   },
 
   /**
@@ -34,10 +37,11 @@ Page({
             rechargeList = [];
           }
           that.setData({
-            rechargeList: rechargeList.concat(res.result)
+            rechargeList: rechargeList.concat(res.result),
+            noinfostate: false
           });
         }else if(res.result.length == 0 && that.data.page_num != 0){
-          that.setData({noMore: false})
+          that.setData({noMore: false,noinfostate: true})
         }
       }
     });
@@ -55,7 +59,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.getRechargeList();
     this.data.page_num ++;
     this.getRechargeList();
   },

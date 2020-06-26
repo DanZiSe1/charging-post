@@ -12,6 +12,10 @@ Component({
     noInfoText: {
       type: String,
       value: '',
+    },
+    noInfoImg: {
+      type: String,
+      value: '',
     }
   },
   /**

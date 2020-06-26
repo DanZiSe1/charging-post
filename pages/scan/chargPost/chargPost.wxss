@@ -4,48 +4,85 @@
   box-sizing: border-box;
   color: #333;
 }
-.box{border-bottom: 1px solid #ddd;padding-bottom: 12rpx;margin-bottom: 12rpx;}
+.box{border-bottom: 1px solid #D8D8D8;padding-bottom: 44rpx;margin-bottom: 38rpx;}
 .chargeName{
-  font-size: 30rpx;
+  font-size: 36rpx;
   font-weight: bold;
-  padding-bottom: 10rpx;
-  padding-top: 20rpx;
+  padding-bottom: 24rpx;
+  padding-top: 28rpx;
+  color: #003049;
+}
+.boxInfo{
+  border-bottom: 1px solid #D8D8D8;
+  padding-bottom: 28rpx;
+  margin-bottom: 50rpx;
 }
 .name{ 
-  font-size: 30rpx;
+  font-size: 32rpx;
   font-weight: bold;
-  padding-top: 20rpx;
+  color: #003049;
+  padding-bottom: 18rpx;
 }
 .address{
   font-size: 26rpx;
-  padding-bottom: 10rpx;
+  color: #999;
+  padding-bottom: 16rpx;
 }
 .number{
-  font-size: 26rpx;
-  padding-bottom: 10rpx;
+  padding-bottom: 24rpx;  
+}
+.accountBalance,.number{
+  color: #003049;
+  font-size: 32rpx;
+}
+.params{
+  display: flex;
+  color: #999;
+  font-size: 28rpx; 
+}
+.paramsType{
+  padding-left: 28rpx;
+  padding-right: 28rpx;
+}
+.params text{
+  color: #F77F00;
 }
 .listTop{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 10rpx;
+  padding-bottom: 16rpx;
 }
-.amount{color: #707070;display: flex;align-items: center;font-size: 24rpx;}
-.amount image{width: 42rpx;height: 42rpx;}
+.amount{color: #FCBF49;display: flex;align-items: center;font-size: 24rpx;}
+.type{
+  color: #003049;
+  font-size: 28rpx;
+}
+.degree{
+  color: #F77F00;
+  font-size: 42rpx;
+}
 .goRecharge{
-  border: 1px solid #ddd;
   font-size: 24rpx;
   text-align: center;
-  width: 110rpx;
-  height: 48rpx;
-  line-height: 48rpx;
-  border-radius: 4rpx;
+  width: 120rpx;
+  height: 56rpx;
+  line-height: 60rpx;
+  border-radius:16rpx;
+  color: #D62828;
+  border:2rpx solid #D62828;
 }
 .goRecharge .listTop{padding-top: 0;}
 
 .recharge{
-  width: 100%!important;
-  margin-top: 150rpx;
-  font-weight: normal;
+  width:100%;
+  height: 96rpx;
+  text-align: center;
+  line-height: 96rpx;
+  background: #F77F00;
+  color: #fff;
+  font-size: 36rpx;
+  border-radius:16rpx;
+  margin-top: 158rpx;
 }
 .noRecharge{background-color: #dedede!important;}
