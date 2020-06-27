@@ -17,6 +17,7 @@ var getOpenId = host + '/xcx/bind2';//获取openid
 var getPhoneNum = host + '/xcx/decrypt/mobile';//获取openid
 var getUserInfo = host + '/xcx/user/info';//获取用户信息
 var getChargeInfo = host + '/xcx/orders/charge';//获取充电信息
+var getChargeDetail = host + '/xcx/orders/status';//订单充电明细
 
 module.exports={
   getOrdersList,
@@ -34,5 +35,6 @@ module.exports={
   getOpenId,
   getPhoneNum,
   getUserInfo,
-  getChargeInfo
+  getChargeInfo,
+  getChargeDetail
 }

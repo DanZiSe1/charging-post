@@ -43,7 +43,7 @@ Page({
         }else if (res.result.status == 2) {
           wx.showLoading({
             title: '订单结算中',
-            mask: true,
+            // mask: true,
             success:function(){
               setTimeout(function(){
                 that.loadDetilesInfo();
@@ -66,11 +66,11 @@ Page({
     });
   },
   // 费用明细
-  // expenseDetails:function(){
-  //   wx.navigateTo({
-  //     url: '/pages/priceinfo/priceinfo',
-  //   })
-  // },
+  expenseDetails:function(){
+    wx.navigateTo({
+      url: '/pages/feeDetails/feeDetails?startChargeSeq=' + this.data.startChargeSeq,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

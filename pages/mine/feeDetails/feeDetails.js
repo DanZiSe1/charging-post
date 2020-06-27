@@ -1,10 +1,14 @@
-// pages/mine/feeDetails/feeDetails.js
+const api = require('../../../utils/api.js');
+const https = require('../../../utils/request.js');
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    startChargeSeq:'',//订单唯一编号
     feeList:[
       {
         timeInterval: '15:00-18:00',
@@ -23,7 +27,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options);
+    let that = this;
+    https.request('true',api.getChargeDetail +'/' + options.startChargeSeq).then(function(res){
+      console.log(res);
+      // if(res.code == 0){
+      //   app.globalData.accountBalance = res.result.balance
+      //   that.setData({
+      //     accountBalance: res.result.balance
+      //   });
+      // }
+    });
   },
   priceDetails:function(){
     wx.navigateTo({
