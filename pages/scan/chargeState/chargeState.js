@@ -11,6 +11,17 @@ Page({
     startChargeSeq: '',//订单号
     newTime: '00:00:00',
     chargeInfoInterval: '',
+    /* chargeInfo: {
+      station_name: '新世界充电站',
+      connector_id: '140920000000',
+      ConnectorStatus: '正在充电中',
+      TotalPower: '5',
+      CurrentA: '2',
+      VoltageA: '2',
+      Soc: '1',
+      timeRange: '14:25:06',
+      TotalMoney: '1.7'
+    } */
   },
 
   /**

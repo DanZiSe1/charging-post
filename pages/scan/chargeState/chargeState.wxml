@@ -2,12 +2,12 @@
 <view class="rechargePage">
   <view class="info">
     <view class="name">{{chargeInfo.station_name}}</view>
-    <view class="name">{{chargeInfo.ConnectorStatus}}</view>
-    <view class="amount">{{chargeInfo.TotalPower}}</view>
-    <view class="degree">充电量（度）</view>
-    <image class="butterfly" src="/imgs/butterfly.png"></image>
+    <view class="nameCode">电桩编号：{{chargeInfo.connector_id}}</view>
+    <image class="butterfly" src="/imgs/battle.png"></image>
+    <view class="degree">{{chargeInfo.TotalPower}}</view>
+    <view class="amount">{{chargeInfo.ConnectorStatus}}</view>
   </view>
-  <view class="butterflyInfo">
+  <!-- <view class="butterflyInfo">
     <view class="item">
       <view>{{chargeInfo.CurrentA}}</view>
       <view>电流（安）</view>
@@ -20,14 +20,18 @@
       <view>{{chargeInfo.Soc}}</view>
       <view>SOC</view>
     </view>
+  </view> -->
+  <view class="chargeInfo">
+    <view>已充电量：</view>
+    <view class="chargeInfo_right">{{chargeInfo.Soc}}度</view>
   </view>
   <view class="chargeInfo">
     <view>充电时长：</view>
-    <view>{{chargeInfo.timeRange}}</view>
+    <view class="chargeInfo_right">{{chargeInfo.timeRange}}</view>
   </view>
   <view class="chargeInfo">
-    <view>充电金额（元）：</view>
-    <view>{{chargeInfo.TotalMoney}}</view>
+    <view>充电金额：</view>
+    <view class="chargeInfo_right">{{chargeInfo.TotalMoney}}元</view>
   </view>
   <button class="recharge" type="primary" hover-class="none" bindtap="overCharging">结束充电</button>
 </view>

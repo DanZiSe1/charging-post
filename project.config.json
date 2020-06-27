@@ -78,12 +78,21 @@
 					"id": -1,
 					"name": "扫码充电",
 					"pathName": "pages/scan/scan",
+					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "结束充电",
 					"pathName": "pages/scan/chargeState/chargeState",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "订单详情",
+					"pathName": "pages/mine/orderDetils/orderDetils",
+					"query": "",
 					"scene": null
 				}
 			]
