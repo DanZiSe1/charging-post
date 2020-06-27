@@ -24,7 +24,7 @@
   padding-bottom: 18rpx;
 }
 .address{
-  font-size: 26rpx;
+  font-size: 28rpx;
   color: #999;
   padding-bottom: 16rpx;
 }
@@ -52,11 +52,11 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 16rpx;
+  font-size: 28rpx;
 }
-.amount{color: #FCBF49;display: flex;align-items: center;font-size: 24rpx;}
+.amount{color: #FCBF49;display: flex;align-items: center;}
 .type{
   color: #003049;
-  font-size: 28rpx;
 }
 .degree{
   color: #F77F00;

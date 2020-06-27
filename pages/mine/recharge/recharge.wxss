@@ -6,8 +6,9 @@
 }
 .title{
   padding-bottom: 15rpx;
+  color: #003049;
+  font-weight: bold;
 }
-.title,.title2{font-size: 32rpx;color: #003049;}
 .amount{
   font-size: 32rpx;
   margin-top: 32rpx;
@@ -16,7 +17,7 @@
   display: inline-block;
   color: #003049;
   width: 200rpx;
-  height: 96rpx;
+  height: 98rpx;
   text-align: center;
   line-height: 100rpx;
 }
@@ -27,7 +28,7 @@
 }
 .inpAmount input{
   font-size: 28rpx;
-  height: 96rpx;
+  height: 98rpx;
   width: 200rpx;
   border: 1px solid #999;
   outline: none;
@@ -41,8 +42,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  line-height: 100rpx;
-  height: 100rpx;
+  padding-top: 84rpx;
 }
 .paymentMethod image{
   width: 40rpx;
@@ -50,7 +50,7 @@
   margin-right: 18rpx;
   vertical-align: middle;
 }
-.wechat{display: flex;align-items: center;}
+.wechat{display: flex;align-items: center;color: #003049;font-size: 28rpx;}
 radio .wx-radio-input{
   width: 30rpx;
   height: 30rpx;
@@ -64,16 +64,13 @@ radio .wx-radio-input.wx-radio-input-checked {
 radio .wx-radio-input.wx-radio-input-checked::before{
   width: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
   height: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
-  line-height: 40rpx;
+  line-height: 42rpx;
   text-align: center;
   font-size:22rpx; /* 对勾大小 30rpx */
   color:#fff; /* 对勾颜色 白色 */
   background: transparent;
   transform:translate(-50%, -50%) scale(1);
   -webkit-transform:translate(-50%, -50%) scale(1);
-}
-.title2{
-  padding-top: 40rpx;
 }
 .recharge{
   width: 100%!important;

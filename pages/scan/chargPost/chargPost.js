@@ -13,7 +13,14 @@ Page({
     chargePricesInfos: {},
     allChargePricesInfos: []
   },
-
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    setTimeout(() => {
+      this.getUserAccount()
+    }, 500)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -152,6 +159,19 @@ Page({
       url: '/pages/priceinfo/priceinfo?pricetype=2&allChargePricesInfos='+ JSON.stringify(this.data.allChargePricesInfos)
     })
   },
+  // 获取用户账户
+  getUserAccount(){
+    let that = this;
+    https.request('true', api.getUserInfo).then(function (res) {
+      // console.log(res);
+      if (res.code == 0) {
+        app.globalData.accountBalance = res.result.balance
+        that.setData({
+          accountBalance: res.result.balance
+        });
+      }
+    });
+  },
   // 绑定车牌号
   bindCarNum:function (){
     var that = this;
@@ -190,24 +210,6 @@ Page({
   onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    let that = this;
-    https.request('true', api.getUserInfo).then(function (res) {
-      // console.log(res);
-      if (res.code == 0) {
-        app.globalData.accountBalance = res.result.balance
-        that.setData({
-          accountBalance: res.result.balance
-        });
-      }
-    });
-
-  },
-
   /**
    * 生命周期函数--监听页面隐藏
    */

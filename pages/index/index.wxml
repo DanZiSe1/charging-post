@@ -5,7 +5,7 @@
       <block wx:if="{{chargingList.length != 0}}">
         <navigator
           class="chargingItem"
-          url="/pages/indexdetail/indexdetail?chargeid={{item.id}}&operatorid={{item.OperatorID}}&quickn={{item.quick_n}}&idlen={{item.idle_n}}&slown={{item.slow_n}}"
+          url="/pages/indexdetail/indexdetail?chargeid={{item.id}}&operatorid={{item.OperatorID}}&quickn={{item.quick_n}}&quick_idle_n={{item.quick_idle_n}}&slown={{item.slow_n}}&slow_idle_n={{item.slow_idle_n}}"
           wx:for="{{chargingList}}" wx:key="item">
           <view class="item_top m-b-14 flex-end-between">
             <view class="item_top_left">
@@ -21,13 +21,13 @@
           </view>
           <view class="item_bottom flex-end">
             <p>
-              约<span>{{ item.chargedegee }}</span>元/度
+              <span>{{ item.chargedegee }}</span>元/度
             </p>
             <view class="item_bottom_desc item_bottomdesc_fast"> 
-              快充<span>{{ item.quick_n }}</span>/{{ item.idle_n }}
+              快充<span>{{ item.quick_n }}</span>/{{ item.quick_idle_n }}
             </view>
             <view class="item_bottom_desc"> 
-              慢充<span>{{ item.slow_n }}</span>/{{ item.idle_n }}
+              慢充<span>{{ item.slow_n }}</span>/{{ item.slow_idle_n }}
             </view>
           </view>
         </navigator>

@@ -1,5 +1,5 @@
 <view class="rechargePage">
-	<view class="title">充值金额</view>
+	<view class="title">请选择充值金额</view>
 	<view class="list">
 		<block wx:for="{{rechargeAmount}}" wx:key="rechargeAmount">
 			<view class="amount {{active == index ? 'actvieBorder': ''}}" bindtap="amountTap" data-amount="{{item.amount}}" data-index="{{index}}">{{item.amount}} 元</view>
@@ -8,7 +8,7 @@
 	<view class="inpAmount">
 		<input placeholder="其他金额" type="digit" name="balance" value="{{inputValue}}" bindinput='getInputValue'/>
 	</view>
-	<view class="title2">支付方式</view>
+	<!-- <view class="title2">支付方式</view> -->
 	<view class="paymentMethod">
 		<view class="wechat">
 			<image src="/imgs/wechat.png"></image>

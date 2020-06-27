@@ -14,6 +14,7 @@
 .avatar{
   margin-right: 20rpx;
 }
+.phoneNum{color: #003049;font-size: 28rpx;}
 .header button {
   width: 180rpx!important;
   margin-left: 20rpx!important;

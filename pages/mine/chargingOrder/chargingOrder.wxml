@@ -1,15 +1,16 @@
-<!--pages/mine/chargingOrder/chargingOrder.wxml-->
+
 <view class="detailsPage">
   <view wx:if="{{detailsList.length != 0}}">
-    <view class="detailsList" wx:for="{{detailsList}}" wx:key="detailsList" bindtap="detailsTap" data-id="{{item.start_charge_seq}}">
+    <view class="detailsList" wx:if="{{item.status != 3}}" wx:for="{{detailsList}}" wx:key="detailsList" bindtap="detailsTap" data-id="{{item.start_charge_seq}}" data-status='{{item.status}}'>
+      <!-- 1- 充电中,2- 结算中,3- 订单失败 （不显示）,4- 已完成,5- 充电中 -->
       <view class="listTop">
         <view class="date">{{item.created_at}}</view>
-        <view class="amount" wx:if="{{item.status == 1}}">订单开始 > </view>
-        <view class="amount" wx:if="{{item.status == 2}}">用户结束订单 > </view>
-        <view class="amount" wx:if="{{item.status == 3}}">订单启动失败 > </view>
-        <view class="amount overSuccess" wx:if="{{item.status == 4}}">订单已结算 > </view>
+        <view class="amount overSuccess" wx:if="{{item.status == 1}}">充电中 > </view>
+        <view class="amount overSuccess" wx:if="{{item.status == 2}}">结算中 > </view>
+        <view class="amount" wx:if="{{item.status == 4}}">已完成 > </view>
+        <view class="amount overSuccess" wx:if="{{item.status == 5}}">充电中 > </view>
       </view>
-      <view class="way">{{item.station_name}}</view>
+      <view class="way" >{{item.station_name}}</view>
     </view>
     <view class="noMore" hidden="{{noMore}}">~ 已加载全部 ~</view>
   </view>

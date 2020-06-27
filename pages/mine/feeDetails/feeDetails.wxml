@@ -15,24 +15,24 @@
     </view>
   </view>
   <view class="feeListBox">
-    <view class="feeList" wx:for="{{feeList}}" wx:key="feeList">
-        <view>{{item.timeInterval}}</view>
-        <view>{{item.duration}}</view>
-        <view>{{item.electriFee}}</view>
-        <view>{{item.serveFee}}</view>
+    <view class="feeList" wx:for="{{feeList.list}}" wx:key="feeList">
+        <view>{{item.time_range}}</view>
+        <view>{{item.time_duration}}</view>
+        <view>{{item.elec_money}}</view>
+        <view>{{item.sevice_money}}</view>
     </view>
   </view>
   <view class="itemTitle">
     <view>总电费</view>  
-    <text>10.98元</text>
+    <text>{{feeList.elec_money}}元</text>
   </view>
   <view class="itemTitle itemCenter">
     <view>总服务费</view>  
-    <text>10.98元</text>
+    <text>{{feeList.sevice_money}}元</text>
   </view>
   <view class="itemTitle">
     <view>充电总费用</view>  
-    <text class="allAcount">20.92元</text>
+    <text class="allAcount">{{feeList.total_money}}元</text>
   </view>
-  <view class="seeDetail" bindtap="priceDetails">查看价格详情 ></view>
+  <view class="seeDetail" bindtap="priceDetails">查看价格详情></view>
 </view>

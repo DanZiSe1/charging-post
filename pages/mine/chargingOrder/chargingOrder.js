@@ -9,7 +9,7 @@ Page({
   data: {
     detailsList:[],
     page_num: 0,
-    page_size: 10,
+    page_size: 15,
     noMore: true,
     noinfostate: false,
     noinfotext: '暂无充电记录',
@@ -32,11 +32,13 @@ Page({
     https.request('true',api.getOrdersList,data).then(function(res){
       if(res.code == 0){
         var detailsList = that.data.detailsList;
+        var status = [];
         if(res.result.length != 0){
           if (that.data.page_num == 0) {
             detailsList = [];
-          }
+          };
           that.setData({
+            status: status,
             detailsList:  detailsList.concat(res.result),
             noinfostate: false
           });
@@ -52,11 +54,18 @@ Page({
 
   // 跳转列表详情
   detailsTap:function(e){
-    console.log(e);
     let startChargeSeq = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '/pages/mine/orderDetils/orderDetils?startChargeSeq=' + startChargeSeq
-    });
+    let status = e.currentTarget.dataset.status;
+    if(status == 1 || status == 5){  // 充电中
+      wx.navigateTo({
+        url: '/pages/scan/chargeState/chargeState?startChargeSeq=' + startChargeSeq + '&startChargeSeqState=' + status
+      });
+    } else{ // 结算中 || 已完成
+      wx.navigateTo({
+        url: '/pages/mine/orderDetils/orderDetils?startChargeSeq=' + startChargeSeq + '&startChargeSeqState=' + status
+      });
+    }
+    
   },
 
   /**

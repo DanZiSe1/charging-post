@@ -9,7 +9,7 @@ Page({
   data: {
     rechargeList:[],
     page_num: 0,
-    page_size: 10,
+    page_size: 15,
     noMore: true,
     noinfotext: '暂无记录',
     noinfoimg: '/imgs/acount.png',

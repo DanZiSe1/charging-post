@@ -34,7 +34,7 @@ Page({
     pricetype: ''
   },
   onLoad: function (options) {
-    // console.log(options, '价格信息options.......')
+    console.log(options, '价格信息options.......')
     this.setData({
       pricetype: options.pricetype
     })
@@ -58,7 +58,7 @@ Page({
       this.setData({
         pricesList: this.pricesList
       })
-    } else { // 从启动充电type=2
+    } else if (options.pricetype == 2) { // 从启动充电type=2
       console.log(JSON.parse(options.allChargePricesInfos), '启动充电options.......')
       // this.setData({
       //   connectorId: options.connectorid,
@@ -68,10 +68,16 @@ Page({
       this.setData({
         pricesList: JSON.parse(options.allChargePricesInfos)
       })
+    } else if (options.pricetype == 3) { // 从费用明细type=3
+      this.setData({
+        connectorId: options.connectorid,
+        operatorId: options.operatorid
+      })
+      this.getPriceInfos()
     }
     this.selectComponent("#noInfo")
   },
-  /* 获取设备充电策略
+  // 获取设备充电策略
   getPriceInfos:function () {
     var that = this
     https.request('false', api.getPricePolicy,{
@@ -93,5 +99,5 @@ Page({
         })
       }
     });
-  } */
+  }
 })

@@ -32,6 +32,21 @@
           </view>
         </view>
       </block>
+      <block wx:elif="{{pricesList.length != 0 && pricetype == 3}}">
+        <view class="priceItem" wx:for="{{pricesList}}" wx:key="item">
+          <view class="priceItem_top">
+            时段：{{item.StartTime}}
+          </view>
+          <view class="priceItem_bottom">
+            <view class="priceItem_bottom_right">
+              电费：{{ item.ElecPrice }}元/度 | 服务费：{{ item.SevicePrice }}元/度 
+            </view>
+            <p>
+              <span>{{item.ElecPrice + item.SevicePrice}}</span>元/度
+            </p>
+          </view>
+        </view>
+      </block>
       <block wx:else>
         <noInfo id="noInfo"></noInfo>
       </block>

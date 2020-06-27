@@ -9,8 +9,9 @@ Page({
     chargStationid: '',
     chargOperatorid: '',
     quick_n: '',
-    idle_n: '',
+    quick_idle_n: '',
     slow_n: '',
+    slow_idle_n:'',
     chargStationData: {},
     /* chargStationData: {
       id: '1',
@@ -41,8 +42,9 @@ Page({
       chargStationid: parseInt(options.chargeid),
       chargOperatorid: options.operatorid,
       quick_n: options.quickn,
-      idle_n: options.idlen,
-      slow_n: options.slown
+      quick_idle_n: options.quick_idle_n,
+      slow_n: options.slown,
+      slow_idle_n: options.slow_idle_n
     })
     this.getStationDetail()
   },
@@ -78,7 +80,6 @@ Page({
   // 查看全部1
   getLookAll: function(){
     wx.navigateTo({
-      // url: '/pages/priceinfo/priceinfo?connectorid=881021888881&operatorid=' + this.data.chargOperatorid,
       url: '/pages/priceinfo/priceinfo?pricetype=1&lookmoredata=' + JSON.stringify(this.resultFee),
     })
   },

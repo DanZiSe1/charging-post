@@ -1,4 +1,4 @@
-// pages/scan/chargeState/chargeState.js
+
 var https = require('../../../utils/request.js');
 const api = require('../../../utils/api.js');
 const util = require('../../../utils/util.js');
@@ -140,14 +140,13 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    // console.log("监听页面卸载...........")
     clearInterval(this.data.chargeInfoInterval);
   },
 

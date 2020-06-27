@@ -23,19 +23,20 @@ function request(requestState,url, data = {}, method = "GET") {
       header: requestState ? AuthorHeaderValue : headerValue,
       success: function (res) {
         // console.log(res, "success......");
-        wx.hideLoading();
         if (res.statusCode == 200) {
           resolve(res.data)
         } else {
-          wx.showToast({
-            icon:'none',
-            title: res.errMsg,
-          })
+          // wx.showToast({
+          //   icon:'none',
+          //   title: res.errMsg,
+          // })
           reject(res);
         }
+        wx.hideLoading();
       },
       fail: function (err) {
         reject(err);
+        wx.hideLoading();
       }
     })
   });

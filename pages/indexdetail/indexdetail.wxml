@@ -33,9 +33,9 @@
       </view>
       <view class="station_detail_quickslow m-b-24"> 
         <span class="quickslow_text">快充</span>
-        <span class="quickslow_num">{{ quick_n }}</span>/{{ idle_n }}
+        <span class="quickslow_num">{{ quick_n }}</span>/{{ quick_idle_n }}
         <span class="quickslow_text m-l-16">慢充</span>
-        <span class="quickslow_num">{{ slow_n }}</span>/{{ idle_n }}
+        <span class="quickslow_num">{{ slow_n }}</span>/{{ slow_idle_n }}
       </view>
       <view>
         地址：{{chargStationData.Address}}
@@ -51,7 +51,7 @@
       <view class="station_price_quickslow">
         <view class="flex-center-between">
           <h5>快充</h5>
-          <p bindtap="getLookAll">查看全部></p>
+          <p bindtap="getLookAll">查看详情></p>
         </view>
         <view class="quickslow_detail">
           {{ chargStationData.eleServiceFee }}
@@ -63,7 +63,7 @@
       <view class="station_price_quickslow m-t-38">
         <view class="flex-center-between">
           <h5>慢充</h5>
-          <p bindtap="getLookAll">查看全部></p>
+          <p bindtap="getLookAll">查看详情></p>
         </view>
         <view class="quickslow_detail">
           {{ chargStationData.eleServiceFee }}

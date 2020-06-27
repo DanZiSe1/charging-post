@@ -1,6 +1,5 @@
 <view class="rechargePage">
 	<view class="status">
-		<!-- <radio checked></radio> -->
     <view class="charging_result">
       <image src="/imgs/success_icon.png"></image>
     </view>
@@ -10,8 +9,7 @@
 		<view class="expense">
 			<view class="expenseInfo">费用信息</view>
 			<view class="expenseDetails" bindtap="expenseDetails">
-				<text>费用明细</text>
-				<image src="/imgs/right.png"></image>
+				<text>费用详情></text>
 			</view>
 		</view>
 		<view class="project">
@@ -59,7 +57,7 @@
     </view>
     <view class="project">
       <view class="project_label">电桩类型</view>
-      <view class="project_value">快充</view>
+      <view class="project_value">{{ordersDetails.connector_type_name}}</view>
     </view>
 		<view class="project">
       <view class="project_label">地址</view>

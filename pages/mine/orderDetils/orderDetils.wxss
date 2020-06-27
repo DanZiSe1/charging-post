@@ -1,4 +1,3 @@
-/* pages/mine/recharge/recharge.wxss */
 .text-yellow{
   color:#FCBF49;
 }
@@ -9,22 +8,6 @@
   font-size: 28rpx;
 }
 
-radio .wx-radio-input{
-  width: 60rpx;
-  height: 60rpx;
-}
-/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
-radio .wx-radio-input.wx-radio-input-checked::before{
-  width: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
-  height: 40rpx; /* 选中后对勾大小，不要超过背景的尺寸 */
-  line-height: 40rpx;
-  text-align: center;
-  font-size:40rpx; /* 对勾大小 30rpx */
-  color:#fff; /* 对勾颜色 白色 */
-  background: transparent;
-  transform:translate(-50%, -50%) scale(1);
-  -webkit-transform:translate(-50%, -50%) scale(1);
-}
 .status{
   display: flex;
   flex-direction: column;
@@ -62,11 +45,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   align-items: center;
   color:#FCBF49;
 }
-.expenseDetails image{
-  width: 20rpx;
-  height: 20rpx;
-  margin-left:10rpx;
-}
+
 .project{
   display: flex;
   align-items: center;

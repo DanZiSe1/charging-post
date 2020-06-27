@@ -17,6 +17,9 @@ Page({
       {amount: 500 },
     ],
     startChargeSeq:'',//订单编号
+    setTimeStr:'',
+    connectorId: '',
+    operatorId: ''
     /* ordersDetails: {
       status: '4',
       total_elec_money: '10.98',
@@ -38,8 +41,7 @@ Page({
     console.log(options, '订单详情页面的options............');
     this.setData({
       startChargeSeq: options.startChargeSeq
-    })
-    this.loadDetilesInfo();
+    });
   },
   // 详细信息
   loadDetilesInfo:function(){
@@ -47,6 +49,8 @@ Page({
     https.request('true', api.getOrdersDetails + '/' + that.data.startChargeSeq).then(function (res) {
       // status: 1-订单开始 2-用户结束订单 3-订单启动失败 4-已接收订单信息，渲染页面
       if (res.code == 0) {
+        that.data.connectorId = res.result.connector_id
+        that.data.operatorId = res.result.operator_id
         if (res.result.status == 1) {
           wx.showToast({
             title: '订单开始',
@@ -56,10 +60,11 @@ Page({
         }else if (res.result.status == 2) {
           wx.showLoading({
             title: '订单结算中',
-            // mask: true,
+            mask: true,
             success:function(){
-              setTimeout(function(){
+              that.data.setTimeStr = setTimeout(function(){
                 that.loadDetilesInfo();
+                console.log('settimeout');
               },30000)
             },
           });
@@ -70,9 +75,12 @@ Page({
           });
           wx.hideLoading();
         } else if (res.result.status == 4) {
+          let timestamp = new Date(res.result.end_time).getTime() - new Date(res.result.start_time).getTime();
           var timeRange = util.formatDuring(timestamp);
           console.log(timeRange, '充电时长结果..........');
           res.result['charge_time'] = timeRange
+          that.data.connectorId = res.result.connector_id
+          that.data.operatorId = res.result.operator_id
           that.setData({
             ordersDetails: res.result
           });
@@ -84,7 +92,7 @@ Page({
   // 费用明细
   expenseDetails:function(){
     wx.navigateTo({
-      url: '/pages/feeDetails/feeDetails?startChargeSeq=' + this.data.startChargeSeq,
+      url: '/pages/mine/feeDetails/feeDetails?startChargeSeq=' + this.data.startChargeSeq + '&connectorId=' + this.data.connectorId + '&operatorId=' + this.data.operatorId,
     })
   },
   /**
@@ -98,21 +106,25 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.loadDetilesInfo();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    wx.hideLoading();
+    clearTimeout(this.data.setTimeStr);
+    console.log('隐藏----');
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    wx.hideLoading();
+    clearTimeout(this.data.setTimeStr);
+    console.log('卸载----');
   },
 
   /**
