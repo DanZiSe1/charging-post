@@ -1,5 +1,6 @@
 const api = require('../../../utils/api.js');
 const https = require('../../../utils/request');
+const util = require('../../../utils/util.js');
 
 Page({
 
@@ -16,6 +17,18 @@ Page({
       {amount: 500 },
     ],
     startChargeSeq:'',//订单编号
+    /* ordersDetails: {
+      status: '4',
+      total_elec_money: '10.98',
+      total_sevice_money: '9.98',
+      total_money: '20.92',
+      charge_time: '1小时30分',
+      total_power: '45',
+      stop_reason: '无原因',
+      station_name: '新世界',
+      address: '新建村',
+      connector_id: '1409000000'
+    } */
   },
 
   /**
@@ -57,6 +70,9 @@ Page({
           });
           wx.hideLoading();
         } else if (res.result.status == 4) {
+          var timeRange = util.formatDuring(timestamp);
+          console.log(timeRange, '充电时长结果..........');
+          res.result['charge_time'] = timeRange
           that.setData({
             ordersDetails: res.result
           });

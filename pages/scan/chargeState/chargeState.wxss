@@ -1,21 +1,35 @@
 .rechargePage{
-  padding:0 30rpx 0;
+  padding:0 42rpx 0;
   box-sizing: border-box;
-  color: #333;
+  color: #999;
 }
 .info{
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom:74rpx;
 }
-.name{font-size: 30rpx;font-weight: bold;padding-bottom: 20rpx;}
-.amount{font-size: 60rpx;padding:12rpx 0;}
-.degree{font-size: 24rpx;}
+.name{
+  font-size: 36rpx;
+  padding-bottom: 22rpx;
+  color:#003049;
+}
+.nameCode{
+  font-size: 32rpx;
+  color:#003049;
+  margin-bottom:74rpx;
+}
+.amount{
+  font-size: 28rpx;
+}
+.degree{
+  color:#003049;
+  font-size: 72rpx;
+}
 .butterfly{
-  width: 48rpx;
-  height: 48rpx;
-  margin-bottom: 40rpx;
-  margin-top: 20rpx;
+  width: 120rpx;
+  height: 76rpx;
+  margin-bottom: 16rpx;
 }
 .butterflyInfo{
   display: flex;
@@ -34,12 +48,19 @@
 .chargeInfo{
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #ddd;
-  height: 100rpx;
-  line-height: 100rpx;
+  border-bottom: 2rpx solid #D8D8D8;
+  padding:18rpx 0;
+  box-sizing: border-box;
+  font-size: 32rpx;
+}
+.chargeInfo .chargeInfo_right{
+  color:#F77F00;
 }
 .recharge{
   width: 100%!important;
-  margin-top: 100rpx;
+  margin-top: 136rpx;
   font-weight: normal;
+  background:#D62828!important;
+  border-radius: 16rpx;
+  font-size: 36rpx;
 }
