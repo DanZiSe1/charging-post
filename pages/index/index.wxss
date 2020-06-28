@@ -26,6 +26,12 @@
 .m-b-14{
   margin-bottom: 14rpx;
 }
+.color-style{
+  color:#003049!important;
+}
+p{
+  font-size: 28rpx;
+}
 .chargingPage{
   width:100%;
   font-family:PingFangSC-Medium,PingFang SC;

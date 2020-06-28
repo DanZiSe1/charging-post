@@ -28,7 +28,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options, '结束充电页面的options.........');
+    // console.log(options, '结束充电页面的options.........');
     if (options.start_charge_seq) {
       this.setData({
         startChargeSeq: options.start_charge_seq
@@ -36,12 +36,6 @@ Page({
       this.loadChargeInfo();
       this.refreshChargeInfo();
     }
-    
-    /* let currenttime = new Date().getTime();
-    let starttime = '1592442000000';
-    let timestamp = currenttime-starttime;
-    this.data.newTime = util.formatDuring(timestamp);
-    console.log(this.data.newTime, '充电时长结果..........'); */
   },
   // 充电详情信息
   loadChargeInfo:function(){
@@ -72,10 +66,13 @@ Page({
         };
         res.result['ConnectorStatus'] = newchargestatus
         let timestamp = new Date(res.result.EndTime).getTime() - new Date(res.result.StartTime).getTime();
-        var timeRange = util.formatDuring(timestamp);
-        console.log(timeRange, '充电时长结果..........');
-        res.result['timeRange'] = timeRange
-        console.log(res.result, '.........................344434')
+        // console.log(timestamp, 'timestamp充电中页面.........')
+        if (timestamp) {
+          var timeRange = util.formatDuring(timestamp, 1);
+          // console.log(timeRange, '充电时长结果..........');
+          res.result['timeRange'] = timeRange
+          // console.log(res.result, '.........................344434')
+        }
         that.setData({
           chargeInfo: res.result,
           // newTime: newTime
@@ -87,7 +84,7 @@ Page({
   refreshChargeInfo:function(){
     let that = this;
     that.data.chargeInfoInterval = setInterval(function () {
-      console.log("30秒刷新一次结束充电页面........");
+      // console.log("30秒刷新一次结束充电页面........");
       that.loadChargeInfo();
     }, 30000);
   },

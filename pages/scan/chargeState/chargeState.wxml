@@ -4,7 +4,7 @@
     <view class="name">{{chargeInfo.station_name}}</view>
     <view class="nameCode">电桩编号：{{chargeInfo.connector_id}}</view>
     <image class="butterfly" src="/imgs/battle.png"></image>
-    <view class="degree">{{chargeInfo.TotalPower}}</view>
+    <view class="degree">{{chargeInfo.Soc}}%</view>
     <view class="amount">{{chargeInfo.ConnectorStatus}}</view>
   </view>
   <!-- <view class="butterflyInfo">
@@ -23,7 +23,7 @@
   </view> -->
   <view class="chargeInfo">
     <view>已充电量：</view>
-    <view class="chargeInfo_right">{{chargeInfo.Soc}}度</view>
+    <view class="chargeInfo_right">{{chargeInfo.TotalPower}}度</view>
   </view>
   <view class="chargeInfo">
     <view>充电时长：</view>

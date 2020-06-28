@@ -15,26 +15,41 @@ const formatNumber = n => {
 }
 
 // 封装时分秒
-function formatDuring(mss) {
+function formatDuring(mss,type) {
   var days = parseInt(mss / (1000 * 60 * 60 * 24));
   var hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = ((mss % (1000 * 60)) / 1000).toFixed();
+  var seconds = (mss % (1000 * 60)) / 1000;
   if (hours >= 1 && hours <= 9) {
-		hours = "0" + hours;
+    hours = "0" + hours;
+  } else if (hours == 0) {
+    hours = "00";
   }
   if (minutes >= 1 && minutes <= 9) {
-		minutes = "0" + minutes;
+    minutes = "0" + minutes;
+  } else if (minutes == 0) {
+    minutes = "00"
   }
   if (seconds >= 1 && seconds <= 9) {
-		seconds = "0" + seconds;
+    seconds = "0" + seconds;
+  } else if (seconds == 0) {
+    seconds = "00"
   }
   // console.log(hours + ":" + minutes + ":" + seconds);
-  if (days <= 0){
-    return hours + ":" + minutes + ":" + seconds;
-  } else {
-    return days + "天" + hours + ":" + minutes + ":" + seconds;
-  } 
+  // 充电中(结束充电00:15:12)
+  if (type == 1) {
+    if (days <= 0) {
+      return hours + ":" + minutes + ":" + seconds;
+    } else {
+      return days + ":" + hours + ":" + minutes + ":" + seconds;
+    }
+  } else if (type == 2) { // 订单详情(1小时30分)
+    if (days <= 0) {
+      return hours + "小时" + minutes + "分" + seconds + "秒";
+    } else {
+      return days + "天" + hours + "小时" + minutes + "分" + seconds + "秒";
+    }
+  }
 }
 
 // 服务费，电费封装
@@ -48,12 +63,22 @@ function electricServeMoney(electricityFee, serviceFee) {
       var electricObj = {};
       var elesplit = e.split(" 电费");
       electricObj['time'] = elesplit[0];
-      electricObj['elemoney'] = "电费" + elesplit[1];
+      if (elesplit[1]) {
+        var electricValue = elesplit[1].replace(/:/g, "");
+        var finalElectricValue = parseFloat(electricValue).toFixed(2);
+        electricObj['elemoney'] = "电费：" + finalElectricValue;
+      }
+      
       newServiceFee.forEach(function (element, sindex) {
         var servicesplit = element.split(" 服务费");
-        if (elesplit[0] == servicesplit[0]) {
-          electricObj['servemoney'] = "服务费" + servicesplit[1];
+        if (servicesplit[1]) {
+          var servicesValue = servicesplit[1].replace(/:/g, "");
+          var finalServicesValue = parseFloat(servicesValue).toFixed(2);
+          if (elesplit[0] == servicesplit[0]) {
+            electricObj['servemoney'] = "服务费：" + finalServicesValue;
+          }
         }
+        
       });
       resultDataArr.push(electricObj);
     });
@@ -63,12 +88,25 @@ function electricServeMoney(electricityFee, serviceFee) {
       var electricObj = {};
       var elesplit = e.split(" 服务费");
       electricObj['time'] = elesplit[0];
-      electricObj['servemoney'] = "服务费" + elesplit[1];
+      // electricObj['servemoney'] = "服务费" + elesplit[1];
+      if (elesplit[1]) {
+        var electricValue = elesplit[1].replace(/:/g, "");
+        var finalElectricValue = parseFloat(electricValue).toFixed(2);
+        electricObj['servemoney'] = "服务费：" + finalElectricValue;
+      }
+
       newElectricityFee.forEach(function (element, sindex) {
         var servicesplit = element.split(" 电费");
-        if (elesplit[0] == servicesplit[0]) {
-          electricObj['elemoney'] = "电费" + servicesplit[1];
+        if (servicesplit[1]) {
+          var servicesValue = servicesplit[1].replace(/:/g, "");
+          var finalServicesValue = parseFloat(servicesValue).toFixed(2);
+          if (elesplit[0] == servicesplit[0]) {
+            electricObj['elemoney'] = "电费：" + finalServicesValue;
+          }
         }
+        // if (elesplit[0] == servicesplit[0]) {
+        //   electricObj['elemoney'] = "电费" + servicesplit[1];
+        // }
       });
       resultDataArr.push(electricObj);
     });

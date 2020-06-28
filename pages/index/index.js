@@ -131,8 +131,8 @@ Page({
           res.result.map(charItem => {
             var resultChargings = util.electricServeMoney(charItem.ElectricityFee, charItem.ServiceFee);
             // console.log(resultChargings, 'resultCharging.........');
-            var newChargeElemoney = resultChargings[0].elemoney.split("电费:");
-            var newChargeServemoney = resultChargings[0].servemoney.split("服务费:");
+            var newChargeElemoney = resultChargings[0].elemoney.split("电费：");
+            var newChargeServemoney = resultChargings[0].servemoney.split("服务费：");
             charItem['chargedegee'] = Number(newChargeElemoney[1]) + Number(newChargeServemoney[1]);
             // console.log(charItem['chargedegee'], 'charItem[chargedegee].........');
             Object.assign(charItem);

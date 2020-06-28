@@ -57,7 +57,9 @@
     </view>
     <view class="project">
       <view class="project_label">电桩类型</view>
-      <view class="project_value">{{ordersDetails.connector_type_name}}</view>
+      <view class="project_value">
+        {{ordersDetails.connector_type_name == "" ? "暂无" : ordersDetails.connector_type_name}}
+      </view>
     </view>
 		<view class="project">
       <view class="project_label">地址</view>

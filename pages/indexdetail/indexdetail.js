@@ -53,15 +53,16 @@ Page({
     var that = this
     var stationDetailUrl = api.getStationDetail + that.data.chargStationid
     https.request('false',stationDetailUrl).then(function (res) {
-      console.log(res, '获取充电站详情结果.......')
+      // console.log(res, '获取充电站详情结果.......')
       if (res.code == 0) {
         if (res.result) {
           that.resultFee = util.electricServeMoney(res.result.ElectricityFee, res.result.ServiceFee);
+          console.log(that.resultFee, 'that.resultFee......');
           res.result['billingPeriod'] = that.resultFee[0].time;
           res.result['eleServiceFee'] = that.resultFee[0].elemoney + '元/度 | ' + that.resultFee[0].servemoney + '元/度'
 
-          var newElemoney = that.resultFee[0].elemoney.split("电费:");
-          var newServemoney = that.resultFee[0].servemoney.split("服务费:");
+          var newElemoney = that.resultFee[0].elemoney.split("电费：");
+          var newServemoney = that.resultFee[0].servemoney.split("服务费：");
           res.result['eleServiceFee'] = that.resultFee[0].elemoney + '元/度 | ' + that.resultFee[0].servemoney + '元/度'
           res.result['pricedegee'] = Number(newElemoney[1]) + Number(newServemoney[1]);
           that.setData({

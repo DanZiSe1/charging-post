@@ -19,7 +19,7 @@
 			<view class="type">{{equipParams.connector_type}}</view>
 			<view class="amount" bindtap="seeAll">查看详情 ></view>
 		</view>
-		<view class="address">电费：{{ chargePricesInfos.ElecPrice }}/度 | 服务费：{{ chargePricesInfos.SevicePrice }}/度</view>
+		<view class="address">电费：{{ chargePricesInfos.ElecPrice }}元/度 | 服务费：{{ chargePricesInfos.SevicePrice }}元/度</view>
 		<view class="address"><text class="degree">{{ chargePricesInfos.ElecPrice + chargePricesInfos.SevicePrice }}</text> 元/度</view>
 	</view>
 	<view class="listTop">

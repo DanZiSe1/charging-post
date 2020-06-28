@@ -19,7 +19,10 @@ Page({
     startChargeSeq:'',//订单编号
     setTimeStr:'',
     connectorId: '',
-    operatorId: ''
+    operatorId: '',
+    ordersDetails: {
+      charge_time: '00:00:00'
+    }
     /* ordersDetails: {
       status: '4',
       total_elec_money: '10.98',
@@ -38,7 +41,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options, '订单详情页面的options............');
+    // console.log(options, '订单详情页面的options............');
     this.setData({
       startChargeSeq: options.startChargeSeq
     });
@@ -49,8 +52,8 @@ Page({
     https.request('true', api.getOrdersDetails + '/' + that.data.startChargeSeq).then(function (res) {
       // status: 1-订单开始 2-用户结束订单 3-订单启动失败 4-已接收订单信息，渲染页面
       if (res.code == 0) {
-        that.data.connectorId = res.result.connector_id
-        that.data.operatorId = res.result.operator_id
+        // that.data.connectorId = res.result.connector_id
+        // that.data.operatorId = res.result.operator_id
         if (res.result.status == 1) {
           wx.showToast({
             title: '订单开始',
@@ -64,7 +67,7 @@ Page({
             success:function(){
               that.data.setTimeStr = setTimeout(function(){
                 that.loadDetilesInfo();
-                console.log('settimeout');
+                // console.log('settimeout');
               },30000)
             },
           });
@@ -76,9 +79,11 @@ Page({
           wx.hideLoading();
         } else if (res.result.status == 4) {
           let timestamp = new Date(res.result.end_time).getTime() - new Date(res.result.start_time).getTime();
-          var timeRange = util.formatDuring(timestamp);
-          console.log(timeRange, '充电时长结果..........');
-          res.result['charge_time'] = timeRange
+          if (timestamp) {
+            var timeRange = util.formatDuring(timestamp, 2);
+            // console.log(timeRange, '充电时长结果..........');
+            res.result['charge_time'] = timeRange
+          }
           that.data.connectorId = res.result.connector_id
           that.data.operatorId = res.result.operator_id
           that.setData({
@@ -115,7 +120,7 @@ Page({
   onHide: function () {
     wx.hideLoading();
     clearTimeout(this.data.setTimeStr);
-    console.log('隐藏----');
+    // console.log('隐藏----');
   },
 
   /**
@@ -124,7 +129,7 @@ Page({
   onUnload: function () {
     wx.hideLoading();
     clearTimeout(this.data.setTimeStr);
-    console.log('卸载----');
+    // console.log('卸载----');
   },
 
   /**
