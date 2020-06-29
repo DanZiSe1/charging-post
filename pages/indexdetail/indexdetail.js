@@ -37,7 +37,7 @@ Page({
     duration: 1000
   },
   onLoad: function (options) {
-    console.log(options, 'options.......')
+    // console.log(options, 'options.......')
     this.setData({
       chargStationid: parseInt(options.chargeid),
       chargOperatorid: options.operatorid,
@@ -57,7 +57,7 @@ Page({
       if (res.code == 0) {
         if (res.result) {
           that.resultFee = util.electricServeMoney(res.result.ElectricityFee, res.result.ServiceFee);
-          console.log(that.resultFee, 'that.resultFee......');
+          // console.log(that.resultFee, 'that.resultFee......');
           res.result['billingPeriod'] = that.resultFee[0].time;
           res.result['eleServiceFee'] = that.resultFee[0].elemoney + '元/度 | ' + that.resultFee[0].servemoney + '元/度'
 

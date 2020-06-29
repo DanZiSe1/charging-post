@@ -34,7 +34,7 @@ Page({
     pricetype: ''
   },
   onLoad: function (options) {
-    console.log(options, '价格信息options.......')
+    // console.log(options, '价格信息options.......')
     this.setData({
       pricetype: options.pricetype
     })
@@ -59,7 +59,7 @@ Page({
         pricesList: this.pricesList
       })
     } else if (options.pricetype == 2) { // 从启动充电type=2
-      console.log(JSON.parse(options.allChargePricesInfos), '启动充电options.......')
+      // console.log(JSON.parse(options.allChargePricesInfos), '启动充电options.......')
       // this.setData({
       //   connectorId: options.connectorid,
       //   operatorId: options.operatorid

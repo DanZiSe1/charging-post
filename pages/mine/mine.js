@@ -36,7 +36,7 @@ Page({
       wx.login({
         success: (res) => {
           https.request('false',api.getOpenId,{"js_code": res.code},'POST').then(function(res){
-            console.log(res);
+            // console.log(res);
             if(res.code == 0){
               wx.setStorageSync('openid', res.result.openid);
               app.globalData.openid = res.result.openid;
@@ -44,7 +44,7 @@ Page({
                 if(res.code == 0){
                   that.loadUserInfo();//获取用户基本信息
                   let str = res.result.phoneNumber;
-                  console.log(str);
+                  // console.log(str);
                   let phoneNumber = str.substring(0, 3) + "****" + str.substring(7, str.length);
                   wx.setStorageSync('phoneNum', str);
                   that.setData({
@@ -102,7 +102,7 @@ Page({
   loadUserInfo:function(){
     let that = this;
     https.request('true',api.getUserInfo).then(function(res){
-      console.log(res);
+      // console.log(res);
       if(res.code == 0){
         app.globalData.accountBalance = res.result.balance
         that.setData({

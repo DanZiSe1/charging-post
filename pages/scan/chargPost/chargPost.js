@@ -25,7 +25,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(JSON.parse(options.equipParams), 'JSON.parse(options.equipParams).........')
+    // console.log(JSON.parse(options.equipParams), 'JSON.parse(options.equipParams).........')
     this.data.equipParams = JSON.parse(options.equipParams);
     if (this.data.equipParams) {
       var newstatus = '';
@@ -92,9 +92,9 @@ Page({
    * `status`:'充电设备接口状态 0：离网 1：空闲 2：占用（未充电） 3：占用（充电中） 4：占用（预约锁定） 255：故障'
    * */ 
   startCharging:function(){
-    console.log(app.globalData.qrcode,'启动充电页面的全局qrcode...........');
+    // console.log(app.globalData.qrcode,'启动充电页面的全局qrcode...........');
     https.request('true', api.startCharging, { 'qrcode': app.globalData.qrcode},'POST').then(function(res){
-      console.log(res,'启动充电结果...........');
+      // console.log(res,'启动充电结果...........');
       if(res.code == 0){
         wx.navigateTo({
           url: '/pages/scan/chargeState/chargeState?start_charge_seq=' + res.result.start_charge_seq,

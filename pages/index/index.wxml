@@ -25,11 +25,11 @@
             </p>
             <view class="item_bottom_desc item_bottomdesc_fast"> 
               <span class="color-style">快充</span>
-              <span>{{ item.quick_n }}</span>/{{ item.quick_idle_n }}
+              <span>{{ item.quick_idle_n }}</span>/{{ item.quick_n }}
             </view>
             <view class="item_bottom_desc"> 
               <span class="color-style">慢充</span>
-              <span>{{ item.slow_n }}</span>/{{ item.slow_idle_n }}
+              <span>{{ item.slow_idle_n }}</span>/{{ item.slow_n }}
             </view>
           </view>
         </navigator>

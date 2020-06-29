@@ -33,9 +33,9 @@
       </view>
       <view class="station_detail_quickslow m-b-24"> 
         <span class="quickslow_text">快充</span>
-        <span class="quickslow_num">{{ quick_n }}</span>/{{ quick_idle_n }}
+        <span class="quickslow_num">{{ quick_idle_n }}</span>/{{ quick_n }}
         <span class="quickslow_text m-l-16">慢充</span>
-        <span class="quickslow_num">{{ slow_n }}</span>/{{ slow_idle_n }}
+        <span class="quickslow_num">{{ slow_idle_n }}</span>/{{ slow_n }}
       </view>
       <view>
         地址：{{chargStationData.Address}}

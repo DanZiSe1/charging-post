@@ -50,6 +50,7 @@ Page({
   loadDetilesInfo:function(){
     let that = this;
     https.request('true', api.getOrdersDetails + '/' + that.data.startChargeSeq).then(function (res) {
+      // console.log(res, '订单详情的详细信息结果..................');
       // status: 1-订单开始 2-用户结束订单 3-订单启动失败 4-已接收订单信息，渲染页面
       if (res.code == 0) {
         // that.data.connectorId = res.result.connector_id
@@ -78,7 +79,10 @@ Page({
           });
           wx.hideLoading();
         } else if (res.result.status == 4) {
-          let timestamp = new Date(res.result.end_time).getTime() - new Date(res.result.start_time).getTime();
+          let starttime = res.result.start_time.replace(/-/g,"/");
+          let endtime = res.result.end_time.replace(/-/g,"/");
+          let timestamp = new Date(endtime).getTime() - new Date(starttime).getTime();
+          // console.log(timestamp, '充电时长结果时间戳..........');
           if (timestamp) {
             var timeRange = util.formatDuring(timestamp, 2);
             // console.log(timeRange, '充电时长结果..........');

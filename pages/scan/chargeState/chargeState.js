@@ -41,7 +41,7 @@ Page({
   loadChargeInfo:function(){
     let that = this;
     https.request('true', api.getChargeInfo +'/' + this.data.startChargeSeq).then(function(res){
-      console.log(res, '充电详情信息................');
+      // console.log(res, '充电详情信息................');
       if(res.code == 0){
         var newchargestatus = '';
         switch (res.result.ConnectorStatus) {
@@ -65,11 +65,13 @@ Page({
             break;
         };
         res.result['ConnectorStatus'] = newchargestatus
-        let timestamp = new Date(res.result.EndTime).getTime() - new Date(res.result.StartTime).getTime();
+        let starttime = res.result.StartTime.replace(/-/g,"/");
+        let endtime = res.result.EndTime.replace(/-/g,"/");
+        let timestamp = new Date(endtime).getTime() - new Date(starttime).getTime();
         // console.log(timestamp, 'timestamp充电中页面.........')
         if (timestamp) {
           var timeRange = util.formatDuring(timestamp, 1);
-          // console.log(timeRange, '充电时长结果..........');
+          // console.log(timeRange, '充电时长结果充电中页面..........');
           res.result['timeRange'] = timeRange
           // console.log(res.result, '.........................344434')
         }

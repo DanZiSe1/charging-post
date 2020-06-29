@@ -65,7 +65,7 @@ Page({
       }
 
       https.request('true', api.useRecharge, data, 'POST').then(function (res) {
-        console.log(res, '充值接口结果........')
+        // console.log(res, '充值接口结果........')
         if (res.code == 0) {
           wx.requestPayment({
             timeStamp: res.result.timeStamp,
@@ -74,8 +74,8 @@ Page({
             signType: res.result.signType,
             paySign: res.result.paySign,
             success: function (res) {
-              console.log("调起微信支付...........")
-              console.log(res, '微信支付结果........')
+              // console.log("调起微信支付...........")
+              // console.log(res, '微信支付结果........')
               if (res.errMsg == "requestPayment:ok") {
                 wx.showToast({
                   title: '充值成功',
@@ -98,7 +98,7 @@ Page({
               }
             },
             fail: function (res) {
-              console.log("没有调起微信支付...........")
+              // console.log("没有调起微信支付...........")
               wx.showToast({
                 title: '调起微信支付失败!',
                 icon: 'none',
