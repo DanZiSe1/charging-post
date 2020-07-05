@@ -1,4 +1,5 @@
 <!--pages/scan/scan.wxml-->
 <!-- <view class="coverBg">
  <image src="/imgs/scan_white.png"></image>
-</view> -->
+</view>
+<my-component  bind:myevent='parentMethod'></my-component> -->

@@ -48,13 +48,6 @@ Page({
   // 立即充值
   nowRecharge:function(){
     var that = this
-    // console.log(Number(that.data.balance), 'that.data.balance............');
-    // else if(that.data.balance < 1) {
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '您充值的金额不能低于1分'
-    //   })
-    // } 
     if (that.data.balance == 0) {
       wx.showModal({
         title: '提示',
@@ -81,13 +74,13 @@ Page({
                 wx.showToast({
                   title: '充值成功',
                   icon: 'success',
-                  duration: 1000,
+                  duration: 2000,
                   success: function () {
                     app.globalData.walletBalance = Number(that.data.balance);
                     wx.setStorageSync('walletBalance', Number(that.data.balance));
-                    wx.navigateBack({
-                      delta: 1
-                    })
+                    setTimeout(function(){
+                      wx.navigateBack();
+                    },2000)
                   }
                 })
               } else {

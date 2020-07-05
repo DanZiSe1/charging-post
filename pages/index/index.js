@@ -22,6 +22,7 @@ Page({
       this.getTabBar().setData({
         selected: 0
       });
+      // console.log(this.getTabBar().data.selected);
     }
 
     this.getLocationAuth();
