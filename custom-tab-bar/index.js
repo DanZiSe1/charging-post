@@ -90,8 +90,6 @@ Component({
         selected: data.index
       });
       if(data.index == 1){
-        console.log(2121);
-        // this.triggerEvent('myevent','zansijing') //myevent 自定义名称事件，父组件中使用
         that.scanCode();
       }
     }
