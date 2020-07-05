@@ -8,7 +8,7 @@
 		<view class="params">
 			<view>状态：<text>{{ equipParams.status }}</text></view>
 			<view class="paramsType">| 类型：<text>{{equipParams.connector_type}}</text></view>
-			<view>| 功率：<text>{{equipParams.power}}KW</text></view>
+			<!-- <view>| 功率：<text>{{equipParams.power}}KW</text></view> -->
 		</view>
 	</view>
 

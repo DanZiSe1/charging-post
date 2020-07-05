@@ -53,6 +53,9 @@
   box-sizing: border-box;
   font-size: 32rpx;
 }
+.chargeInfo:last-of-type{
+  border-bottom: none;
+}
 .chargeInfo .chargeInfo_right{
   color:#F77F00;
 }

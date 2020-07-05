@@ -1,5 +1,6 @@
 // 
-var host = 'https://test-evcs.91sdc.cn';
+var host = 'https://test-evcs.91sdc.cn';// 测试域名
+// var host = 'https://www.91sdc.cn'; // 正式域名
 
 var getOrdersList = host + '/xcx/orders';//获取订单列表
 var getOrdersDetails = host + '/xcx/order';//获取订单详细信息

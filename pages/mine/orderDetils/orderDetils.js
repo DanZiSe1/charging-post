@@ -68,7 +68,6 @@ Page({
             success:function(){
               that.data.setTimeStr = setTimeout(function(){
                 that.loadDetilesInfo();
-                // console.log('settimeout');
               },30000)
             },
           });

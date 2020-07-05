@@ -16,6 +16,7 @@ Page({
       {amount: 300 },
       {amount: 500 },
     ],
+    active: 1,
     balance: 0,//支付金额
     inputValue: '',
   },

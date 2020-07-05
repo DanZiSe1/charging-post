@@ -22,15 +22,15 @@
     </view>
   </view> -->
   <view class="chargeInfo">
-    <view>已充电量：</view>
+    <view>已充电量</view>
     <view class="chargeInfo_right">{{chargeInfo.TotalPower}}度</view>
   </view>
   <view class="chargeInfo">
-    <view>充电时长：</view>
+    <view>充电时长</view>
     <view class="chargeInfo_right">{{chargeInfo.timeRange}}</view>
   </view>
   <view class="chargeInfo">
-    <view>充电金额：</view>
+    <view>充电金额</view>
     <view class="chargeInfo_right">{{chargeInfo.TotalMoney}}元</view>
   </view>
   <button class="recharge" type="primary" hover-class="none" bindtap="overCharging">结束充电</button>

@@ -115,6 +115,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function(){
+    // 自定义tabbar
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 2
+      });
+    }
+
     let openid = wx.getStorageSync('openid');
     if(openid){
       this.loadUserInfo();//获取用户基本信息
